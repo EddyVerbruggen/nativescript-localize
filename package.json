@@ -17,7 +17,7 @@
   "typings": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lfabreges/nativescript-localize"
+    "url": "https://github.com/lfabreges/nativescript-localize.git"
   },
   "scripts": {
     "build": "tsc",
