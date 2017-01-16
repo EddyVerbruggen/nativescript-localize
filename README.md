@@ -75,7 +75,7 @@ application.resource.L = localize;
 #### Template ####
 ~~~
 <Label text="{{ L('Hello world !') }}">
-<Label text="{{ L('I am #replace me with the real user name#', 'the real user name') }}">
+<Label text="{{ L('I am %s', 'user name') }}">
 ~~~
 
 ### Angular
@@ -102,5 +102,5 @@ export class AppModule { }
 #### Template ####
 ~~~
 <Label text="{{ 'Hello world !' | L }}">
-<Label text="{{ 'I am #replace me with the real user name#' | L:'the real user name' }}">
+<Label text="{{ 'I am %s' | L:'user name' }}">
 ~~~
