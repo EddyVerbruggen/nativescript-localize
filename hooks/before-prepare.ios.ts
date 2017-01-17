@@ -37,7 +37,7 @@ function writeAppNameToInfoPlistStrings(lngResourcesDir: string, encodedAppName:
     if (infoPlistStringsContent.match(pattern)) {
       infoPlistStringsContent = infoPlistStringsContent.replace(pattern, "$1" + `"${encodedAppName}";`);
     } else {
-      infoPlistStringsContent += `\n"CFBundleDisplayName" = "${encodedAppName}";\n`;
+      infoPlistStringsContent += `\n"${key}" = "${encodedAppName}";\n`;
     }
   }
   fs.writeFileSync(infoPlistStringsFilePath, infoPlistStringsContent);

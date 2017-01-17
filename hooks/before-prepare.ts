@@ -8,7 +8,7 @@ const createResourceForPlatforms = {
 
 export = function(logger, platformsData, projectData, hookArgs) {
 	const platformName = hookArgs.platform.toLowerCase();
-	const appResourcesDir = projectData.appResourcesDir;
+	const appResourcesDir = projectData.appResourcesDirectoryPath;
 	const i18nDirectoryPath = path.join(projectData.projectDir, "app", "i18n");
 	if (fs.existsSync(i18nDirectoryPath) && createResourceForPlatforms.hasOwnProperty(platformName)) {
 		fs.readdirSync(i18nDirectoryPath).map(fileName => {
