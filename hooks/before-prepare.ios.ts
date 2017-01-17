@@ -33,9 +33,9 @@ function writeAppNameToInfoPlistStrings(lngResourcesDir: string, encodedAppName:
   const infoPlistStringsFilePath = path.join(lngResourcesDir, "InfoPlist.strings");
   let infoPlistStringsContent = readFileSync(infoPlistStringsFilePath);
   for (const key of ["CFBundleDisplayName", "CFBundleName"]) {
-    const pattern = new RegExp(`(\s*?"?${key}"?\s*?=\s*?)"?.*?"?\s*?;\s*?$`, "gm");
+    const pattern = new RegExp(`^(\\s*?"?${key}"?\\s*?=)\\s*?"?.*?"?\\s*?;\\s*?$`, "gm");
     if (infoPlistStringsContent.match(pattern)) {
-      infoPlistStringsContent = infoPlistStringsContent.replace(pattern, "$1" + `"${encodedAppName}";`);
+      infoPlistStringsContent = infoPlistStringsContent.replace(pattern, `$1 "${encodedAppName}";`);
     } else {
       infoPlistStringsContent += `\n"${key}" = "${encodedAppName}";\n`;
     }
