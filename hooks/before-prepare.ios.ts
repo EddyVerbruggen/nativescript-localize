@@ -3,6 +3,7 @@
 import * as fs from "fs";
 import * as mkdirp from "mkdirp";
 import * as path from "path";
+import { replace } from "../sources/resource.common";
 import { encodeKey, encodeValue } from "../sources/resource.ios";
 
 export function createResourceFile(
@@ -21,6 +22,9 @@ export function createResourceFile(
 		stream.write(`"${encodedKey}" = "${encodedValue}";\n`);
 		if (key === "app.name") {
       writeAppNameToInfoPlistStrings(lngResourcesDir, encodedValue);
+      if (isDefaultLanguage) {
+        writeFallbackAppNameToInfoPlist(appResourcesDir, value);
+      }
 		}
 	}
 	stream.end();
@@ -43,6 +47,19 @@ function writeAppNameToInfoPlistStrings(lngResourcesDir: string, encodedAppName:
   fs.writeFileSync(infoPlistStringsFilePath, infoPlistStringsContent);
 }
 
+function writeFallbackAppNameToInfoPlist(appResourcesDir: string, appName: string) {
+  const encodedAppName = replace(["<", "&"], ["&lt;", "&amp;"], appName);
+  const infoPlistFilePath = path.join(appResourcesDir, "iOS", "Info.plist");
+  let infoPlistContent = readFileSync(infoPlistFilePath);
+  infoPlistContent = infoPlistContent.replace(
+    /(<key>CFBundleDisplayName<\/key>\s*<string>).*?(<\/string>)/, `$1${encodedAppName}$2`
+  );
+  infoPlistContent = infoPlistContent.replace(
+    /(<key>CFBundleName<\/key>\s*<string>).*?(<\/string>)/, `$1${encodedAppName}$2`
+  );
+  fs.writeFileSync(infoPlistFilePath, infoPlistContent);
+}
+
 function writeDefaultLanguageToInfoPlist(appResourcesDir: string, defaultLanguage: string) {
   const infoPlistFilePath = path.join(appResourcesDir, "iOS", "Info.plist");
   let infoPlistContent = readFileSync(infoPlistFilePath);
@@ -51,8 +68,6 @@ function writeDefaultLanguageToInfoPlist(appResourcesDir: string, defaultLanguag
   );
   fs.writeFileSync(infoPlistFilePath, infoPlistContent);
 }
-
-// TODO Write fallback language
 
 function readFileSync(filePath: string): string {
   try {
