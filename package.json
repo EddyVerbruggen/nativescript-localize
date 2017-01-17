@@ -1,7 +1,7 @@
 {
   "name": "nativescript-localize",
   "description": "Native internationalization plugin for NativeScript using platforms standards",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "keywords": [
     "nativescript",
     "internationalization",
