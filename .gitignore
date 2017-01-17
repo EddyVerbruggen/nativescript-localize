@@ -1,4 +1,5 @@
-node_modules/
-sources/**/*.js
-index.js
-**/*.js.map
+/node_modules/
+/hooks/**/*.js
+/sources/**/*.js
+/**/*.js.map
+/index.js

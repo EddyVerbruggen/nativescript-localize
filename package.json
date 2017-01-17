@@ -27,14 +27,16 @@
   "dependencies": {
     "@angular/core": "^2.3.1",
     "format": "^0.2.2",
-    "fs-extra": "^1.0.0",
     "jshashes": "^1.0.6",
+    "mkdirp": "^0.5.1",
     "nativescript-hook": "^0.2.1",
     "rxjs": "^5.0.0-rc.4",
     "tns-core-modules": "^2.4.4",
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
+    "@types/mkdirp": "^0.3.29",
+    "@types/node": "^7.0.0",
     "tns-platform-declarations": "^2.4.4",
     "typescript": "^2.0.10"
   },
