@@ -92,7 +92,7 @@ import { AppComponent } from "./app.component";
   bootstrap: [AppComponent],
   imports: [
     NativeScriptModule,
-    NativeScriptLocalizeModule
+    NativeScriptLocalizeModule.forRoot()
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
