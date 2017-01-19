@@ -20,30 +20,66 @@ app
       | es.js
 ```
 
-### Localize the application name
+### Angular 2
+#### app.module.ts
+```ts
+import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NativeScriptLocalizeModule } from "nativescript-localize";
+import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+
+import { AppComponent } from "./app.component";
+
+@NgModule({
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  imports: [
+    NativeScriptModule,
+    NativeScriptLocalizeModule.forRoot() // import the module here using the forRoot static method
+                                         // import it using NativeScriptLocalizeModule if in a lazy loaded module
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
+})
+export class AppModule { }
+```
+
+#### Template
+```xml
+<Label text="{{ 'Hello world !' | L }}">
+<Label text="{{ 'I am %s' | L:'user name' }}">
+```
+
+### Javascript
+#### app.js
+```js
+const application = require("application");
+const localize = require("nativescript-localize").localize;
+application.resource.L = localize;
+```
+
+#### Template
+```xml
+<Label text="{{ L('Hello world !') }}">
+<Label text="{{ L('I am %s', 'user name') }}">
+```
+
+## Localize the application name
 The "app.name" key is used to localize the application name:
 ```json
 {
   "app.name": "My app"
 }
 ```
-or
-```json
-{
-  "app": {
-    "name": "My app"
-  }
-}
-```
 
-### Default language
-Add the `.default` extension to the default language file:
+## Default language
+Add the `.default` extension to the default language file to set it as the fallback language:
 ```
 fr.default.json
 ```
 
-### File format
-#### JSON ####
+## File format
+Each file is imported using `require`, use the file format of your choice:
+
+#### JSON
 ```json
 {
   "app.name": "My app",
@@ -59,52 +95,11 @@ fr.default.json
 }
 ```
 
-#### Javascript ####
+#### Javascript
 ```js
 const i18n = {
   "app.name": "My app"
 };
 
 module.exports = i18n;
-```
-
-### Javascript
-#### app.js ####
-```js
-const application = require("application");
-const localize = require("nativescript-localize").localize;
-application.resource.L = localize;
-```
-
-#### Template ####
-```xml
-<Label text="{{ L('Hello world !') }}">
-<Label text="{{ L('I am %s', 'user name') }}">
-```
-
-### Angular
-#### app.module.ts ####
-```ts
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptLocalizeModule } from "nativescript-localize";
-import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-
-import { AppComponent } from "./app.component";
-
-@NgModule({
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
-  imports: [
-    NativeScriptModule,
-    NativeScriptLocalizeModule.forRoot()
-  ],
-  schemas: [NO_ERRORS_SCHEMA]
-})
-export class AppModule { }
-```
-
-#### Template ####
-```xml
-<Label text="{{ 'Hello world !' | L }}">
-<Label text="{{ 'I am %s' | L:'user name' }}">
 ```
