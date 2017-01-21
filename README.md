@@ -34,8 +34,7 @@ import { AppComponent } from "./app.component";
   bootstrap: [AppComponent],
   imports: [
     NativeScriptModule,
-    NativeScriptLocalizeModule.forRoot() // import the module here using the forRoot static method
-                                         // import it directly if in a lazy loaded module
+    NativeScriptLocalizeModule
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
