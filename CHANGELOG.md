@@ -1,5 +1,8 @@
 # Change Log
 
+## [v1.5.0](https://github.com/lfabreges/nativescript-localize/tree/v1.5.0) (2017-01-24)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.4.2...v1.5.0)
+
 ## [v1.4.2](https://github.com/lfabreges/nativescript-localize/tree/v1.4.2) (2017-01-19)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.4.1...v1.4.2)
 
