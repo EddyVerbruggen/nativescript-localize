@@ -2,8 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 
 const createResourceForPlatforms = {
-	"android": require("./before-prepare.android").createResourceFile,
-	"ios": require("./before-prepare.ios").createResourceFile
+	"android": require("./before-prepare.android").createResourcesFiles,
+	"ios": require("./before-prepare.ios").createResourcesFiles
 };
 
 export = function(logger, platformsData, projectData, hookArgs) {

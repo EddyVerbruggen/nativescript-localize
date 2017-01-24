@@ -34,8 +34,7 @@ import { AppComponent } from "./app.component";
   bootstrap: [AppComponent],
   imports: [
     NativeScriptModule,
-    NativeScriptLocalizeModule.forRoot() // import the module here using the forRoot static method
-                                         // import it directly if in a lazy loaded module
+    NativeScriptLocalizeModule
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
@@ -62,6 +61,12 @@ application.resource.L = localize;
 <Label text="{{ L('I am %s', 'user name') }}">
 ```
 
+## Default language
+Add the `.default` extension to the default language file to set it as the fallback language:
+```
+fr.default.json
+```
+
 ## Localize the application name
 The "app.name" key is used to localize the application name:
 ```json
@@ -70,10 +75,12 @@ The "app.name" key is used to localize the application name:
 }
 ```
 
-## Default language
-Add the `.default` extension to the default language file to set it as the fallback language:
-```
-fr.default.json
+## Localize iOS properties
+Keys starting with `ios.info.plist.` are used to localize iOS properties:
+```json
+{
+  "ios.info.plist.NSLocationWhenInUseUsageDescription": "This will be added to InfoPlist.strings"
+}
 ```
 
 ## File format
@@ -83,6 +90,9 @@ Each file is imported using `require`, use the file format of your choice:
 ```json
 {
   "app.name": "My app",
+  "ios.info.plist": {
+    "NSLocationWhenInUseUsageDescription": "This will be added to InfoPlist.strings"
+  },
   "user": {
     "name": "user.name",
     "email": "user.email"

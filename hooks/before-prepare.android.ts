@@ -5,7 +5,7 @@ import * as mkdirp from "mkdirp";
 import * as path from "path";
 import { encodeKey, encodeValue } from "../sources/resource.android";
 
-export function createResourceFile(
+export function createResourcesFiles(
   appResourcesDir: string,
   language: string,
   isDefaultLanguage: boolean,

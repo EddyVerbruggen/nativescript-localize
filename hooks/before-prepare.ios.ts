@@ -3,76 +3,62 @@
 import * as fs from "fs";
 import * as mkdirp from "mkdirp";
 import * as path from "path";
+import * as plist from "simple-plist";
+
 import { replace } from "../sources/resource.common";
 import { encodeKey, encodeValue } from "../sources/resource.ios";
 
-export function createResourceFile(
+export function createResourcesFiles(
   appResourcesDir: string,
   language: string,
   isDefaultLanguage: boolean,
   i18nContentIterator: Iterable<I18nEntry>
 ) {
-  const lngResourcesDir = path.join(appResourcesDir, "iOS", `${language}.lproj`);
-  fs.existsSync(lngResourcesDir) || mkdirp.sync(lngResourcesDir);
-  const resourceFilePath = path.join(lngResourcesDir, "Localizable.strings");
-	const stream = fs.createWriteStream(resourceFilePath);
-	for (const { key, value } of i18nContentIterator) {
-		const encodedKey = encodeKey(key);
-		const encodedValue = encodeValue(value);
-		stream.write(`"${encodedKey}" = "${encodedValue}";\n`);
-		if (key === "app.name") {
-      writeAppNameToInfoPlistStrings(lngResourcesDir, encodedValue);
-      if (isDefaultLanguage) {
-        writeFallbackAppNameToInfoPlist(appResourcesDir, value);
-      }
-		}
-	}
-	stream.end();
-	if (isDefaultLanguage) {
-    writeDefaultLanguageToInfoPlist(appResourcesDir, language);
-	}
-}
-
-function writeAppNameToInfoPlistStrings(lngResourcesDir: string, encodedAppName: string) {
-  const infoPlistStringsFilePath = path.join(lngResourcesDir, "InfoPlist.strings");
-  let infoPlistStringsContent = readFileSync(infoPlistStringsFilePath);
-  for (const key of ["CFBundleDisplayName", "CFBundleName"]) {
-    const pattern = new RegExp(`^(\\s*?"?${key}"?\\s*?=)\\s*?"?.*?"?\\s*?;\\s*?$`, "gm");
-    if (infoPlistStringsContent.match(pattern)) {
-      infoPlistStringsContent = infoPlistStringsContent.replace(pattern, `$1 "${encodedAppName}";`);
-    } else {
-      infoPlistStringsContent += `\n"${key}" = "${encodedAppName}";\n`;
+  const localizableStrings: I18nEntry[] = [];
+  const infoPlistStrings: I18nEntry[] = [];
+  for (const { key, value } of i18nContentIterator) {
+    localizableStrings.push({ key, value });
+    if (key === "app.name") {
+      infoPlistStrings.push({ key: "CFBundleDisplayName", value });
+      infoPlistStrings.push({ key: "CFBundleName", value });
+    } else if (key.startsWith("ios.info.plist.")) {
+      infoPlistStrings.push({ key: key.substr(15), value });
     }
   }
-  fs.writeFileSync(infoPlistStringsFilePath, infoPlistStringsContent);
-}
-
-function writeFallbackAppNameToInfoPlist(appResourcesDir: string, appName: string) {
-  const encodedAppName = replace(["<", "&"], ["&lt;", "&amp;"], appName);
-  const infoPlistFilePath = path.join(appResourcesDir, "iOS", "Info.plist");
-  let infoPlistContent = readFileSync(infoPlistFilePath);
-  infoPlistContent = infoPlistContent.replace(
-    /(<key>CFBundleDisplayName<\/key>\s*<string>).*?(<\/string>)/, `$1${encodedAppName}$2`
-  );
-  infoPlistContent = infoPlistContent.replace(
-    /(<key>CFBundleName<\/key>\s*<string>).*?(<\/string>)/, `$1${encodedAppName}$2`
-  );
-  fs.writeFileSync(infoPlistFilePath, infoPlistContent);
-}
-
-function writeDefaultLanguageToInfoPlist(appResourcesDir: string, defaultLanguage: string) {
-  const infoPlistFilePath = path.join(appResourcesDir, "iOS", "Info.plist");
-  let infoPlistContent = readFileSync(infoPlistFilePath);
-  infoPlistContent = infoPlistContent.replace(
-    /(<key>CFBundleDevelopmentRegion<\/key>\s*<string>).*?(<\/string>)/, `$1${defaultLanguage}$2`
-  );
-  fs.writeFileSync(infoPlistFilePath, infoPlistContent);
-}
-
-function readFileSync(filePath: string): string {
-  try {
-    return fs.readFileSync(filePath, "utf8");
-  } catch (error) {
-    return "";
+  const lngResourcesDir = path.join(appResourcesDir, "iOS", `${language}.lproj`);
+  fs.existsSync(lngResourcesDir) || mkdirp.sync(lngResourcesDir);
+  writeLocalizableStrings(lngResourcesDir, localizableStrings);
+  writeInfoPlistStrings(lngResourcesDir, infoPlistStrings);
+  if (isDefaultLanguage) {
+    const infoPlistValues = infoPlistStrings.slice();
+    infoPlistValues.push({ key: "CFBundleDevelopmentRegion", value: language });
+    writeInfoPlist(appResourcesDir, infoPlistValues);
   }
+}
+
+function writeLocalizableStrings(lngResourcesDir: string, localizableStrings: I18nEntry[]) {
+  const resourceFilePath = path.join(lngResourcesDir, "Localizable.strings");
+  const stream = fs.createWriteStream(resourceFilePath);
+  for (const { key, value } of localizableStrings) {
+    stream.write(`"${encodeKey(key)}" = "${encodeValue(value)}";\n`);
+  }
+  stream.end();
+}
+
+function writeInfoPlistStrings(lngResourcesDir: string, infoPlistStrings: I18nEntry[]) {
+  const resourceFilePath = path.join(lngResourcesDir, "InfoPlist.strings");
+  const stream = fs.createWriteStream(resourceFilePath);
+  for (const { key, value } of infoPlistStrings) {
+    stream.write(`"${encodeKey(key)}" = "${encodeValue(value)}";\n`);
+  }
+  stream.end();
+}
+
+function writeInfoPlist(appResourcesDir: string, infoPlistValues: I18nEntry[]) {
+  const resourceFilePath = path.join(appResourcesDir, "iOS", "Info.plist");
+  const data = plist.readFileSync(resourceFilePath);
+  for (const { key, value } of infoPlistValues) {
+    data[key] = value;
+  }
+  plist.writeFileSync(resourceFilePath, data);
 }

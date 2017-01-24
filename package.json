@@ -7,7 +7,9 @@
     "internationalization",
     "i18n",
     "translate",
-    "localize"
+    "translation",
+    "localize",
+    "localization"
   ],
   "homepage": "https://github.com/lfabreges/nativescript-localize",
   "bugs": "https://github.com/lfabreges/nativescript-localize/issues",
@@ -21,7 +23,7 @@
   },
   "scripts": {
     "compile": "tsc",
-    "prepublish": "npm run compile",
+    "preversion": "npm run compile",
     "publish": "git push origin --tags && npm run changelog && git push origin",
     "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Update CHANGELOG.md\"",
     "preuninstall": "node preuninstall.js",
@@ -34,6 +36,7 @@
     "mkdirp": "^0.5.1",
     "nativescript-hook": "^0.2.1",
     "rxjs": "^5.0.0-rc.4",
+    "simple-plist": "^0.2.1",
     "tns-core-modules": "^2.4.4",
     "zone.js": "^0.7.2"
   },

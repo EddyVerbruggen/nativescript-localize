@@ -5,5 +5,5 @@ export function encodeKey(key: string): string {
 }
 
 export function encodeValue(value: string): string {
-  return replace(['"', "\\"], ['\\"', "\\\\"], value);
+  return replace(['"', "\\", "\n", "\r"], ['\\"', "\\\\", "\\n", "\\r"], value);
 }

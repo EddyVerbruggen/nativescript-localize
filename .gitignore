@@ -3,3 +3,6 @@
 /sources/**/*.js
 /**/*.js.map
 /index.js
+
+/.vscode/
+/**/.DS_Store

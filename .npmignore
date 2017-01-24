@@ -3,3 +3,6 @@
 /**/*.ts
 !/index.d.ts
 /tsconfig.json
+
+/.vscode/
+/**/.DS_Store
