@@ -30,21 +30,22 @@
     "postinstall": "node postinstall.js"
   },
   "dependencies": {
-    "@angular/core": "^2.3.1",
     "format": "^0.2.2",
     "jshashes": "^1.0.6",
     "mkdirp": "^0.5.1",
     "nativescript-hook": "^0.2.1",
-    "rxjs": "^5.0.0-rc.4",
     "simple-plist": "^0.2.1",
-    "tns-core-modules": "^2.4.4",
-    "zone.js": "^0.7.2"
+    "tns-core-modules": "^2.3.0"
   },
   "devDependencies": {
+    "@angular/core": "^2.3.1",
     "@types/mkdirp": "^0.3.29",
     "@types/node": "^7.0.0",
-    "tns-platform-declarations": "^2.4.4",
+    "tns-platform-declarations": "^2.3.0",
     "typescript": "^2.0.10"
+  },
+  "peerDependencies": {
+    "@angular/core": "^2.3.1"
   },
   "nativescript": {
     "platforms": {
