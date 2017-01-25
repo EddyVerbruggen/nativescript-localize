@@ -8,6 +8,29 @@ import * as plist from "simple-plist";
 import { replace } from "../sources/resource.common";
 import { encodeKey, encodeValue } from "../sources/resource.ios";
 
+export function cleanResourcesFiles(appResourcesDir: string) {
+  const platformResourcesDir = path.join(appResourcesDir, "iOS");
+  fs.readdirSync(platformResourcesDir).filter(fileName => {
+    return fileName.match(/\.lproj$/);
+  }).map(fileName => {
+    return path.join(platformResourcesDir, fileName);
+  }).filter(filePath => {
+    return fs.statSync(filePath).isDirectory();
+  }).forEach(lngResourcesDir => {
+    for (const resourceFileName of ["InfoPlist.strings", "Localizable.strings"]) {
+      try {
+        const resourceFilePath = path.join(lngResourcesDir, resourceFileName);
+        fs.unlinkSync(resourceFilePath);
+      } catch (error) {
+      }
+    }
+    try {
+      fs.rmdirSync(lngResourcesDir);
+    } catch (error) {
+    }
+  });
+}
+
 export function createResourcesFiles(
   appResourcesDir: string,
   language: string,

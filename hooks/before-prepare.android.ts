@@ -5,6 +5,27 @@ import * as mkdirp from "mkdirp";
 import * as path from "path";
 import { encodeKey, encodeValue } from "../sources/resource.android";
 
+export function cleanResourcesFiles(appResourcesDir: string) {
+  const platformResourcesDir = path.join(appResourcesDir, "Android");
+  fs.readdirSync(platformResourcesDir).filter(fileName => {
+    return fileName.match(/^values(?:-|$)/);
+  }).map(fileName => {
+    return path.join(platformResourcesDir, fileName);
+  }).filter(filePath => {
+    return fs.statSync(filePath).isDirectory();
+  }).forEach(lngResourcesDir => {
+    try {
+      const resourceFilePath = path.join(lngResourcesDir, "strings.xml");
+      fs.unlinkSync(resourceFilePath);
+    } catch (error) {
+    }
+    try {
+      fs.rmdirSync(lngResourcesDir);
+    } catch (error) {
+    }
+  });
+}
+
 export function createResourcesFiles(
   appResourcesDir: string,
   language: string,
