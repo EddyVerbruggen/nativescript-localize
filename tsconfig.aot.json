@@ -11,8 +11,10 @@
     "removeComments": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "aot",
-    "node_modules"
-  ]
+  "include": [
+    "index.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "aot"
+  }
 }

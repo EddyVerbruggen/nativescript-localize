@@ -1,8 +1,9 @@
+/**/.DS_Store
+/**/*.js.map
+/**/*.metadata.json
+/.vscode/
+/aot/
 /node_modules/
 /hooks/**/*.js
 /sources/**/*.js
-/**/*.js.map
 /index.js
-
-/.vscode/
-/**/.DS_Store

@@ -22,7 +22,7 @@
     "url": "https://github.com/lfabreges/nativescript-localize.git"
   },
   "scripts": {
-    "compile": "tsc",
+    "compile": "tsc && ngc -p tsconfig.aot.json",
     "preversion": "npm run compile",
     "publish": "git push origin --tags && npm run changelog && git push origin",
     "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Update CHANGELOG.md\"",
@@ -38,11 +38,15 @@
     "tns-core-modules": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/core": "^2.3.1",
+    "@angular/compiler": "2.3.1",
+    "@angular/compiler-cli": "2.3.1",
+    "@angular/core": "2.3.1",
     "@types/mkdirp": "^0.3.29",
     "@types/node": "^7.0.0",
+    "rxjs": "^5.0.0-rc.4",
     "tns-platform-declarations": "^2.3.0",
-    "typescript": "^2.0.10"
+    "typescript": "2.0.10",
+    "zone.js": "^0.7.6"
   },
   "peerDependencies": {
     "@angular/core": "^2.3.1"

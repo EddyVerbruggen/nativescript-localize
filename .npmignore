@@ -1,8 +1,11 @@
-/node_modules/
+/**/.DS_Store
 /**/*.js.map
 /**/*.ts
-!/index.d.ts
-/tsconfig.json
-
 /.vscode/
-/**/.DS_Store
+/aot/
+/node_modules/
+!/sources/**/*.d.ts
+/typings/
+!/index.d.ts
+/tsconfig.aot.json
+/tsconfig.json

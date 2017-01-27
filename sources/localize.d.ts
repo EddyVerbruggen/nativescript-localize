@@ -1,1 +1,1 @@
-export * from "./localize.android";
+export declare function localize(key: string, ...args: string[]): string;
