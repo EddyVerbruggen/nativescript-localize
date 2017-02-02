@@ -16,7 +16,7 @@ export = function(logger: ILogger, platformsData: IPlatformsData, projectData: I
 	} else if (platformName === "ios") {
 		beforePreparePlatform = new BeforePrepareIOS(logger, platformData, projectData);
 	} else {
-		logger.info(`Platform '${platformName}' isn't supported`);
+		logger.warn(`Platform '${platformName}' isn't supported: skipping localization`);
 		return;
 	}
 

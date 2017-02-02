@@ -47,16 +47,18 @@ export abstract class BeforePrepareCommon extends EventEmitter {
     }).filter(filePath => {
       return fs.statSync(filePath).isFile();
     }).map(filePath => {
+      delete (<any>require).cache[(<any>require).resolve(filePath)];
+      return filePath;
+    }).map(filePath => {
       let language = path.basename(filePath, path.extname(filePath));
       const isDefaultLanguage = path.extname(language) === ".default";
       if (isDefaultLanguage) { language = path.basename(language, ".default"); }
       supportedLanguages.set(language, isDefaultLanguage);
-
-      // TODO Delete all caches in i18n
-      delete (<any>require).cache[(<any>require).resolve(filePath)];
-      const i18nContent = require(filePath);
-      const i18nContentIterator = this.i18nContentGenerator(i18nContent);
-      this.createLanguageResourcesFiles(language, isDefaultLanguage, i18nContentIterator);
+      this.createLanguageResourcesFiles(
+        language,
+        isDefaultLanguage,
+        this.i18nContentGenerator(require(filePath))
+      );
     });
 
     [this.appResourcesDirectoryPath, this.appResourcesDestinationDirectoryPath].forEach(resourcesDirectoryPath => {
