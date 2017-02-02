@@ -21,11 +21,11 @@ export function removeFile(filePath: string): void {
   }
 }
 
-export function writeFileSyncIfNeeded(filePath: string, content: string, encoding: string): void {
+export function writeFileSyncIfNeeded(filePath: string, content: string): void {
   try {
-    const oldContent = fs.readFileSync(filePath, encoding);
+    const oldContent = fs.readFileSync(filePath, "utf8");
     if (oldContent == content) { return; }
   } catch (error) {
   }
-  fs.writeFileSync(filePath, content, { encoding });
+  fs.writeFileSync(filePath, content, { encoding: "utf8" });
 }

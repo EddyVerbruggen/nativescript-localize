@@ -14,7 +14,7 @@ export function cleanResourcesFiles(appResourcesDir: string, supportedLanguages:
     const match = /^values(?:-(.+))?$/.exec(fileName);
     if (!match) {
       return false;
-    } else if (match.length > 1) {
+    } else if (match[1]) {
       return !supportedLanguages.has(match[1]);
     } else {
       for (const [language, isDefaultLanguage] of supportedLanguages) {
@@ -53,5 +53,5 @@ export function createResourcesFiles(
   }
   strings += "</resources>\n";
   const resourceFilePath = path.join(lngResourcesDir, "strings.xml");
-  common.writeFileSyncIfNeeded(resourceFilePath, strings, "utf-8")
+  common.writeFileSyncIfNeeded(resourceFilePath, strings);
 }

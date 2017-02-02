@@ -60,7 +60,7 @@ function writeLocalizableStrings(lngResourcesDir: string, localizableStrings: I1
     strings += `"${encodeKey(key)}" = "${encodeValue(value)}";\n`;
   }
   const resourceFilePath = path.join(lngResourcesDir, "Localizable.strings");
-  common.writeFileSyncIfNeeded(resourceFilePath, strings, "utf-16");
+  common.writeFileSyncIfNeeded(resourceFilePath, strings);
 }
 
 function writeInfoPlistStrings(lngResourcesDir: string, infoPlistStrings: I18nEntry[]) {
@@ -69,7 +69,7 @@ function writeInfoPlistStrings(lngResourcesDir: string, infoPlistStrings: I18nEn
     strings += `"${encodeKey(key)}" = "${encodeValue(value)}";\n`;
   }
   const resourceFilePath = path.join(lngResourcesDir, "InfoPlist.strings");
-  common.writeFileSyncIfNeeded(resourceFilePath, strings, "utf-16");
+  common.writeFileSyncIfNeeded(resourceFilePath, strings);
 }
 
 function writeInfoPlist(appResourcesDir: string, infoPlistValues: I18nEntry[]) {
