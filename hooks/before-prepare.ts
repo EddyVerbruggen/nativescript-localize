@@ -8,37 +8,39 @@ const supportedPlatforms = {
 
 export = function(logger: any, platformsData: any, projectData: any, hookArgs: any) {
 	const platformName = hookArgs.platform.toLowerCase();
-	const appResourcesDir = projectData.appResourcesDirectoryPath;
 	const i18nDirectoryPath = path.join(projectData.projectDir, "app", "i18n");
-	if (fs.existsSync(i18nDirectoryPath)) {
-		cleanResourcesFiles(platformName, appResourcesDir);
-		createResourcesFiles(platformName, appResourcesDir, i18nDirectoryPath);
+	if (supportedPlatforms.hasOwnProperty(platformName) && fs.existsSync(i18nDirectoryPath)) {
+		const appResourcesDir = projectData.appResourcesDirectoryPath;
+		const supportedLanguages = createResourcesFiles(platformName, appResourcesDir, i18nDirectoryPath);
+		cleanResourcesFiles(platformName, appResourcesDir, supportedLanguages);
 	}
 };
 
-function cleanResourcesFiles(platformName: string, appResourcesDir: string) {
-	if (supportedPlatforms.hasOwnProperty(platformName)) {
-		supportedPlatforms[platformName].cleanResourcesFiles(appResourcesDir);
-	}
+function cleanResourcesFiles(platformName: string, appResourcesDir: string, supportedLanguages: Map<string, boolean>) {
+	supportedPlatforms[platformName].cleanResourcesFiles(appResourcesDir, supportedLanguages);
 }
 
-function createResourcesFiles(platformName: string, appResourcesDir: string, i18nDirectoryPath: string) {
-	if (supportedPlatforms.hasOwnProperty(platformName)) {
-		fs.readdirSync(i18nDirectoryPath).map(fileName => {
-			return path.join(i18nDirectoryPath, fileName);
-		}).filter(filePath => {
-			return fs.statSync(filePath).isFile();
-		}).forEach(filePath => {
-			const i18nContent = require(filePath);
-			const i18nContentIterator = i18nContentGenerator(i18nContent);
-			let language = path.basename(filePath, path.extname(filePath));
-			const isDefaultLanguage = path.extname(language) === ".default";
-			if (isDefaultLanguage) { language = path.basename(language, ".default"); }
-			supportedPlatforms[platformName].createResourcesFiles(
-				appResourcesDir, language, isDefaultLanguage, i18nContentIterator
-			);
-		});
-	}
+function createResourcesFiles(platformName: string, appResourcesDir: string, i18nDirectoryPath: string): Map<string, boolean> {
+	const supportedLanguages: Map<string, boolean> = new Map();
+	fs.readdirSync(i18nDirectoryPath).map(fileName => {
+		return path.join(i18nDirectoryPath, fileName);
+	}).filter(filePath => {
+		return fs.statSync(filePath).isFile();
+	}).map(filePath => {
+		let language = path.basename(filePath, path.extname(filePath));
+		const isDefaultLanguage = path.extname(language) === ".default";
+		if (isDefaultLanguage) {
+			language = path.basename(language, ".default");
+		}
+		supportedLanguages.set(language, isDefaultLanguage);
+		delete (<any>require).cache[(<any>require).resolve(filePath)];
+		const i18nContent = require(filePath);
+		const i18nContentIterator = i18nContentGenerator(i18nContent);
+		supportedPlatforms[platformName].createResourcesFiles(
+			appResourcesDir, language, isDefaultLanguage, i18nContentIterator
+		);
+	});
+	return supportedLanguages;
 }
 
 function * i18nContentGenerator(i18nContent: any) {

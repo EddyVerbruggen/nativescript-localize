@@ -1,33 +1,28 @@
 /// <reference path="./before-prepare.d.ts" />
 
 import * as fs from "fs";
-import * as mkdirp from "mkdirp";
 import * as path from "path";
 import * as plist from "simple-plist";
+
+import * as common from "./before-prepare.common";
 
 import { replace } from "../sources/resource.common";
 import { encodeKey, encodeValue } from "../sources/resource.ios";
 
-export function cleanResourcesFiles(appResourcesDir: string) {
+export function cleanResourcesFiles(appResourcesDir: string, supportedLanguages: Map<string, boolean>) {
   const platformResourcesDir = path.join(appResourcesDir, "iOS");
   fs.readdirSync(platformResourcesDir).filter(fileName => {
-    return fileName.match(/\.lproj$/);
+    const match = /^(.+)\.lproj$/.exec(fileName);
+    return match && !supportedLanguages.has(match[1]);
   }).map(fileName => {
     return path.join(platformResourcesDir, fileName);
   }).filter(filePath => {
     return fs.statSync(filePath).isDirectory();
   }).forEach(lngResourcesDir => {
-    for (const resourceFileName of ["InfoPlist.strings", "Localizable.strings"]) {
-      try {
-        const resourceFilePath = path.join(lngResourcesDir, resourceFileName);
-        fs.unlinkSync(resourceFilePath);
-      } catch (error) {
-      }
-    }
-    try {
-      fs.rmdirSync(lngResourcesDir);
-    } catch (error) {
-    }
+    ["InfoPlist.strings", "Localizable.strings"].forEach(filePath => {
+      common.removeFile(path.join(lngResourcesDir, filePath))
+    });
+    common.removeDirectoryIfEmpty(lngResourcesDir);
   });
 }
 
@@ -49,7 +44,7 @@ export function createResourcesFiles(
     }
   }
   const lngResourcesDir = path.join(appResourcesDir, "iOS", `${language}.lproj`);
-  fs.existsSync(lngResourcesDir) || mkdirp.sync(lngResourcesDir);
+  common.createDirectoryIfNeeded(lngResourcesDir);
   writeLocalizableStrings(lngResourcesDir, localizableStrings);
   writeInfoPlistStrings(lngResourcesDir, infoPlistStrings);
   if (isDefaultLanguage) {
@@ -60,28 +55,32 @@ export function createResourcesFiles(
 }
 
 function writeLocalizableStrings(lngResourcesDir: string, localizableStrings: I18nEntry[]) {
-  const resourceFilePath = path.join(lngResourcesDir, "Localizable.strings");
-  const stream = fs.createWriteStream(resourceFilePath);
+  let strings = "";
   for (const { key, value } of localizableStrings) {
-    stream.write(`"${encodeKey(key)}" = "${encodeValue(value)}";\n`);
+    strings += `"${encodeKey(key)}" = "${encodeValue(value)}";\n`;
   }
-  stream.end();
+  const resourceFilePath = path.join(lngResourcesDir, "Localizable.strings");
+  common.writeFileSyncIfNeeded(resourceFilePath, strings, "utf-16");
 }
 
 function writeInfoPlistStrings(lngResourcesDir: string, infoPlistStrings: I18nEntry[]) {
-  const resourceFilePath = path.join(lngResourcesDir, "InfoPlist.strings");
-  const stream = fs.createWriteStream(resourceFilePath);
+  let strings = "";
   for (const { key, value } of infoPlistStrings) {
-    stream.write(`"${encodeKey(key)}" = "${encodeValue(value)}";\n`);
+    strings += `"${encodeKey(key)}" = "${encodeValue(value)}";\n`;
   }
-  stream.end();
+  const resourceFilePath = path.join(lngResourcesDir, "InfoPlist.strings");
+  common.writeFileSyncIfNeeded(resourceFilePath, strings, "utf-16");
 }
 
 function writeInfoPlist(appResourcesDir: string, infoPlistValues: I18nEntry[]) {
   const resourceFilePath = path.join(appResourcesDir, "iOS", "Info.plist");
   const data = plist.readFileSync(resourceFilePath);
+  let hasNewValue = false;
   for (const { key, value } of infoPlistValues) {
-    data[key] = value;
+    if (!data.hasOwnProperty(key) || data[key] != value) {
+      data[key] = value;
+      hasNewValue = true;
+    }
   }
-  plist.writeFileSync(resourceFilePath, data);
+  hasNewValue && plist.writeFileSync(resourceFilePath, data);
 }
