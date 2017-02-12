@@ -43,8 +43,8 @@ export class AppModule { }
 
 #### Template
 ```xml
-<Label text="{{ 'Hello world !' | L }}">
-<Label text="{{ 'I am %s' | L:'user name' }}">
+<Label text="{{ 'Hello world !' | L }}"></Label>
+<Label text="{{ 'I am %s' | L:'user name' }}"></Label>
 ```
 
 ### Javascript
@@ -52,13 +52,13 @@ export class AppModule { }
 ```js
 const application = require("application");
 const localize = require("nativescript-localize").localize;
-application.resource.L = localize;
+application.resources.L = localize;
 ```
 
 #### Template
 ```xml
-<Label text="{{ L('Hello world !') }}">
-<Label text="{{ L('I am %s', 'user name') }}">
+<Label text="{{ L('Hello world !') }}"></Label>
+<Label text="{{ L('I am %s', 'user name') }}"></Label>
 ```
 
 ## Default language

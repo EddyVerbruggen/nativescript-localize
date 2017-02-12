@@ -1,2 +1,7 @@
 export { localize } from "./sources/localize";
-export { NativeScriptLocalizeModule } from "./sources/localize.module";
+
+try {
+  exports.NativeScriptLocalizeModule = require("./sources/localize.module").NativeScriptLocalizeModule;
+} catch (error) {
+  // Optional Peer Dependency @angular/core is not installed
+}
