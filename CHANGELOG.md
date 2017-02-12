@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.9.1](https://github.com/lfabreges/nativescript-localize/tree/v1.9.1) (2017-02-12)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.0...v1.9.1)
+
+**Closed issues:**
+
+- Doesn't work with Non-Angular2 projects [\#1](https://github.com/lfabreges/nativescript-localize/issues/1)
+
 ## [v1.9.0](https://github.com/lfabreges/nativescript-localize/tree/v1.9.0) (2017-02-02)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.8.0...v1.9.0)
 
