@@ -55,7 +55,7 @@ export class BeforePrepareAndroid extends BeforePrepareCommon {
     strings += "</resources>\n";
     const resourceFilePath = path.join(languageResourcesDir, "strings.xml");
     if (this.writeFileSyncIfNeeded(resourceFilePath, strings)) {
-      console.log("[NS Localize] Wroted file: " + resourceFilePath);
+      console.log("[NS Localize] Wrote file: " + resourceFilePath);
       this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
     }
     return this;
