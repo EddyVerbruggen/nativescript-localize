@@ -16,11 +16,14 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     }).filter(filePath => {
       return fs.statSync(filePath).isDirectory();
     }).forEach(lngResourcesDir => {
-      ["InfoPlist.strings", "Localizable.strings"].forEach(filePath => {
-        this.removeFile(path.join(lngResourcesDir, filePath))
+      let resourceChanged = false;
+      ["InfoPlist.strings", "Localizable.strings"].forEach(fileName => {
+        const resourceFilePath = path.join(lngResourcesDir, fileName);
+        resourceChanged = this.removeFileIfExists(resourceFilePath) || resourceChanged;
       });
-      this.removeDirectoryIfEmpty(lngResourcesDir);
-      this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
+      if (this.removeDirectoryIfEmpty(lngResourcesDir) || resourceChanged) {
+        this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
+      }
     });
     return this;
   }

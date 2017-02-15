@@ -91,17 +91,15 @@ export abstract class BeforePrepareCommon extends EventEmitter {
     return this;
   }
 
-  protected removeDirectoryIfEmpty(directoryPath: string): this {
+  protected removeDirectoryIfEmpty(directoryPath: string): boolean {
     try { fs.rmdirSync(directoryPath); }
-    catch (error) {}
-    return this;
+    catch (error) { return false; }
+    return true;
   }
 
-  protected removeFile(filePath: string): boolean {
+  protected removeFileIfExists(filePath: string): boolean {
     try { fs.unlinkSync(filePath); }
-    catch (error) {
-      return false;
-    }
+    catch (error) { return false; }
     return true;
   }
 
