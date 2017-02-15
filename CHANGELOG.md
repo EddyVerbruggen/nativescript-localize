@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.9.2](https://github.com/lfabreges/nativescript-localize/tree/v1.9.2) (2017-02-15)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.1...v1.9.2)
+
+**Merged pull requests:**
+
+- Fixed rebuild at false positive change on Android [\#2](https://github.com/lfabreges/nativescript-localize/pull/2) ([zweimal](https://github.com/zweimal))
+
 ## [v1.9.1](https://github.com/lfabreges/nativescript-localize/tree/v1.9.1) (2017-02-12)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.0...v1.9.1)
 
