@@ -97,10 +97,12 @@ export abstract class BeforePrepareCommon extends EventEmitter {
     return this;
   }
 
-  protected removeFile(filePath: string): this {
+  protected removeFile(filePath: string): boolean {
     try { fs.unlinkSync(filePath); }
-    catch (error) {}
-    return this;
+    catch (error) {
+      return false;
+    }
+    return true;
   }
 
   protected writeFileSyncIfNeeded(filePath: string, content: string): boolean {

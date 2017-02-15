@@ -24,9 +24,13 @@ export class BeforePrepareAndroid extends BeforePrepareCommon {
     }).filter(filePath => {
       return fs.statSync(filePath).isDirectory();
     }).forEach(lngResourcesDir => {
-      this.removeFile(path.join(lngResourcesDir, "strings.xml"));
+      const filePath = path.join(lngResourcesDir, "strings.xml");
+      const removed = this.removeFile(filePath);
       this.removeDirectoryIfEmpty(lngResourcesDir);
-      this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
+      if (removed) {
+        console.log("[NS Localize] Removed file: " + filePath);
+        this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
+      }
     });
     return this;
   }
@@ -51,6 +55,7 @@ export class BeforePrepareAndroid extends BeforePrepareCommon {
     strings += "</resources>\n";
     const resourceFilePath = path.join(languageResourcesDir, "strings.xml");
     if (this.writeFileSyncIfNeeded(resourceFilePath, strings)) {
+      console.log("[NS Localize] Wrote file: " + resourceFilePath);
       this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
     }
     return this;
