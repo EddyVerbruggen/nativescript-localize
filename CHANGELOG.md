@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.9.3](https://github.com/lfabreges/nativescript-localize/tree/v1.9.3) (2017-02-16)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.2...v1.9.3)
+
+**Closed issues:**
+
+- Way to add new line chars [\#3](https://github.com/lfabreges/nativescript-localize/issues/3)
+
 ## [v1.9.2](https://github.com/lfabreges/nativescript-localize/tree/v1.9.2) (2017-02-15)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.1...v1.9.2)
 
