@@ -13,6 +13,7 @@
   },
   "exclude": [
     "aot",
+    "demo",
     "node_modules"
   ]
 }

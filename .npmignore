@@ -3,6 +3,7 @@
 /**/*.ts
 /.vscode/
 /aot/
+/demo/
 /node_modules/
 !/sources/**/*.d.ts
 /typings/
