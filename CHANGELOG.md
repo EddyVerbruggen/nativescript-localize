@@ -1,5 +1,14 @@
 # Change Log
 
+## [v1.9.4](https://github.com/lfabreges/nativescript-localize/tree/v1.9.4) (2017-03-25)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.3...v1.9.4)
+
+**Closed issues:**
+
+- Do you have to add all string into the JSON file? [\#6](https://github.com/lfabreges/nativescript-localize/issues/6)
+- The pipe 'L' could not be found error [\#5](https://github.com/lfabreges/nativescript-localize/issues/5)
+- Use in Angular 2 component [\#4](https://github.com/lfabreges/nativescript-localize/issues/4)
+
 ## [v1.9.3](https://github.com/lfabreges/nativescript-localize/tree/v1.9.3) (2017-02-16)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.2...v1.9.3)
 
