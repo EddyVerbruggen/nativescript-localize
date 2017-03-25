@@ -35,7 +35,7 @@ export abstract class BeforePrepareCommon extends EventEmitter {
   ): this;
 
   public run(): this {
-	  if (!fs.existsSync(this.i18nDirectoryPath)) {
+    if (!fs.existsSync(this.i18nDirectoryPath)) {
       this.logger.info(`'${this.i18nDirectoryPath}' doesn't exists: nothing to localize`);
       return this;
     }
