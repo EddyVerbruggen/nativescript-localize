@@ -25,6 +25,6 @@ module.exports = {
     "'": "'",
     "\"": "\""
   },
-  "sprintf": "format me %s",
+  "sprintf": "format me %s : %s",
   "tab": "Tab \t is working"
 }
