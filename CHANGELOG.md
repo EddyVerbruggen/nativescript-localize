@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.9.5](https://github.com/lfabreges/nativescript-localize/tree/v1.9.5) (2017-03-31)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.4...v1.9.5)
+
+**Closed issues:**
+
+- Multi-substitution fails on Android [\#7](https://github.com/lfabreges/nativescript-localize/issues/7)
+
 ## [v1.9.4](https://github.com/lfabreges/nativescript-localize/tree/v1.9.4) (2017-03-25)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.3...v1.9.4)
 
