@@ -41,11 +41,11 @@ interface IPlatformData {
 interface IPlatformsData {
   availablePlatforms: any;
   platformsNames: string[];
-  getPlatformData(platform: string): IPlatformData;
+  getPlatformData(platform: string, projectData: IProjectData): IPlatformData;
 }
 
 interface IPlatformProjectService {
-  getAppResourcesDestinationDirectoryPath(): string;
+  getAppResourcesDestinationDirectoryPath(projectData: IProjectData): string;
 }
 
 interface IProjectData {

@@ -7,7 +7,7 @@ import { BeforePrepareIOS } from "./before-prepare.ios";
 
 export = function(logger: ILogger, platformsData: IPlatformsData, projectData: IProjectData, hookArgs: any) {
   const platformName = hookArgs.platform.toLowerCase();
-  const platformData = platformsData.getPlatformData(platformName);
+  const platformData = platformsData.getPlatformData(platformName, projectData);
 
   let beforePreparePlatform: BeforePrepareCommon;
 
@@ -23,5 +23,6 @@ export = function(logger: ILogger, platformsData: IPlatformsData, projectData: I
   beforePreparePlatform
     .on(BeforePrepareCommon.RESOURCE_CHANGED_EVENT, () => hookArgs.changesInfo.appResourcesChanged = true)
     .on(BeforePrepareCommon.CONFIGURATION_CHANGED_EVENT, () => hookArgs.changesInfo.configChanged = true)
-    .run();
+    .run()
+  ;
 }

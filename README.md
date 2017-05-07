@@ -52,7 +52,7 @@ export class AppModule { }
 ```js
 const application = require("application");
 const localize = require("nativescript-localize").localize;
-application.resources.L = localize;
+application.setResources({ L: localize });
 ```
 
 #### Template

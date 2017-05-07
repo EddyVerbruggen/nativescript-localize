@@ -38,7 +38,10 @@ export class BeforePrepareAndroid extends BeforePrepareCommon {
     isDefaultLanguage: boolean,
     i18nContentIterator: Iterable<I18nEntry>
   ): this {
-    const languageResourcesDir = path.join(this.appResourcesDirectoryPath, `values${isDefaultLanguage ? "" : `-${language}`}`);
+    const languageResourcesDir = path.join(
+      this.appResourcesDirectoryPath,
+      `values${isDefaultLanguage ? "" : `-${language}`}`
+    );
     this.createDirectoryIfNeeded(languageResourcesDir);
     let strings = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n";
     for (const { key, value } of i18nContentIterator) {

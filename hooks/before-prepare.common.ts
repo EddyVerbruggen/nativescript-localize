@@ -18,8 +18,14 @@ export abstract class BeforePrepareCommon extends EventEmitter {
     protected projectData: IProjectData
   ) {
     super();
-    this.appResourcesDirectoryPath = path.join(projectData.appResourcesDirectoryPath, platformData.normalizedPlatformName);
-    this.appResourcesDestinationDirectoryPath = platformData.platformProjectService.getAppResourcesDestinationDirectoryPath();
+    this.appResourcesDirectoryPath = path.join(
+      projectData.appResourcesDirectoryPath,
+      platformData.normalizedPlatformName
+    );
+    this.appResourcesDestinationDirectoryPath = platformData
+      .platformProjectService
+      .getAppResourcesDestinationDirectoryPath(projectData)
+    ;
     this.i18nDirectoryPath = path.join(projectData.projectDir, "app", "i18n");
   }
 
