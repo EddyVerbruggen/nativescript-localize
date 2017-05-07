@@ -16,13 +16,13 @@
   },
   "dependencies": {
     "nativescript-localize": "file:..",
-    "nativescript-theme-core": "~1.0.2",
-    "tns-core-modules": "2.5.2"
+    "nativescript-theme-core": "~1.0.4",
+    "tns-core-modules": "3.0.0"
   },
   "devDependencies": {
-    "babel-traverse": "6.23.1",
-    "babel-types": "6.23.0",
-    "babylon": "6.16.1",
+    "babel-traverse": "6.24.1",
+    "babel-types": "6.24.1",
+    "babylon": "6.17.0",
     "lazy": "1.0.11",
     "nativescript-dev-android-snapshot": "^0.*.*"
   }
