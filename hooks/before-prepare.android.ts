@@ -25,10 +25,8 @@ export class BeforePrepareAndroid extends BeforePrepareCommon {
       return fs.statSync(filePath).isDirectory();
     }).forEach(lngResourcesDir => {
       const resourceFilePath = path.join(lngResourcesDir, "strings.xml");
-      const resourceChanged = this.removeFileIfExists(resourceFilePath);
-      if (this.removeDirectoryIfEmpty(lngResourcesDir) || resourceChanged) {
-        this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
-      }
+      this.removeFileIfExists(resourceFilePath);
+      this.removeDirectoryIfEmpty(lngResourcesDir);
     });
     return this;
   }
@@ -55,9 +53,7 @@ export class BeforePrepareAndroid extends BeforePrepareCommon {
     }
     strings += "</resources>\n";
     const resourceFilePath = path.join(languageResourcesDir, "strings.xml");
-    if (this.writeFileSyncIfNeeded(resourceFilePath, strings)) {
-      this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
-    }
+    this.writeFileSyncIfNeeded(resourceFilePath, strings);
     return this;
   }
 }

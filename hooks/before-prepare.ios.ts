@@ -16,14 +16,11 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     }).filter(filePath => {
       return fs.statSync(filePath).isDirectory();
     }).forEach(lngResourcesDir => {
-      let resourceChanged = false;
       ["InfoPlist.strings", "Localizable.strings"].forEach(fileName => {
         const resourceFilePath = path.join(lngResourcesDir, fileName);
-        resourceChanged = this.removeFileIfExists(resourceFilePath) || resourceChanged;
+        this.removeFileIfExists(resourceFilePath);
       });
-      if (this.removeDirectoryIfEmpty(lngResourcesDir) || resourceChanged) {
-        this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
-      }
+      this.removeDirectoryIfEmpty(lngResourcesDir);
     });
     return this;
   }
@@ -48,7 +45,8 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     this
       .createDirectoryIfNeeded(languageResourcesDir)
       .writeStrings(languageResourcesDir, "Localizable.strings", localizableStrings)
-      .writeStrings(languageResourcesDir, "InfoPlist.strings", infoPlistStrings);
+      .writeStrings(languageResourcesDir, "InfoPlist.strings", infoPlistStrings)
+    ;
     if (isDefaultLanguage) {
       infoPlistStrings.push({ key: "CFBundleDevelopmentRegion", value: language });
       this.writeInfoPlist(infoPlistStrings);
@@ -62,9 +60,7 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
       content += `"${encodeKey(key)}" = "${encodeValue(value)}";\n`;
     }
     const resourceFilePath = path.join(languageResourcesDir, resourceFileName);
-    if (this.writeFileSyncIfNeeded(resourceFilePath, content)) {
-      this.emit(BeforePrepareCommon.RESOURCE_CHANGED_EVENT);
-    }
+    this.writeFileSyncIfNeeded(resourceFilePath, content);
     return this;
   }
 
@@ -84,7 +80,6 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     }
     if (resourceChanged) {
       plist.writeFileSync(resourceFilePath, data);
-      this.emit(BeforePrepareCommon.CONFIGURATION_CHANGED_EVENT);
     }
   }
 }

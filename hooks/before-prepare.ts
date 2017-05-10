@@ -20,9 +20,5 @@ export = function(logger: ILogger, platformsData: IPlatformsData, projectData: I
     return;
   }
 
-  beforePreparePlatform
-    .on(BeforePrepareCommon.RESOURCE_CHANGED_EVENT, () => hookArgs.changesInfo.appResourcesChanged = true)
-    .on(BeforePrepareCommon.CONFIGURATION_CHANGED_EVENT, () => hookArgs.changesInfo.configChanged = true)
-    .run()
-  ;
+  beforePreparePlatform.run();
 }

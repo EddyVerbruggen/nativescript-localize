@@ -1,19 +1,31 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2015",
+    "target": "es5",
     "moduleResolution": "node",
-    "lib": ["es2016"],
+    "lib": ["es6", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./node_modules/tns-core-modules/*",
+        "./node_modules/*"
+      ]
+    },
+    "declaration": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noEmitHelpers": true,
     "noEmitOnError": true,
+    "noLib": false,
+    "preserveConstEnums": true,
     "removeComments": true,
     "skipLibCheck": true
   },
   "exclude": [
     "aot",
     "demo",
-    "node_modules"
+    "hooks",
+    "node_modules",
+    "platforms"
   ]
 }

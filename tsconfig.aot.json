@@ -1,16 +1,5 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2015",
-    "moduleResolution": "node",
-    "lib": ["es2016"],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noEmitHelpers": true,
-    "noEmitOnError": true,
-    "removeComments": true,
-    "skipLibCheck": true
-  },
+  "extends": "./tsconfig.json",
   "include": [
     "index.ts"
   ],

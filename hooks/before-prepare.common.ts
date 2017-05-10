@@ -2,12 +2,7 @@ import * as fs from "fs";
 import * as mkdirp from "mkdirp";
 import * as path from "path";
 
-import { EventEmitter } from "events";
-
-export abstract class BeforePrepareCommon extends EventEmitter {
-  public static readonly CONFIGURATION_CHANGED_EVENT = "configurationChangedEvent";
-  public static readonly RESOURCE_CHANGED_EVENT = "resourceChangedEvent";
-
+export abstract class BeforePrepareCommon {
   protected readonly appResourcesDirectoryPath: string;
   protected readonly appResourcesDestinationDirectoryPath: string;
   protected readonly i18nDirectoryPath: string;
@@ -17,7 +12,6 @@ export abstract class BeforePrepareCommon extends EventEmitter {
     protected platformData: IPlatformData,
     protected projectData: IProjectData
   ) {
-    super();
     this.appResourcesDirectoryPath = path.join(
       projectData.appResourcesDirectoryPath,
       platformData.normalizedPlatformName
