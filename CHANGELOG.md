@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/lfabreges/nativescript-localize/tree/HEAD)
+
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.1...HEAD)
+
+**Closed issues:**
+
+- Does not work for NativeScript 3.0.0 [\#9](https://github.com/lfabreges/nativescript-localize/issues/9)
+- Doesn't work with Angular 4 + webpack [\#8](https://github.com/lfabreges/nativescript-localize/issues/8)
+
+## [v2.0.1](https://github.com/lfabreges/nativescript-localize/tree/v2.0.1) (2017-05-11)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.0...v2.0.1)
+
 ## [v2.0.0](https://github.com/lfabreges/nativescript-localize/tree/v2.0.0) (2017-05-10)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v1.9.5...v2.0.0)
 
