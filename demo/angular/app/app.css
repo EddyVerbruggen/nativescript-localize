@@ -1,0 +1,8 @@
+@import "nativescript-theme-core/css/core.light.css";
+
+Label {
+  border-color: #cccccc;
+  border-width: 1;
+  margin-bottom: 10;
+  padding: 5;
+}

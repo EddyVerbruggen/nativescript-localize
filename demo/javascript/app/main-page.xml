@@ -1,5 +1,5 @@
 <Page loaded="pageLoaded">
-  <ActionBar title="{{ L('app.name') }}" class="action-bar"></ActionBar>
+  <ActionBar title="{{ L('app.name') }}"></ActionBar>
   <ScrollView>
     <StackLayout>
       <Label text="{{ L('hello.world') }}"></Label>
