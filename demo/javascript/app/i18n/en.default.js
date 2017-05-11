@@ -1,5 +1,5 @@
 module.exports = {
-  "app.name": "NSL Demo",
+  "app.name": "NSL JS Demo",
   "array": [
     "split the translation into ",
     "multiples lines"

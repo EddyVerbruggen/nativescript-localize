@@ -1,12 +1,12 @@
 {
-  "name": "nativescript-localize-demo",
-  "description": "nativescript-localize demo",
+  "name": "nativescript-localize-demo-javascript",
+  "description": "nativescript-localize javascript demo",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
   "readme": "NativeScript Application",
   "dependencies": {
-    "nativescript-localize": "file:..",
+    "nativescript-localize": "file:../..",
     "nativescript-theme-core": "~1.0.4",
     "tns-core-modules": "3.0.0"
   },
@@ -18,7 +18,7 @@
     "nativescript-dev-android-snapshot": "^0.*.*"
   },
   "nativescript": {
-    "id": "org.nativescript.demo",
+    "id": "org.nativescript.demo.javascript",
     "tns-ios": {
       "version": "3.0.0"
     },
