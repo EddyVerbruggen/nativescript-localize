@@ -6,4 +6,5 @@
 /hooks/**/*.js
 /node_modules/
 /sources/**/*.js
+/angular.js
 /index.js

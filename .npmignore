@@ -7,6 +7,7 @@
 /node_modules/
 !/sources/**/*.d.ts
 /typings/
+!/angular.d.ts
 !/index.d.ts
 /tsconfig.aot.json
 /tsconfig.json

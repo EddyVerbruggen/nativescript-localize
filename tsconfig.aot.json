@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "index.ts"
+    "angular.ts"
   ],
   "angularCompilerOptions": {
     "genDir": "aot"
