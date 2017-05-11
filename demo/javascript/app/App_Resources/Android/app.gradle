@@ -5,19 +5,19 @@
 //	compile 'com.android.support:recyclerview-v7:+'
 //}
 
-android {  
-  defaultConfig {  
+android {
+  defaultConfig {
     generatedDensities = []
-    applicationId = "org.nativescript.demo" 
-    
+    applicationId = "org.nativescript.demo.javascript"
+
     //override supported platforms
     // ndk {
     //       abiFilters.clear()
     //   		abiFilters "armeabi-v7a"
  		// }
-  
-  }  
-  aaptOptions {  
-    additionalParameters "--no-version-vectors"  
-  }  
-} 
+
+  }
+  aaptOptions {
+    additionalParameters "--no-version-vectors"
+  }
+}
