@@ -44,8 +44,8 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     const languageResourcesDir = path.join(this.appResourcesDirectoryPath, `${language}.lproj`);
     this
       .createDirectoryIfNeeded(languageResourcesDir)
-      .writeStrings(languageResourcesDir, "Localizable.strings", localizableStrings)
-      .writeStrings(languageResourcesDir, "InfoPlist.strings", infoPlistStrings)
+      .writeStrings(languageResourcesDir, "Localizable.strings", localizableStrings, true)
+      .writeStrings(languageResourcesDir, "InfoPlist.strings", infoPlistStrings, false)
     ;
     if (isDefaultLanguage) {
       infoPlistStrings.push({ key: "CFBundleDevelopmentRegion", value: language });
@@ -54,10 +54,10 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     return this;
   }
 
-  private writeStrings(languageResourcesDir: string, resourceFileName: string, strings: I18nEntry[]): this {
+  private writeStrings(languageResourcesDir: string, resourceFileName: string, strings: I18nEntry[], encodeKeys: boolean): this {
     let content = "";
     for (const { key, value } of strings) {
-      content += `"${encodeKey(key)}" = "${encodeValue(value)}";\n`;
+      content += `"${encodeKeys ? encodeKey(key) : key}" = "${encodeValue(value)}";\n`;
     }
     const resourceFilePath = path.join(languageResourcesDir, resourceFileName);
     this.writeFileSyncIfNeeded(resourceFilePath, content);
