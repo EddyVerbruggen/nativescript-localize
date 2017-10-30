@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/lfabreges/nativescript-localize/tree/HEAD)
-
-[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.1...HEAD)
+## [v2.0.2](https://github.com/lfabreges/nativescript-localize/tree/v2.0.2) (2017-10-30)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.1...v2.0.2)
 
 **Closed issues:**
 
