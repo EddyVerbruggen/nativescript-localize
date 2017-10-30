@@ -2,6 +2,7 @@
 /**/*.js.map
 /**/*.metadata.json
 /.vscode/
+/.idea/
 /aot/
 /hooks/**/*.js
 /node_modules/

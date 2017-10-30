@@ -2,6 +2,7 @@
 /**/*.js.map
 /**/*.ts
 /.vscode/
+/.idea/
 /aot/
 /demo/
 /node_modules/
