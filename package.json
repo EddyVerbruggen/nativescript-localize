@@ -1,7 +1,7 @@
 {
   "name": "nativescript-localize",
   "description": "Native internationalization plugin for NativeScript using platforms standards",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "keywords": [
     "nativescript",
     "internationalization",
@@ -15,6 +15,12 @@
   "bugs": "https://github.com/lfabreges/nativescript-localize/issues",
   "license": "MIT",
   "author": "Ludovic Fabrèges",
+  "contributors": [
+    {
+      "name": "Eddy Verbruggen",
+      "email": "eddyverbruggen@gmail.com"
+    }
+  ],
   "main": "index.js",
   "typings": "index.d.ts",
   "repository": {
