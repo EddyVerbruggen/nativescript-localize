@@ -1,5 +1,18 @@
 # Change Log
 
+## [Unreleased](https://github.com/lfabreges/nativescript-localize/tree/HEAD)
+
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.1...HEAD)
+
+**Closed issues:**
+
+- is that possible that manually change language  [\#11](https://github.com/lfabreges/nativescript-localize/issues/11)
+- How to switch language without reinstall the app? [\#10](https://github.com/lfabreges/nativescript-localize/issues/10)
+
+**Merged pull requests:**
+
+- App name localization not working on iOS [\#12](https://github.com/lfabreges/nativescript-localize/pull/12) ([EddyVerbruggen](https://github.com/EddyVerbruggen))
+
 ## [v2.0.1](https://github.com/lfabreges/nativescript-localize/tree/v2.0.1) (2017-05-11)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.0...v2.0.1)
 
