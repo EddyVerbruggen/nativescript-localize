@@ -1,6 +1,6 @@
 branches:
   only:
-    - travis
+    - master
 
 matrix:
   include:
