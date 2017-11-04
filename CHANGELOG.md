@@ -1,7 +1,14 @@
 # Change Log
 
+## [v2.0.4](https://github.com/lfabreges/nativescript-localize/tree/v2.0.4) (2017-11-04)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.3...v2.0.4)
+
 ## [v2.0.3](https://github.com/lfabreges/nativescript-localize/tree/v2.0.3) (2017-11-04)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.2...v2.0.3)
+
+**Closed issues:**
+
+- Webpack using --uglify fails [\#13](https://github.com/lfabreges/nativescript-localize/issues/13)
 
 ## [v2.0.2](https://github.com/lfabreges/nativescript-localize/tree/v2.0.2) (2017-10-30)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.1...v2.0.2)
