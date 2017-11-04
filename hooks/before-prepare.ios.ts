@@ -4,7 +4,7 @@ import * as plist from "simple-plist";
 
 import { BeforePrepareCommon, I18nEntry, SupportedLanguages } from "./before-prepare.common";
 
-import { encodeKey, encodeValue } from "../sources/resource.ios";
+import { encodeKey, encodeValue } from "../src/resource.ios";
 
 export class BeforePrepareIOS extends BeforePrepareCommon {
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, supportedLanguages: SupportedLanguages): this {

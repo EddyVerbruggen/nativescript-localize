@@ -3,7 +3,7 @@ import * as path from "path";
 
 import { BeforePrepareCommon, I18nEntry, SupportedLanguages } from "./before-prepare.common";
 
-import { encodeKey, encodeValue } from "../sources/resource.android";
+import { encodeKey, encodeValue } from "../src/resource.android";
 
 export class BeforePrepareAndroid extends BeforePrepareCommon {
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, supportedLanguages: SupportedLanguages): this {

@@ -5,8 +5,9 @@
 /.idea/
 /aot/
 /demo/
+/demo-angular/
 /node_modules/
-!/sources/**/*.d.ts
+!/src/**/*.d.ts
 /typings/
 !/angular.d.ts
 !/index.d.ts

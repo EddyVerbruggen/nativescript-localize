@@ -8,6 +8,6 @@ export function encodeKey(key: string): string {
 export function replace(find: string[], replace: string[], string: string): string {
   return string.replace(
     new RegExp("(" + find.map(i => i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")).join("|") + ")", "g"),
-    function (match) { return replace[find.indexOf(match)] }
+    match => replace[find.indexOf(match)]
   );
 }

@@ -24,6 +24,7 @@
   "exclude": [
     "aot",
     "demo",
+    "demo-angular",
     "hooks",
     "node_modules",
     "platforms"

@@ -5,9 +5,9 @@
 This is a plugin for NativeScript that implements internationalization (i18n) using the native platforms standards.
 It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i18n)
 
-## Install
+## Installation
 ```shell
-npm install --save nativescript-localize
+tns plugin add nativescript-localize
 ```
 
 ## Usage

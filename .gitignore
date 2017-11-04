@@ -6,6 +6,6 @@
 /aot/
 /hooks/**/*.js
 /node_modules/
-/sources/**/*.js
+/src/**/*.js
 /angular.js
 /index.js

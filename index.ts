@@ -1,1 +1,1 @@
-export { localize } from "./sources/localize";
+export { localize } from "./src/localize";

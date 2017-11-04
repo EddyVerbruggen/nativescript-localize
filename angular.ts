@@ -1,2 +1,2 @@
-export { localize } from "./sources/localize";
-export { NativeScriptLocalizeModule } from "./sources/localize.module";
+export { localize } from "./src/localize";
+export { NativeScriptLocalizeModule } from "./src/localize.module";
