@@ -1,4 +1,5 @@
 # nativescript-localize
+[![Build Status](https://travis-ci.org/lfabreges/nativescript-localize.svg?branch=travis)](https://travis-ci.org/lfabreges/nativescript-localize)
 [![npm](https://img.shields.io/npm/v/nativescript-localize.svg)](https://www.npmjs.com/package/nativescript-localize)
 [![npm](https://img.shields.io/npm/dt/nativescript-localize.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-localize)
 
