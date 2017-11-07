@@ -1,4 +1,12 @@
 {
+  "cliOptions": {
+    "exclude": [
+      "**/node_modules/**",
+      "aot/**",
+      "demo/platforms/**",
+      "demo-angular/platforms/**"
+    ]
+  },
   "rules": {
     "class-name": true,
     "comment-format": [

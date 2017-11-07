@@ -4,7 +4,12 @@ branches:
 
 matrix:
   include:
-    - stage: "WebPack and Build"
+    - stage: "Lint"
+      language: node_js
+      os: linux
+      node_js: "6"
+      script: npm run tslint
+    - stage: "WebPack"
       os: osx
       env:
         - WebpackiOS="11"
@@ -36,7 +41,8 @@ matrix:
         - cd ../demo-angular
         - npm i
         - npm run ns-bundle --android --build-app --uglify --snapshot
-    - language: android
+    - stage: "Build"
+      language: android
       env:
         - BuildAndroid="26"
       os: linux
