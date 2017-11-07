@@ -21,4 +21,4 @@ export = function(logger: ILogger, platformsData: IPlatformsData, projectData: I
   }
 
   beforePreparePlatform.run();
-}
+};

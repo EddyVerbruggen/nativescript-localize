@@ -9,7 +9,7 @@ const getResources = (function () {
       resources = utils.ad.getApplicationContext().getResources();
     }
     return resources;
-  }
+  };
 })();
 
 export function localize(key: string, ...args: string[]): string {
@@ -21,4 +21,4 @@ export function localize(key: string, ...args: string[]): string {
     localizedString = key;
   }
   return format(...[localizedString, ...args]);
-};
+}

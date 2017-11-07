@@ -9,7 +9,7 @@ const getBundle = (function () {
       bundle = utils.ios.getter(NSBundle, NSBundle.mainBundle);
     }
     return bundle;
-  }
+  };
 })();
 
 export function localize(key: string, ...args: string[]): string {

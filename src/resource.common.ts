@@ -5,8 +5,8 @@ export function encodeKey(key: string): string {
   return "_" + SHA1.hex(key);
 }
 
-export function replace(find: string[], replace: string[], string: string): string {
-  return string.replace(
+export function replace(find: string[], replace: string[], subject: string): string {
+  return subject.replace(
     new RegExp("(" + find.map(i => i.replace(/[.?*+^$[\]\\(){}|-]/g, "\\$&")).join("|") + ")", "g"),
     match => replace[find.indexOf(match)]
   );

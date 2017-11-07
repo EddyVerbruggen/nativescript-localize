@@ -104,12 +104,12 @@ export abstract class BeforePrepareCommon {
   }
 
   protected writeFileSyncIfNeeded(filePath: string, content: string): boolean {
-    try { if (content == fs.readFileSync(filePath, "utf8")) { return false; } }
+    try { if (content === fs.readFileSync(filePath, "utf8")) { return false; } }
     catch (error) {}
     fs.writeFileSync(filePath, content, { encoding: "utf8" });
     return true;
   }
 }
 
-export type I18nEntry = { key: string; value: string; }
+export type I18nEntry = { key: string; value: string; };
 export type SupportedLanguages = Map<string, boolean>;

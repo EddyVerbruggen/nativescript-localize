@@ -73,7 +73,7 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     const data = plist.readFileSync(resourceFilePath);
     let resourceChanged = false;
     for (const { key, value } of infoPlistValues) {
-      if (!data.hasOwnProperty(key) || data[key] != value) {
+      if (!data.hasOwnProperty(key) || data[key] !== value) {
         data[key] = value;
         resourceChanged = true;
       }
