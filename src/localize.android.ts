@@ -2,13 +2,21 @@ import * as format from "format";
 import { encodeKey } from "./resource";
 import * as utils from "utils/utils";
 
-const resources = utils.ad.getApplicationContext().getResources();
+const getResources = (function () {
+  let resources = null;
+  return function () {
+    if (resources === null) {
+      resources = utils.ad.getApplicationContext().getResources();
+    }
+    return resources;
+  }
+})();
 
 export function localize(key: string, ...args: string[]): string {
   let localizedString;
   try {
     const identifier = utils.ad.resources.getStringId(encodeKey(key));
-    localizedString = identifier === 0 ? key : resources.getString(identifier);
+    localizedString = identifier === 0 ? key : getResources().getString(identifier);
   } catch (error) {
     localizedString = key;
   }

@@ -1,4 +1,7 @@
 {
+  "android": {
+    "v8Flags": "--expose_gc"
+  },
   "main": "app.js",
   "name": "nativescript-localize-demo-javascript",
   "version": "1.0.0"

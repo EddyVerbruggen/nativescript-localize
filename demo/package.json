@@ -35,9 +35,6 @@
     "webpack-sources": "~1.0.2",
     "nativescript-worker-loader": "~0.8.1"
   },
-  "android": {
-    "v8Flags": "--expose_gc"
-  },
   "nativescript": {
     "id": "org.nativescript.demo.javascript",
     "tns-ios": {
