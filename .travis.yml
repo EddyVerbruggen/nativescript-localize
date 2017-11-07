@@ -8,7 +8,9 @@ matrix:
       language: node_js
       os: linux
       node_js: "6"
-      script: npm run tslint
+      script:
+        - npm i
+        - npm run tslint
     - stage: "WebPack"
       os: osx
       env:
