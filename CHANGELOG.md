@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.0.5](https://github.com/lfabreges/nativescript-localize/tree/v2.0.5) (2017-11-08)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.4...v2.0.5)
+
+**Closed issues:**
+
+- Add support for android snapshot [\#14](https://github.com/lfabreges/nativescript-localize/issues/14)
+
 ## [v2.0.4](https://github.com/lfabreges/nativescript-localize/tree/v2.0.4) (2017-11-04)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.3...v2.0.4)
 
