@@ -1,8 +1,12 @@
+import { EventEmitter } from "events";
 import * as fs from "fs";
 import * as mkdirp from "mkdirp";
 import * as path from "path";
 
-export abstract class BeforePrepareCommon {
+export abstract class ConverterCommon extends EventEmitter {
+  public static readonly CONFIGURATION_CHANGED_EVENT = "configurationChangedEvent";
+  public static readonly RESOURCE_CHANGED_EVENT = "resourceChangedEvent";
+
   protected readonly appResourcesDirectoryPath: string;
   protected readonly appResourcesDestinationDirectoryPath: string;
   protected readonly i18nDirectoryPath: string;
@@ -12,6 +16,7 @@ export abstract class BeforePrepareCommon {
     protected platformData: IPlatformData,
     protected projectData: IProjectData
   ) {
+    super();
     this.appResourcesDirectoryPath = path.join(
       projectData.appResourcesDirectoryPath,
       platformData.normalizedPlatformName
@@ -33,6 +38,8 @@ export abstract class BeforePrepareCommon {
     isDefaultLanguage: boolean,
     i18nContentIterator: Iterable<I18nEntry>
   ): this;
+
+  public abstract livesyncExclusionPatterns(): string[];
 
   public run(): this {
     if (!fs.existsSync(this.i18nDirectoryPath)) {

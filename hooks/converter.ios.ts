@@ -2,11 +2,11 @@ import * as fs from "fs";
 import * as path from "path";
 import * as plist from "simple-plist";
 
-import { BeforePrepareCommon, I18nEntry, SupportedLanguages } from "./before-prepare.common";
+import { ConverterCommon, I18nEntry, SupportedLanguages } from "./converter.common";
 
 import { encodeKey, encodeValue } from "../src/resource.ios";
 
-export class BeforePrepareIOS extends BeforePrepareCommon {
+export class ConverterIOS extends ConverterCommon {
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, supportedLanguages: SupportedLanguages): this {
     fs.readdirSync(resourcesDirectory).filter(fileName => {
       const match = /^(.+)\.lproj$/.exec(fileName);
@@ -16,11 +16,14 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     }).filter(filePath => {
       return fs.statSync(filePath).isDirectory();
     }).forEach(lngResourcesDir => {
+      let resourceChanged = false;
       ["InfoPlist.strings", "Localizable.strings"].forEach(fileName => {
         const resourceFilePath = path.join(lngResourcesDir, fileName);
-        this.removeFileIfExists(resourceFilePath);
+        resourceChanged = this.removeFileIfExists(resourceFilePath) || resourceChanged;
       });
-      this.removeDirectoryIfEmpty(lngResourcesDir);
+      if (this.removeDirectoryIfEmpty(lngResourcesDir) || resourceChanged) {
+        this.emit(ConverterCommon.RESOURCE_CHANGED_EVENT);
+      }
     });
     return this;
   }
@@ -54,13 +57,27 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     return this;
   }
 
-  private writeStrings(languageResourcesDir: string, resourceFileName: string, strings: I18nEntry[], encodeKeys: boolean): this {
+  public livesyncExclusionPatterns(): string[] {
+    return [
+      path.join(this.appResourcesDirectoryPath, "*.lproj", "InfoPlist.strings"),
+      path.join(this.appResourcesDirectoryPath, "*.lproj", "Localizable.strings"),
+    ];
+  }
+
+  private writeStrings(
+    languageResourcesDir: string,
+    resourceFileName: string,
+    strings: I18nEntry[],
+    encodeKeys: boolean
+  ): this {
     let content = "";
     for (const { key, value } of strings) {
       content += `"${encodeKeys ? encodeKey(key) : key}" = "${encodeValue(value)}";\n`;
     }
     const resourceFilePath = path.join(languageResourcesDir, resourceFileName);
-    this.writeFileSyncIfNeeded(resourceFilePath, content);
+    if (this.writeFileSyncIfNeeded(resourceFilePath, content)) {
+      this.emit(ConverterCommon.RESOURCE_CHANGED_EVENT);
+    }
     return this;
   }
 
@@ -80,6 +97,7 @@ export class BeforePrepareIOS extends BeforePrepareCommon {
     }
     if (resourceChanged) {
       plist.writeFileSync(resourceFilePath, data);
+      this.emit(ConverterCommon.CONFIGURATION_CHANGED_EVENT);
     }
   }
 }

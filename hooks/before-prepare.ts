@@ -1,24 +1,52 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { BeforePrepareCommon } from "./before-prepare.common";
-import { BeforePrepareAndroid } from "./before-prepare.android";
-import { BeforePrepareIOS } from "./before-prepare.ios";
+import { ConverterCommon } from "./converter.common";
+import { ConverterAndroid } from "./converter.android";
+import { ConverterIOS } from "./converter.ios";
 
-export = function(logger: ILogger, platformsData: IPlatformsData, projectData: IProjectData, hookArgs: any) {
+export = function(
+  logger: ILogger,
+  platformsData: IPlatformsData,
+  projectData: IProjectData,
+  liveSyncService: any,
+  hookArgs: any
+) {
   const platformName = hookArgs.platform.toLowerCase();
   const platformData = platformsData.getPlatformData(platformName, projectData);
 
-  let beforePreparePlatform: BeforePrepareCommon;
+  let converter: ConverterCommon;
 
   if (platformName === "android") {
-    beforePreparePlatform = new BeforePrepareAndroid(logger, platformData, projectData);
+    converter = new ConverterAndroid(logger, platformData, projectData);
   } else if (platformName === "ios") {
-    beforePreparePlatform = new BeforePrepareIOS(logger, platformData, projectData);
+    converter = new ConverterIOS(logger, platformData, projectData);
   } else {
     logger.warn(`Platform '${platformName}' isn't supported: skipping localization`);
     return;
   }
 
-  beforePreparePlatform.run();
+  // HACK : https://github.com/NativeScript/nativescript-cli/issues/3251
+  if (liveSyncService &&
+      liveSyncService.liveSyncProcessesInfo[projectData.projectDir] &&
+      liveSyncService.liveSyncProcessesInfo[projectData.projectDir].watcherInfo &&
+      liveSyncService.liveSyncProcessesInfo[projectData.projectDir].watcherInfo.watcher
+  ) {
+    const watcherInfo = liveSyncService.liveSyncProcessesInfo[projectData.projectDir].watcherInfo;
+    if (!watcherInfo._isLocalizePluginHackInstalledForPlatform) {
+      watcherInfo._isLocalizePluginHackInstalledForPlatform = {};
+    }
+    if (!watcherInfo._isLocalizePluginHackInstalledForPlatform[platformName]) {
+      converter.livesyncExclusionPatterns().forEach(pattern => {
+        watcherInfo.watcher.unwatch(path.relative(projectData.projectDir, pattern));
+      });
+      watcherInfo._isLocalizePluginHackInstalledForPlatform[platformName] = true;
+    }
+  }
+
+  converter
+    .on(ConverterCommon.RESOURCE_CHANGED_EVENT, () => hookArgs.changesInfo.appResourcesChanged = true)
+    .on(ConverterCommon.CONFIGURATION_CHANGED_EVENT, () => hookArgs.changesInfo.configChanged = true)
+    .run()
+  ;
 };

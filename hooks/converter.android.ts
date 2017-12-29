@@ -1,11 +1,11 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { BeforePrepareCommon, I18nEntry, SupportedLanguages } from "./before-prepare.common";
+import { ConverterCommon, I18nEntry, SupportedLanguages } from "./converter.common";
 
 import { encodeKey, encodeValue } from "../src/resource.android";
 
-export class BeforePrepareAndroid extends BeforePrepareCommon {
+export class ConverterAndroid extends ConverterCommon {
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, supportedLanguages: SupportedLanguages): this {
     fs.readdirSync(resourcesDirectory).filter(fileName => {
       const match = /^values(?:-(.+))?$/.exec(fileName);
@@ -25,8 +25,10 @@ export class BeforePrepareAndroid extends BeforePrepareCommon {
       return fs.statSync(filePath).isDirectory();
     }).forEach(lngResourcesDir => {
       const resourceFilePath = path.join(lngResourcesDir, "strings.xml");
-      this.removeFileIfExists(resourceFilePath);
-      this.removeDirectoryIfEmpty(lngResourcesDir);
+      const resourceChanged = this.removeFileIfExists(resourceFilePath);
+      if (this.removeDirectoryIfEmpty(lngResourcesDir) || resourceChanged) {
+        this.emit(ConverterCommon.RESOURCE_CHANGED_EVENT);
+      }
     });
     return this;
   }
@@ -53,7 +55,16 @@ export class BeforePrepareAndroid extends BeforePrepareCommon {
     }
     strings += "</resources>\n";
     const resourceFilePath = path.join(languageResourcesDir, "strings.xml");
-    this.writeFileSyncIfNeeded(resourceFilePath, strings);
+    if (this.writeFileSyncIfNeeded(resourceFilePath, strings)) {
+      this.emit(ConverterCommon.RESOURCE_CHANGED_EVENT);
+    }
     return this;
+  }
+
+  public livesyncExclusionPatterns(): string[] {
+    return [
+      path.join(this.appResourcesDirectoryPath, "values", "strings.xml"),
+      path.join(this.appResourcesDirectoryPath, "values-*", "strings.xml"),
+    ];
   }
 }
