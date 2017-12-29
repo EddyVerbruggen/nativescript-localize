@@ -21,7 +21,7 @@ app
       | es.js
 ```
 
-### Angular 2
+### Angular
 #### app.module.ts
 ```ts
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
@@ -48,6 +48,13 @@ export class AppModule { }
 <Label text="{{ 'I am %s' | L:'user name' }}"></Label>
 ```
 
+#### Script
+```ts
+import { localize } from "nativescript-localize";
+
+console.log(localize("Hello world !"));
+```
+
 ### Javascript
 #### app.js
 ```js
@@ -60,6 +67,13 @@ application.setResources({ L: localize });
 ```xml
 <Label text="{{ L('Hello world !') }}"></Label>
 <Label text="{{ L('I am %s', 'user name') }}"></Label>
+```
+
+#### Script
+```js
+const localize = require("nativescript-localize").localize;
+
+console.log(localize("Hello world !"));
 ```
 
 ## Default language
