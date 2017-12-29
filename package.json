@@ -14,7 +14,10 @@
   "homepage": "https://github.com/lfabreges/nativescript-localize",
   "bugs": "https://github.com/lfabreges/nativescript-localize/issues",
   "license": "MIT",
-  "author": "Ludovic Fabrèges",
+  "author": {
+    "name": "Ludovic Fabrèges",
+    "email": "ludovic.fabreges@gmail.com"
+  },
   "contributors": [
     {
       "name": "Eddy Verbruggen",
