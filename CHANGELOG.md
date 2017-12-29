@@ -1,5 +1,14 @@
 # Change Log
 
+## [v2.0.6](https://github.com/lfabreges/nativescript-localize/tree/v2.0.6) (2017-12-29)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.5...v2.0.6)
+
+**Closed issues:**
+
+- Empty controls [\#17](https://github.com/lfabreges/nativescript-localize/issues/17)
+- Trying to migrate from i18n plugin. Error Can't find variable: L [\#16](https://github.com/lfabreges/nativescript-localize/issues/16)
+- Text not updating when modifying en.default.json [\#15](https://github.com/lfabreges/nativescript-localize/issues/15)
+
 ## [v2.0.5](https://github.com/lfabreges/nativescript-localize/tree/v2.0.5) (2017-11-08)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.4...v2.0.5)
 
