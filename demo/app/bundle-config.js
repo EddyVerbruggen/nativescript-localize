@@ -1,4 +1,5 @@
 if (global.TNS_WEBPACK) {
   require("bundle-entry-points");
-  global.registerModule("main-page", function () { return require("./main-page"); });
+  const context = require.context("~/", true, /(page|fragment)\.(xml|css|js|ts|scss|less|sass)$/);
+  global.registerWebpackModules(context);
 }

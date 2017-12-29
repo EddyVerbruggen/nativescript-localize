@@ -24,10 +24,10 @@ matrix:
         - npm run compile
         - cd demo
         - npm i
-        - npm run ns-bundle --ios --build-app --uglify
+        - tns build ios --bundle --env.uglify
         - cd ../demo-angular
         - npm i
-        - npm run ns-bundle --ios --build-app --uglify
+        - tns build ios --bundle --env.uglify
     - language: android
       os: linux
       env:
@@ -39,10 +39,10 @@ matrix:
         - npm run compile
         - cd demo
         - npm i
-        - npm run ns-bundle --android --build-app --uglify --snapshot
+        - tns build android --bundle --env.uglify --env.snapshot
         - cd ../demo-angular
         - npm i
-        - npm run ns-bundle --android --build-app --uglify --snapshot
+        - tns build android --bundle --env.uglify --env.snapshot
     - stage: "Build"
       language: android
       env:
