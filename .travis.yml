@@ -9,6 +9,7 @@ android:
     - tools
     - build-tools-26.0.3
     - android-26
+    - android-23
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-21
 
@@ -38,11 +39,41 @@ matrix:
       node_js: "6"
       script:
         - npm run tslint
-    - stage: "Build and test"
+    - stage: "Build, Webpack and Test"
       language: android
+      os: linux
+      jdk: oraclejdk8
+      env:
+        - Android="Build"
+      before_install:
+        - nvm install 6
+      script:
+        - cd demo
+        - npm i
+        - tns build android
+        - cd ../demo-angular
+        - npm i
+        - tns build android
+    - language: android
+      os: linux
+      jdk: oraclejdk8
+      env:
+        - Android="Webpack"
+      before_install:
+        - nvm install 6
+      script:
+        - cd demo
+        - npm i
+        - tns build android --bundle --env.uglify --env.snapshot
+        - cd ../demo-angular
+        - npm i
+        - tns build android --bundle --env.uglify --env.snapshot
+    - language: android
       os: linux
       dist: precise
       jdk: oraclejdk8
+      env:
+        - Android="Test"
       before_install:
         - nvm install 6
       before_script:
@@ -64,33 +95,22 @@ matrix:
       language: node_js
       node_js: "6"
       jdk: oraclejdk8
+      env:
+        - iOS="Build"
       script:
         - cd demo
         - npm i
         - tns build ios
-        - tns test ios --justlaunch
         - cd ../demo-angular
         - npm i
         - tns build ios
-        - tns test ios --justlaunch
-    - stage: "WebPack"
-      language: android
-      os: linux
-      jdk: oraclejdk8
-      before_install:
-        - nvm install 6
-      script:
-        - cd demo
-        - npm i
-        - tns build android --bundle --env.uglify --env.snapshot
-        - cd ../demo-angular
-        - npm i
-        - tns build android --bundle --env.uglify --env.snapshot
     - os: osx
       osx_image: xcode9.1
       language: node_js
       node_js: "6"
       jdk: oraclejdk8
+      env:
+        - iOS="Webpack"
       script:
         - cd demo
         - npm i
@@ -98,3 +118,19 @@ matrix:
         - cd ../demo-angular
         - npm i
         - tns build ios --bundle --env.uglify
+    - os: osx
+      osx_image: xcode9.1
+      language: node_js
+      node_js: "6"
+      jdk: oraclejdk8
+      env:
+        - iOS="Test"
+      script:
+        - cd demo
+        - npm i
+        - tns build ios
+        - tns test ios --justlaunch
+        - cd ../demo-angular
+        - npm i
+        - tns build ios
+        - tns test ios --justlaunch
