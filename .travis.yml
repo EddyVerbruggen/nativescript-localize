@@ -7,10 +7,10 @@ android:
     - tools
     - platform-tools
     - tools
-    - build-tools-26.0.2
+    - build-tools-26.0.3
     - android-26
     - extra-android-m2repository
-    - sys-img-armeabi-v7a-android-26
+    - sys-img-armeabi-v7a-google_apis-26
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -46,15 +46,16 @@ matrix:
         - echo no | android create avd --force -n test -t android-26 -b armeabi-v7a
         - emulator -avd test -no-audio -no-window &
         - android-wait-for-emulator
+        - adb shell input keyevent 82 &
       script:
         - cd demo
         - npm i
-        - travis_wait travis_retry tns build android
-        - travis_wait travis_retry tns test android --justlaunch
+        - tns build android
+        - tns test android --justlaunch
         - cd ../demo-angular
         - npm i
-        - travis_wait travis_retry tns build android
-        - travis_wait travis_retry tns test android --justlaunch
+        - tns build android
+        - tns test android --justlaunch
     - os: osx
       osx_image: xcode9.1
       language: node_js
@@ -63,12 +64,12 @@ matrix:
       script:
         - cd demo
         - npm i
-        - travis_wait travis_retry tns build ios
-        - travis_wait travis_retry tns test ios --justlaunch
+        - tns build ios
+        - tns test ios --justlaunch
         - cd ../demo-angular
         - npm i
-        - travis_wait travis_retry tns build ios
-        - travis_wait travis_retry tns test ios --justlaunch
+        - tns build ios
+        - tns test ios --justlaunch
     - stage: "WebPack"
       language: android
       os: linux
@@ -78,10 +79,10 @@ matrix:
       script:
         - cd demo
         - npm i
-        - travis_wait travis_retry tns build android --bundle --env.uglify --env.snapshot
+        - tns build android --bundle --env.uglify --env.snapshot
         - cd ../demo-angular
         - npm i
-        - travis_wait travis_retry tns build android --bundle --env.uglify --env.snapshot
+        - tns build android --bundle --env.uglify --env.snapshot
     - os: osx
       osx_image: xcode9.1
       language: node_js
@@ -90,7 +91,7 @@ matrix:
       script:
         - cd demo
         - npm i
-        - travis_wait travis_retry tns build ios --bundle --env.uglify
+        - tns build ios --bundle --env.uglify
         - cd ../demo-angular
         - npm i
-        - travis_wait travis_retry tns build ios --bundle --env.uglify
+        - tns build ios --bundle --env.uglify
