@@ -85,11 +85,11 @@ matrix:
         - cd demo
         - npm i
         - tns build android
-        - tns test android --justlaunch
+        - tns test android --emulator --justlaunch
         - cd ../demo-angular
         - npm i
         - tns build android
-        - tns test android --justlaunch
+        - tns test android --emulator --justlaunch
     - os: osx
       osx_image: xcode9.1
       language: node_js
@@ -129,8 +129,8 @@ matrix:
         - cd demo
         - npm i
         - tns build ios
-        - tns test ios --justlaunch
+        - tns test ios --emulator --justlaunch
         - cd ../demo-angular
         - npm i
         - tns build ios
-        - tns test ios --justlaunch
+        - tns test ios --emulator --justlaunch

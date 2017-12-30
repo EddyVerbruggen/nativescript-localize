@@ -30,6 +30,6 @@ module.exports = function(config) {
         arguments: ["--emulator"]
       }
     },
-    singleRun: false
+    singleRun: true
   });
 }
