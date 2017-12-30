@@ -59,7 +59,7 @@ console.log(localize("Hello world !"));
 #### app.js
 ```js
 const application = require("application");
-const localize = require("nativescript-localize").localize;
+const localize = require("nativescript-localize");
 application.setResources({ L: localize });
 ```
 
@@ -71,7 +71,7 @@ application.setResources({ L: localize });
 
 #### Script
 ```js
-const localize = require("nativescript-localize").localize;
+const localize = require("nativescript-localize");
 
 console.log(localize("Hello world !"));
 ```
