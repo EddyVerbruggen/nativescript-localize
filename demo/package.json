@@ -8,6 +8,7 @@
   "dependencies": {
     "nativescript-localize": "file:..",
     "nativescript-theme-core": "^1.0.4",
+    "nativescript-unit-test-runner": "^0.3.4",
     "tns-core-modules": "^3.4.0"
   },
   "devDependencies": {
@@ -17,6 +18,10 @@
     "copy-webpack-plugin": "~4.0.1",
     "css-loader": "~0.28.7",
     "extract-text-webpack-plugin": "~3.0.0",
+    "jasmine-core": "^2.8.0",
+    "karma": "^2.0.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
     "nativescript-css-loader": "~0.26.1",
     "nativescript-dev-webpack": "^0.9.0",
