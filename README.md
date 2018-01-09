@@ -83,7 +83,7 @@ fr.default.json
 ```
 
 ## Localize the application name
-The "app.name" key is used to localize the application name:
+The `app.name` key is used to localize the application name:
 ```json
 {
   "app.name": "My app"

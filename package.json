@@ -41,9 +41,9 @@
   },
   "dependencies": {
     "format": "^0.2.2",
-    "jshashes": "^1.0.6",
     "mkdirp": "^0.5.1",
     "nativescript-hook": "^0.2.1",
+    "shorthash": "0.0.2",
     "simple-plist": "^0.2.1"
   },
   "peerDependencies": {
@@ -53,7 +53,7 @@
     "@angular/compiler": "~4.0.1",
     "@angular/compiler-cli": "~4.0.1",
     "@angular/core": "~4.0.1",
-    "@types/mkdirp": "^0.3.29",
+    "@types/mkdirp": "^0.5.1",
     "@types/node": "^7.0.0",
     "rxjs": "~5.3.0",
     "tns-core-modules": "^3.0.0",

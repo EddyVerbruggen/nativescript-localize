@@ -2,7 +2,6 @@ import * as fs from "fs";
 import * as path from "path";
 
 import { ConverterCommon, I18nEntry, SupportedLanguages } from "./converter.common";
-
 import { encodeKey, encodeValue } from "../src/resource.android";
 
 export class ConverterAndroid extends ConverterCommon {

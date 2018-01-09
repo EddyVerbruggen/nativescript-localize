@@ -3,7 +3,6 @@ import * as path from "path";
 import * as plist from "simple-plist";
 
 import { ConverterCommon, I18nEntry, SupportedLanguages } from "./converter.common";
-
 import { encodeKey, encodeValue } from "../src/resource.ios";
 
 export class ConverterIOS extends ConverterCommon {

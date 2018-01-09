@@ -1,8 +1,7 @@
-const Hashes = require("jshashes");
-const SHA1 = new Hashes.SHA1();
+import * as shorthash from "shorthash";
 
 export function encodeKey(key: string): string {
-  return "_" + SHA1.hex(key);
+  return `_${key.replace(/[^\w]/g, "_")}_${shorthash.unique(key)}`;
 }
 
 export function replace(find: string[], replace: string[], subject: string): string {

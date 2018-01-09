@@ -1,6 +1,7 @@
 import * as format from "format";
-import { encodeKey } from "./resource";
 import * as utils from "utils/utils";
+
+import { encodeKey } from "./resource";
 
 const getBundle = (function () {
   let bundle = null;
