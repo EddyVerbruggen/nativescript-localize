@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.1.0](https://github.com/lfabreges/nativescript-localize/tree/v2.1.0) (2018-01-09)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.7...v2.1.0)
+
+**Closed issues:**
+
+- Notifications fail to localize due to resource keys being encoded.  [\#18](https://github.com/lfabreges/nativescript-localize/issues/18)
+
 ## [v2.0.7](https://github.com/lfabreges/nativescript-localize/tree/v2.0.7) (2017-12-30)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.6...v2.0.7)
 
