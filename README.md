@@ -6,6 +6,17 @@
 This is a plugin for NativeScript that implements internationalization (i18n) using the native platforms standards.
 It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i18n)
 
+## Table of contents
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Angular](#angular)
+  * [Javascript](#javascript)
+* [File format](#file-format)
+* [Frequently asked questions](#frequently-asked-questions)
+  * [How to set the default language?](#how-to-set-the-default-language)
+  * [How to localize the application name?](#how-to-localize-the-application-name)
+  * [How to localize iOS properties?](#how-to-localize-ios-properties)
+
 ## Installation
 ```shell
 tns plugin add nativescript-localize
@@ -76,28 +87,6 @@ const localize = require("nativescript-localize");
 console.log(localize("Hello world !"));
 ```
 
-## Default language
-Add the `.default` extension to the default language file to set it as the fallback language:
-```
-fr.default.json
-```
-
-## Localize the application name
-The `app.name` key is used to localize the application name:
-```json
-{
-  "app.name": "My app"
-}
-```
-
-## Localize iOS properties
-Keys starting with `ios.info.plist.` are used to localize iOS properties:
-```json
-{
-  "ios.info.plist.NSLocationWhenInUseUsageDescription": "This will be added to InfoPlist.strings"
-}
-```
-
 ## File format
 Each file is imported using `require`, use the file format of your choice:
 
@@ -127,4 +116,27 @@ const i18n = {
 };
 
 module.exports = i18n;
+```
+
+## Frequently asked questions
+### How to set the default language?
+Add the `.default` extension to the default language file to set it as the fallback language:
+```
+fr.default.json
+```
+
+### How to localize the application name?
+The `app.name` key is used to localize the application name:
+```json
+{
+  "app.name": "My app"
+}
+```
+
+### How to localize iOS properties?
+Keys starting with `ios.info.plist.` are used to localize iOS properties:
+```json
+{
+  "ios.info.plist.NSLocationWhenInUseUsageDescription": "This will be added to InfoPlist.strings"
+}
 ```
