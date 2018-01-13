@@ -46,10 +46,10 @@ export class ConverterAndroid extends ConverterCommon {
     for (const { key, value } of i18nContentIterator) {
       const encodedKey = encodeKey(key);
       const encodedValue = encodeValue(value);
-      strings += `  <string formatted="false" name="${encodedKey}">${encodedValue}</string>\n`;
+      strings += `  <string name="${encodedKey}">${encodedValue}</string>\n`;
       if (key === "app.name") {
-        strings += `  <string formatted="false" name="app_name">${encodedValue}</string>\n`;
-        strings += `  <string formatted="false" name="title_activity_kimera">${encodedValue}</string>\n`;
+        strings += `  <string name="app_name">${encodedValue}</string>\n`;
+        strings += `  <string name="title_activity_kimera">${encodedValue}</string>\n`;
       }
     }
     strings += "</resources>\n";

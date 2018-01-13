@@ -14,11 +14,31 @@ describe("localize", () => {
     expect(localize("array")).toEqual(i18n["array"].join(""));
   });
 
+  it("returns the given key when no translation is found", () => {
+    expect(localize("unknown.key")).toEqual("unknown.key");
+  });
+
   it("formats a string with given arguments", () => {
     expect(localize("sprintf", "test", "ok")).toEqual("format me test : ok");
   });
 
-  it("returns the given key when no translation is found", () => {
-    expect(localize("unknown.key")).toEqual("unknown.key");
+  it("formats a string with numbered placeholders with given arguments", () => {
+    expect(localize("sprintf.numbered.placeholders", "1", "2")).toEqual("format $2: 2, $1: 1");
+  });
+
+  it("works with a percent sign", () => {
+    expect(localize("test.percent")).toEqual("%");
+  });
+
+  it("works with an escaped percent sign", () => {
+    expect(localize("test.escaped.percent")).toEqual("%");
+  });
+
+  it("works with an escaped percent sign followed by s", () => {
+    expect(localize("test.escaped.percent.followed.by.s")).toEqual("%s");
+  });
+
+  it("works with an escaped percent sign followed by a placeholder", () => {
+    expect(localize("test.escaped.percent.followed.by.placeholder", "test")).toEqual("%test");
   });
 });

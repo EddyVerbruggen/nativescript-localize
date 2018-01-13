@@ -26,5 +26,12 @@ module.exports = {
     "\"": "\""
   },
   "sprintf": "format me %s : %s",
-  "tab": "Tab \t is working"
+  "sprintf.numbered.placeholders": "format $2: %2$s, $1: %1$s",
+  "tab": "Tab \t is working",
+  "test": {
+    "percent": "%",
+    "escaped.percent": "%%",
+    "escaped.percent.followed.by.s": "%%s",
+    "escaped.percent.followed.by.placeholder": "%%%s"
+  }
 }

@@ -105,7 +105,8 @@ Each file is imported using `require`, use the file format of your choice:
     "split the translation into ",
     "multiples lines"
   ],
-  "sprintf": "format me %s"
+  "sprintf": "format me %s",
+  "sprintf with numbered placeholders": "format me %2$s one more time %1$s"
 }
 ```
 

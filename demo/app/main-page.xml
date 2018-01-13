@@ -6,6 +6,7 @@
       <Label text="{{ L('sprintf') }}"></Label>
       <Label text="{{ L('sprintf', 'PARTIALLY') }}"></Label>
       <Label text="{{ L('sprintf', 'AGAIN', 'OK') }}"></Label>
+      <Label text="{{ L('sprintf.numbered.placeholders', '1', '2') }}"></Label>
       <Label text="{{ L('array') }}"></Label>
       <Label text="{{ L('this.key.does.not.exist') }}"></Label>
       <Label text="{{ L('html') }}"></Label>

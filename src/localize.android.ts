@@ -1,4 +1,4 @@
-import * as format from "format";
+import { vsprintf } from "sprintf-js";
 import * as utils from "utils/utils";
 
 import { encodeKey } from "./resource";
@@ -21,5 +21,5 @@ export function localize(key: string, ...args: string[]): string {
   } catch (error) {
     localizedString = key;
   }
-  return format(...[localizedString, ...args]);
+  return vsprintf(localizedString, args);
 }

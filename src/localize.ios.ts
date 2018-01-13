@@ -1,6 +1,7 @@
-import * as format from "format";
+import { vsprintf } from "sprintf-js";
 import * as utils from "utils/utils";
 
+import { convertAtSignToStringSign } from "./placeholder";
 import { encodeKey } from "./resource";
 
 const getBundle = (function () {
@@ -15,5 +16,5 @@ const getBundle = (function () {
 
 export function localize(key: string, ...args: string[]): string {
   const localizedString = getBundle().localizedStringForKeyValueTable(encodeKey(key), key, null);
-  return format(...[localizedString, ...args]);
+  return vsprintf(convertAtSignToStringSign(localizedString), args);
 }

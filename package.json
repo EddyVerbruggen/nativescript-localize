@@ -40,11 +40,11 @@
     "tslint": "tslint **/*.ts"
   },
   "dependencies": {
-    "format": "^0.2.2",
     "mkdirp": "^0.5.1",
     "nativescript-hook": "^0.2.1",
     "shorthash": "0.0.2",
-    "simple-plist": "^0.2.1"
+    "simple-plist": "^0.2.1",
+    "sprintf-js": "^1.1.1"
   },
   "peerDependencies": {
     "tns-core-modules": "^3.0.0"
@@ -55,6 +55,7 @@
     "@angular/core": "~4.0.1",
     "@types/mkdirp": "^0.5.1",
     "@types/node": "^7.0.0",
+    "@types/sprintf-js": "^1.1.0",
     "rxjs": "~5.3.0",
     "tns-core-modules": "^3.0.0",
     "tns-platform-declarations": "^3.0.0",
