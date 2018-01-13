@@ -1,5 +1,13 @@
 # Change Log
 
+## [v2.2.0](https://github.com/lfabreges/nativescript-localize/tree/v2.2.0) (2018-01-13)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.1.0...v2.2.0)
+
+**Closed issues:**
+
+- Notification localization arguments fail on iOS due to strings files using %s instead of %@ [\#20](https://github.com/lfabreges/nativescript-localize/issues/20)
+- Is there a way to change the language on Runtime? [\#19](https://github.com/lfabreges/nativescript-localize/issues/19)
+
 ## [v2.1.0](https://github.com/lfabreges/nativescript-localize/tree/v2.1.0) (2018-01-09)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.0.7...v2.1.0)
 
