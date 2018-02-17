@@ -1,5 +1,15 @@
 # Change Log
 
+## [v2.2.1](https://github.com/lfabreges/nativescript-localize/tree/v2.2.1) (2018-02-17)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.2.0...v2.2.1)
+
+**Closed issues:**
+
+- Add option of allowing dynamically changing the language [\#24](https://github.com/lfabreges/nativescript-localize/issues/24)
+- \[angular\] unable to resolve signature for pipe invocation [\#23](https://github.com/lfabreges/nativescript-localize/issues/23)
+- L pip is not working [\#22](https://github.com/lfabreges/nativescript-localize/issues/22)
+- How to change language on the fly [\#21](https://github.com/lfabreges/nativescript-localize/issues/21)
+
 ## [v2.2.0](https://github.com/lfabreges/nativescript-localize/tree/v2.2.0) (2018-01-13)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.1.0...v2.2.0)
 
