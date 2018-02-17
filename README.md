@@ -3,8 +3,8 @@
 [![npm](https://img.shields.io/npm/v/nativescript-localize.svg)](https://www.npmjs.com/package/nativescript-localize)
 [![npm](https://img.shields.io/npm/dt/nativescript-localize.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-localize)
 
-This is a plugin for NativeScript that implements internationalization (i18n) using the native platforms standards.
-It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i18n)
+This is a plugin for NativeScript that implements internationalization (i18n) using the native capabilities
+of each platform. It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i18n)
 
 ## Table of contents
 * [Installation](#installation)
@@ -16,6 +16,7 @@ It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i1
   * [How to set the default language?](#how-to-set-the-default-language)
   * [How to localize the application name?](#how-to-localize-the-application-name)
   * [How to localize iOS properties?](#how-to-localize-ios-properties)
+  * [How to change the language dynamically at runtime?](#how-to-change-the-language-dynamically-at-runtime)
 
 ## Installation
 ```shell
@@ -141,3 +142,7 @@ Keys starting with `ios.info.plist.` are used to localize iOS properties:
   "ios.info.plist.NSLocationWhenInUseUsageDescription": "This will be added to InfoPlist.strings"
 }
 ```
+
+### How to change the language dynamically at runtime?
+This plugin uses the native capabilities of each platform, language selection is therefore made by the OS.
+There is no plan to implement this feature in the near future.
