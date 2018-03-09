@@ -120,6 +120,7 @@ const i18n = {
 module.exports = i18n;
 ```
 
+If you get a `No resource found that matches the given name (at 'label' with value '@string/title_activity_kimera')` when building the app, you have to set the `"app.name"` in at least the `.default` translation file.
 ## Frequently asked questions
 ### How to set the default language?
 Add the `.default` extension to the default language file to set it as the fallback language:
