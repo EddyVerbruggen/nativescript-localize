@@ -11,6 +11,7 @@ of each platform. It is inspired from [nativescript-i18n](https://github.com/rbo
 * [Usage](#usage)
   * [Angular](#angular)
   * [Javascript](#javascript)
+  * [Android](#android)
 * [File format](#file-format)
 * [Frequently asked questions](#frequently-asked-questions)
   * [How to set the default language?](#how-to-set-the-default-language)
@@ -88,6 +89,9 @@ const localize = require("nativescript-localize");
 console.log(localize("Hello world !"));
 ```
 
+### Android
+Application name needs to be defined, using the `app.name` key, in at least the default langage file to avoid the following error: `No resource found that matches the given name (at 'label' with value '@string/title_activity_kimera')`.
+
 ## File format
 Each file is imported using `require`, use the file format of your choice:
 
@@ -120,7 +124,6 @@ const i18n = {
 module.exports = i18n;
 ```
 
-If you get a `No resource found that matches the given name (at 'label' with value '@string/title_activity_kimera')` when building the app, you have to set the `"app.name"` in at least the `.default` translation file.
 ## Frequently asked questions
 ### How to set the default language?
 Add the `.default` extension to the default language file to set it as the fallback language:
