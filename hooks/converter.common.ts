@@ -36,36 +36,79 @@ export abstract class ConverterCommon extends EventEmitter {
   protected abstract createLanguageResourcesFiles(
     language: string,
     isDefaultLanguage: boolean,
-    i18nContentIterator: Iterable<I18nEntry>
+    i18nEntries: I18nEntries
   ): this;
 
   public abstract livesyncExclusionPatterns(): string[];
 
+  public loadLangage(filePath: string): I18nEntries {
+    delete (<any>require).cache[(<any>require).resolve(filePath)];
+
+    const fileContent = require(filePath);
+    const i18nEntries: I18nEntries = new Map();
+    const stack = [{ prefix: "", element: fileContent }];
+
+    while (stack.length > 0) {
+      const { prefix, element } = stack.pop();
+      if (Array.isArray(element)) {
+        i18nEntries.set(prefix, element.join(""));
+      } else if (typeof element === "object") {
+        for (const key of Object.keys(element)) {
+          stack.push({ prefix: prefix === "" ? key : `${prefix}.${key}`, element: element[key] });
+        }
+      } else {
+        i18nEntries.set(prefix, new String(element).valueOf());
+      }
+    }
+
+    return i18nEntries;
+  }
+
   public run(): this {
     if (!fs.existsSync(this.i18nDirectoryPath)) {
-      this.logger.info(`'${this.i18nDirectoryPath}' doesn't exists: nothing to localize`);
+      this.logger.warn(`'${this.i18nDirectoryPath}' doesn't exists: nothing to localize`);
       return this;
     }
 
+    let defaultLanguage = undefined;
     const supportedLanguages: SupportedLanguages = new Map();
 
     fs.readdirSync(this.i18nDirectoryPath).map(fileName => {
       return path.join(this.i18nDirectoryPath, fileName);
     }).filter(filePath => {
       return fs.statSync(filePath).isFile();
-    }).map(filePath => {
-      delete (<any>require).cache[(<any>require).resolve(filePath)];
-      return filePath;
-    }).map(filePath => {
+    }).forEach(filePath => {
       let language = path.basename(filePath, path.extname(filePath));
-      const isDefaultLanguage = path.extname(language) === ".default";
-      if (isDefaultLanguage) { language = path.basename(language, ".default"); }
-      supportedLanguages.set(language, isDefaultLanguage);
-      this.createLanguageResourcesFiles(
-        language,
-        isDefaultLanguage,
-        this.i18nContentGenerator(require(filePath))
-      );
+      if (path.extname(language) === ".default") {
+        language = path.basename(language, ".default");
+        defaultLanguage = language;
+      }
+      supportedLanguages.set(language, filePath);
+    });
+
+    if (supportedLanguages.size === 0) {
+      this.logger.warn(`'${this.i18nDirectoryPath}' is empty: nothing to localize`);
+      return this;
+    }
+
+    if (!defaultLanguage) {
+      defaultLanguage = supportedLanguages.keys().next().value;
+      this.logger.warn(`No file found with the .default extension: default langage set to '${defaultLanguage}'`);
+    }
+
+    const defaultLanguageI18nEntries = this.loadLangage(supportedLanguages.get(defaultLanguage));
+    this.createLanguageResourcesFiles(defaultLanguage, true, defaultLanguageI18nEntries);
+
+    supportedLanguages.forEach((filePath, language) => {
+      if (language !== defaultLanguage) {
+        const languageI18nEntries = this.loadLangage(filePath);
+        defaultLanguageI18nEntries.forEach((value, key) => {
+          if (!languageI18nEntries.has(key)) {
+            languageI18nEntries.set(key, value);
+          }
+        });
+        this.createLanguageResourcesFiles(language, false, languageI18nEntries);
+      }
     });
 
     [this.appResourcesDirectoryPath, this.appResourcesDestinationDirectoryPath].forEach(resourcesDirectoryPath => {
@@ -75,22 +118,6 @@ export abstract class ConverterCommon extends EventEmitter {
     });
 
     return this;
-  }
-
-  public * i18nContentGenerator(i18nContent: any): Iterable<I18nEntry> {
-    const stack = [{ prefix: "", element: i18nContent }];
-    while (stack.length > 0) {
-      const { prefix, element } = stack.pop();
-      if (Array.isArray(element)) {
-        yield { key: prefix, value: element.join("") };
-      } else if (typeof element === "object") {
-        for (const key of Object.keys(element)) {
-          stack.push({ prefix: prefix === "" ? key : `${prefix}.${key}`, element: element[key] });
-        }
-      } else {
-        yield { key: <string>prefix, value: new String(element).valueOf() };
-      }
-    }
   }
 
   protected createDirectoryIfNeeded(directoryPath: string): this {
@@ -118,5 +145,5 @@ export abstract class ConverterCommon extends EventEmitter {
   }
 }
 
-export type I18nEntry = { key: string; value: string; };
-export type SupportedLanguages = Map<string, boolean>;
+export type I18nEntries = Map<string, string>;
+export type SupportedLanguages = Map<string, string>;

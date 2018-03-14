@@ -1,23 +1,14 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { ConverterCommon, I18nEntry, SupportedLanguages } from "./converter.common";
+import { ConverterCommon, I18nEntries, SupportedLanguages } from "./converter.common";
 import { encodeKey, encodeValue } from "../src/resource.android";
 
 export class ConverterAndroid extends ConverterCommon {
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, supportedLanguages: SupportedLanguages): this {
     fs.readdirSync(resourcesDirectory).filter(fileName => {
-      const match = /^values(?:-(.+))?$/.exec(fileName);
-      if (!match) {
-        return false;
-      } else if (match[1]) {
-        return !supportedLanguages.has(match[1]);
-      } else {
-        for (const [language, isDefaultLanguage] of supportedLanguages) {
-          if (isDefaultLanguage) { return false; }
-        }
-        return true;
-      }
+      const match = /^values-(.+)$/.exec(fileName);
+      return match && !supportedLanguages.has(match[1]);
     }).map(fileName => {
       return path.join(resourcesDirectory, fileName);
     }).filter(filePath => {
@@ -35,7 +26,7 @@ export class ConverterAndroid extends ConverterCommon {
   protected createLanguageResourcesFiles(
     language: string,
     isDefaultLanguage: boolean,
-    i18nContentIterator: Iterable<I18nEntry>
+    i18nEntries: I18nEntries
   ): this {
     const languageResourcesDir = path.join(
       this.appResourcesDirectoryPath,
@@ -43,7 +34,7 @@ export class ConverterAndroid extends ConverterCommon {
     );
     this.createDirectoryIfNeeded(languageResourcesDir);
     let strings = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n";
-    for (const { key, value } of i18nContentIterator) {
+    i18nEntries.forEach((value, key) => {
       const encodedKey = encodeKey(key);
       const encodedValue = encodeValue(value);
       strings += `  <string name="${encodedKey}">${encodedValue}</string>\n`;
@@ -51,7 +42,7 @@ export class ConverterAndroid extends ConverterCommon {
         strings += `  <string name="app_name">${encodedValue}</string>\n`;
         strings += `  <string name="title_activity_kimera">${encodedValue}</string>\n`;
       }
-    }
+    });
     strings += "</resources>\n";
     const resourceFilePath = path.join(languageResourcesDir, "strings.xml");
     if (this.writeFileSyncIfNeeded(resourceFilePath, strings)) {
