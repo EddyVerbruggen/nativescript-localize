@@ -1,5 +1,16 @@
 # Change Log
 
+## [v2.3.0](https://github.com/lfabreges/nativescript-localize/tree/v2.3.0) (2018-03-14)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.2.1...v2.3.0)
+
+**Closed issues:**
+
+- L\(\) doesn't work for views without binding context [\#26](https://github.com/lfabreges/nativescript-localize/issues/26)
+
+**Merged pull requests:**
+
+- update the README.md to include that app.name is mandatory [\#25](https://github.com/lfabreges/nativescript-localize/pull/25) ([jorotenev](https://github.com/jorotenev))
+
 ## [v2.2.1](https://github.com/lfabreges/nativescript-localize/tree/v2.2.1) (2018-02-17)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.2.0...v2.2.1)
 
