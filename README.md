@@ -11,7 +11,6 @@ of each platform. It is inspired from [nativescript-i18n](https://github.com/rbo
 * [Usage](#usage)
   * [Angular](#angular)
   * [Javascript](#javascript)
-  * [Android](#android)
 * [File format](#file-format)
 * [Frequently asked questions](#frequently-asked-questions)
   * [How to set the default language?](#how-to-set-the-default-language)
@@ -33,6 +32,10 @@ app
       | fr.default.json   <-- french language (default)
       | es.js
 ```
+
+You need to [set the default langage](#how-to-set-the-default-language) and make sure it contains every
+needed string by your application, [including the application name](#how-to-localize-the-application-name),
+to avoid any error.
 
 ### Angular
 #### app.module.ts
@@ -88,9 +91,6 @@ const localize = require("nativescript-localize");
 
 console.log(localize("Hello world !"));
 ```
-
-### Android
-Application name needs to be defined, using the `app.name` key, in at least the default langage file to avoid the following error: `No resource found that matches the given name (at 'label' with value '@string/title_activity_kimera')`.
 
 ## File format
 Each file is imported using `require`, use the file format of your choice:
