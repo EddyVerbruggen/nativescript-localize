@@ -30,7 +30,7 @@ export abstract class ConverterCommon extends EventEmitter {
 
   protected abstract cleanObsoleteResourcesFiles(
     resourcesDirectory: string,
-    supportedLanguages: SupportedLanguages
+    languages: Languages
   ): this;
 
   protected abstract createLanguageResourcesFiles(
@@ -71,7 +71,7 @@ export abstract class ConverterCommon extends EventEmitter {
     }
 
     let defaultLanguage = undefined;
-    const supportedLanguages: SupportedLanguages = new Map();
+    const languages: Languages = new Map();
 
     fs.readdirSync(this.i18nDirectoryPath).map(fileName => {
       return path.join(this.i18nDirectoryPath, fileName);
@@ -83,37 +83,49 @@ export abstract class ConverterCommon extends EventEmitter {
         language = path.basename(language, ".default");
         defaultLanguage = language;
       }
-      supportedLanguages.set(language, filePath);
+      languages.set(language, this.loadLangage(filePath));
     });
 
-    if (supportedLanguages.size === 0) {
+    if (languages.size === 0) {
       this.logger.warn(`'${this.i18nDirectoryPath}' is empty: nothing to localize`);
       return this;
     }
 
     if (!defaultLanguage) {
-      defaultLanguage = supportedLanguages.keys().next().value;
+      defaultLanguage = languages.keys().next().value;
       this.logger.warn(`No file found with the .default extension: default langage set to '${defaultLanguage}'`);
     }
 
-    const defaultLanguageI18nEntries = this.loadLangage(supportedLanguages.get(defaultLanguage));
-    this.createLanguageResourcesFiles(defaultLanguage, true, defaultLanguageI18nEntries);
+    const defaultLanguageI18nEntries = languages.get(defaultLanguage);
 
-    supportedLanguages.forEach((filePath, language) => {
+    languages.forEach((languageI18nEntries, language) => {
       if (language !== defaultLanguage) {
-        const languageI18nEntries = this.loadLangage(filePath);
+        languageI18nEntries.forEach((_, key) => {
+          if (!defaultLanguageI18nEntries.has(key)) {
+            this.logger.warn(key);
+            defaultLanguageI18nEntries.set(key, key);
+          }
+        });
+      }
+    });
+
+    languages.forEach((languageI18nEntries, language) => {
+      if (language !== defaultLanguage) {
         defaultLanguageI18nEntries.forEach((value, key) => {
           if (!languageI18nEntries.has(key)) {
             languageI18nEntries.set(key, value);
           }
         });
-        this.createLanguageResourcesFiles(language, false, languageI18nEntries);
       }
+    });
+
+    languages.forEach((languageI18nEntries, language) => {
+      this.createLanguageResourcesFiles(language, language === defaultLanguage, languageI18nEntries);
     });
 
     [this.appResourcesDirectoryPath, this.appResourcesDestinationDirectoryPath].forEach(resourcesDirectoryPath => {
       if (fs.existsSync(resourcesDirectoryPath) && fs.statSync(resourcesDirectoryPath).isDirectory()) {
-        this.cleanObsoleteResourcesFiles(resourcesDirectoryPath, supportedLanguages);
+        this.cleanObsoleteResourcesFiles(resourcesDirectoryPath, languages);
       }
     });
 
@@ -146,4 +158,4 @@ export abstract class ConverterCommon extends EventEmitter {
 }
 
 export type I18nEntries = Map<string, string>;
-export type SupportedLanguages = Map<string, string>;
+export type Languages = Map<string, I18nEntries>;

@@ -1,14 +1,14 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { ConverterCommon, I18nEntries, SupportedLanguages } from "./converter.common";
+import { ConverterCommon, I18nEntries, Languages } from "./converter.common";
 import { encodeKey, encodeValue } from "../src/resource.android";
 
 export class ConverterAndroid extends ConverterCommon {
-  protected cleanObsoleteResourcesFiles(resourcesDirectory: string, supportedLanguages: SupportedLanguages): this {
+  protected cleanObsoleteResourcesFiles(resourcesDirectory: string, languages: Languages): this {
     fs.readdirSync(resourcesDirectory).filter(fileName => {
       const match = /^values-(.+)$/.exec(fileName);
-      return match && !supportedLanguages.has(match[1]);
+      return match && !languages.has(match[1]);
     }).map(fileName => {
       return path.join(resourcesDirectory, fileName);
     }).filter(filePath => {

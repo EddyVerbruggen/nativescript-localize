@@ -33,9 +33,8 @@ app
       | es.js
 ```
 
-You need to [set the default langage](#how-to-set-the-default-language) and make sure it contains every
-needed string by your application, [including the application name](#how-to-localize-the-application-name),
-to avoid any error.
+You need to [set the default langage](#how-to-set-the-default-language) and make sure it contains
+the [application name](#how-to-localize-the-application-name) to avoid any error.
 
 ### Angular
 #### app.module.ts
