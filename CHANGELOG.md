@@ -1,5 +1,14 @@
 # Change Log
 
+## [v2.3.1](https://github.com/lfabreges/nativescript-localize/tree/v2.3.1) (2018-03-23)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.3.0...v2.3.1)
+
+**Closed issues:**
+
+- Add missing keys to default langage [\#30](https://github.com/lfabreges/nativescript-localize/issues/30)
+- How to localize coalesce texts [\#28](https://github.com/lfabreges/nativescript-localize/issues/28)
+- Text including Fa icons [\#27](https://github.com/lfabreges/nativescript-localize/issues/27)
+
 ## [v2.3.0](https://github.com/lfabreges/nativescript-localize/tree/v2.3.0) (2018-03-14)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.2.1...v2.3.0)
 
