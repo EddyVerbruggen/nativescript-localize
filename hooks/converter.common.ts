@@ -102,7 +102,6 @@ export abstract class ConverterCommon extends EventEmitter {
       if (language !== defaultLanguage) {
         languageI18nEntries.forEach((_, key) => {
           if (!defaultLanguageI18nEntries.has(key)) {
-            this.logger.warn(key);
             defaultLanguageI18nEntries.set(key, key);
           }
         });
