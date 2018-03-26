@@ -1,15 +1,17 @@
 {
   "name": "nativescript-localize",
-  "description": "Native internationalization plugin for NativeScript using platforms standards",
+  "description": "Native internationalization plugin for NativeScript using native capabilities of each platform",
   "version": "2.3.1",
   "keywords": [
     "nativescript",
     "internationalization",
     "i18n",
-    "translate",
     "translation",
-    "localize",
-    "localization"
+    "localization",
+    "l10n",
+    "angular",
+    "ios",
+    "android"
   ],
   "homepage": "https://github.com/lfabreges/nativescript-localize",
   "bugs": "https://github.com/lfabreges/nativescript-localize/issues",
