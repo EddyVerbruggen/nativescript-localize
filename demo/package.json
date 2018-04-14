@@ -9,7 +9,7 @@
     "nativescript-localize": "file:..",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-unit-test-runner": "^0.3.4",
-    "tns-core-modules": "^3.4.0"
+    "tns-core-modules": "^4.0.0"
   },
   "devDependencies": {
     "babel-traverse": "6.26.0",
@@ -30,15 +30,16 @@
     "resolve-url-loader": "~2.1.0",
     "webpack": "~3.8.1",
     "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-sources": "~1.0.1"
+    "webpack-sources": "~1.0.1",
+    "uglifyjs-webpack-plugin": "~1.1.6"
   },
   "nativescript": {
     "id": "org.nativescript.demo.javascript",
-    "tns-ios": {
-      "version": "3.4.0"
-    },
     "tns-android": {
-      "version": "3.4.0"
+      "version": "4.0.0"
+    },
+    "tns-ios": {
+      "version": "4.0.1"
     }
   },
   "scripts": {

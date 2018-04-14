@@ -49,7 +49,7 @@
     "sprintf-js": "^1.1.1"
   },
   "peerDependencies": {
-    "tns-core-modules": "^3.0.0"
+    "tns-core-modules": ">=3.0.0"
   },
   "devDependencies": {
     "@angular/compiler": "~4.0.1",
