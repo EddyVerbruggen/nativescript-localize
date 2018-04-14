@@ -1,5 +1,12 @@
 # Change Log
 
+## [v2.3.2](https://github.com/lfabreges/nativescript-localize/tree/v2.3.2) (2018-04-14)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.3.1...v2.3.2)
+
+**Closed issues:**
+
+- Support for NativeScript 4.0 [\#31](https://github.com/lfabreges/nativescript-localize/issues/31)
+
 ## [v2.3.1](https://github.com/lfabreges/nativescript-localize/tree/v2.3.1) (2018-03-23)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.3.0...v2.3.1)
 
