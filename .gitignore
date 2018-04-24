@@ -3,7 +3,6 @@
 /**/*.metadata.json
 /.vscode/
 /.idea/
-/aot/
 /hooks/**/*.js
 /node_modules/
 /src/**/*.js

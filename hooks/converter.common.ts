@@ -39,8 +39,6 @@ export abstract class ConverterCommon extends EventEmitter {
     i18nEntries: I18nEntries
   ): this;
 
-  public abstract livesyncExclusionPatterns(): string[];
-
   public loadLangage(filePath: string): I18nEntries {
     delete (<any>require).cache[(<any>require).resolve(filePath)];
 

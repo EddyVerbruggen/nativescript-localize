@@ -43,37 +43,42 @@
   },
   "dependencies": {
     "mkdirp": "^0.5.1",
-    "nativescript-hook": "^0.2.1",
+    "nativescript-hook": "^0.2.4",
     "shorthash": "0.0.2",
-    "simple-plist": "^0.2.1",
+    "simple-plist": "^0.3.0",
     "sprintf-js": "^1.1.1"
   },
   "peerDependencies": {
-    "tns-core-modules": ">=3.0.0"
+    "tns-core-modules": "^4.0.0"
   },
   "devDependencies": {
-    "@angular/compiler": "~4.0.1",
-    "@angular/compiler-cli": "~4.0.1",
-    "@angular/core": "~4.0.1",
+    "@angular/compiler": "~5.2.0",
+    "@angular/compiler-cli": "~5.2.0",
+    "@angular/core": "~5.2.0",
     "@types/mkdirp": "^0.5.1",
     "@types/node": "^7.0.0",
     "@types/sprintf-js": "^1.1.0",
-    "rxjs": "~5.3.0",
-    "tns-core-modules": "^3.0.0",
-    "tns-platform-declarations": "^3.0.0",
+    "rxjs": "^5.5.0",
+    "tns-core-modules": "^4.0.0",
+    "tns-platform-declarations": "^4.0.0",
     "tslint": "^5.8.0",
-    "typescript": "^2.3.0",
+    "typescript": "~2.6.2",
     "zone.js": "~0.8.4"
   },
   "nativescript": {
     "platforms": {
-      "android": "3.0.0",
-      "ios": "3.0.0"
+      "android": "4.0.0",
+      "ios": "4.0.0"
     },
     "hooks": [
       {
         "type": "before-prepare",
         "script": "hooks/before-prepare.js",
+        "inject": true
+      },
+      {
+        "type": "before-watchPatterns",
+        "script": "hooks/before-watchPatterns.js",
         "inject": true
       }
     ]

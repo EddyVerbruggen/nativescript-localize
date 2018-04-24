@@ -4,6 +4,6 @@
     "angular.ts"
   ],
   "angularCompilerOptions": {
-    "genDir": "aot"
+    "skipTemplateCodegen": true
   }
 }

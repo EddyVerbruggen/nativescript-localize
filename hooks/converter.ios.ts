@@ -54,13 +54,6 @@ export class ConverterIOS extends ConverterCommon {
     return this;
   }
 
-  public livesyncExclusionPatterns(): string[] {
-    return [
-      path.join(this.appResourcesDirectoryPath, "*.lproj", "InfoPlist.strings"),
-      path.join(this.appResourcesDirectoryPath, "*.lproj", "Localizable.strings"),
-    ];
-  }
-
   private writeStrings(
     languageResourcesDir: string,
     resourceFileName: string,

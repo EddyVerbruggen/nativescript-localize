@@ -9,7 +9,6 @@ export = function(
   logger: ILogger,
   platformsData: IPlatformsData,
   projectData: IProjectData,
-  liveSyncService: any,
   hookArgs: any
 ) {
   const platformName = hookArgs.platform.toLowerCase();
@@ -24,24 +23,6 @@ export = function(
   } else {
     logger.warn(`Platform '${platformName}' isn't supported: skipping localization`);
     return;
-  }
-
-  // HACK : https://github.com/NativeScript/nativescript-cli/issues/3251
-  if (liveSyncService &&
-      liveSyncService.liveSyncProcessesInfo[projectData.projectDir] &&
-      liveSyncService.liveSyncProcessesInfo[projectData.projectDir].watcherInfo &&
-      liveSyncService.liveSyncProcessesInfo[projectData.projectDir].watcherInfo.watcher
-  ) {
-    const watcherInfo = liveSyncService.liveSyncProcessesInfo[projectData.projectDir].watcherInfo;
-    if (!watcherInfo._isLocalizePluginHackInstalledForPlatform) {
-      watcherInfo._isLocalizePluginHackInstalledForPlatform = {};
-    }
-    if (!watcherInfo._isLocalizePluginHackInstalledForPlatform[platformName]) {
-      converter.livesyncExclusionPatterns().forEach(pattern => {
-        watcherInfo.watcher.unwatch(path.relative(projectData.projectDir, pattern));
-      });
-      watcherInfo._isLocalizePluginHackInstalledForPlatform[platformName] = true;
-    }
   }
 
   converter

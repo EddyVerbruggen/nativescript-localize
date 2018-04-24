@@ -3,7 +3,6 @@
 /**/*.ts
 /.vscode/
 /.idea/
-/aot/
 /demo/
 /demo-angular/
 /node_modules/

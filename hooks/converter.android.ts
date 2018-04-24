@@ -50,11 +50,4 @@ export class ConverterAndroid extends ConverterCommon {
     }
     return this;
   }
-
-  public livesyncExclusionPatterns(): string[] {
-    return [
-      path.join(this.appResourcesDirectoryPath, "values", "strings.xml"),
-      path.join(this.appResourcesDirectoryPath, "values-*", "strings.xml"),
-    ];
-  }
 }
