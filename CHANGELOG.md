@@ -1,5 +1,13 @@
 # Change Log
 
+## [v3.0.0](https://github.com/lfabreges/nativescript-localize/tree/v3.0.0) (2018-04-24)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.3.2...v3.0.0)
+
+**Closed issues:**
+
+- Add support for NS4.0 watchPatterns hook [\#32](https://github.com/lfabreges/nativescript-localize/issues/32)
+- iOS Localizable.strings are no longer updated [\#29](https://github.com/lfabreges/nativescript-localize/issues/29)
+
 ## [v2.3.2](https://github.com/lfabreges/nativescript-localize/tree/v2.3.2) (2018-04-14)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.3.1...v2.3.2)
 
