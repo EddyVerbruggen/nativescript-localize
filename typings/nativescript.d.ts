@@ -56,14 +56,14 @@ interface IProjectData {
   appDirectoryPath: string;
   appResourcesDirectoryPath: string;
   projectType: string;
-	nsConfig: any;
+  nsConfig: any;
   androidManifestPath: string;
-	appGradlePath: string;
-	gradleFilesDirectoryPath: string;
-	infoPlistPath: string;
-	buildXcconfigPath: string;
+  appGradlePath: string;
+  gradleFilesDirectoryPath: string;
+  infoPlistPath: string;
+  buildXcconfigPath: string;
   getAppDirectoryPath(projectDir?: string): string;
-	getAppDirectoryRelativePath(): string;
-	getAppResourcesDirectoryPath(projectDir?: string): string;
+  getAppDirectoryRelativePath(): string;
+  getAppResourcesDirectoryPath(projectDir?: string): string;
   getAppResourcesRelativeDirectoryPath(): string;
 }
