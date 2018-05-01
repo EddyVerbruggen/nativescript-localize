@@ -1,5 +1,12 @@
 # Change Log
 
+## [v3.0.1](https://github.com/lfabreges/nativescript-localize/tree/v3.0.1) (2018-05-01)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.0...v3.0.1)
+
+**Closed issues:**
+
+- Support for new Android resources structure [\#33](https://github.com/lfabreges/nativescript-localize/issues/33)
+
 ## [v3.0.0](https://github.com/lfabreges/nativescript-localize/tree/v3.0.0) (2018-04-24)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v2.3.2...v3.0.0)
 
