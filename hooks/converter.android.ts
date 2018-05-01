@@ -5,6 +5,18 @@ import { ConverterCommon, I18nEntries, Languages } from "./converter.common";
 import { encodeKey, encodeValue } from "../src/resource.android";
 
 export class ConverterAndroid extends ConverterCommon {
+  public constructor(
+    protected androidResourcesMigrationService: IAndroidResourcesMigrationService,
+    protected logger: ILogger,
+    protected platformData: IPlatformData,
+    protected projectData: IProjectData
+  ) {
+    super(logger, platformData, projectData);
+    if (androidResourcesMigrationService.hasMigrated(projectData.appResourcesDirectoryPath)) {
+      this.appResourcesDirectoryPath = path.join(this.appResourcesDirectoryPath, "src", "main", "res");
+    }
+  }
+
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, languages: Languages): this {
     fs.readdirSync(resourcesDirectory).filter(fileName => {
       const match = /^values-(.+)$/.exec(fileName);

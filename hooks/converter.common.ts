@@ -7,7 +7,8 @@ export abstract class ConverterCommon extends EventEmitter {
   public static readonly CONFIGURATION_CHANGED_EVENT = "configurationChangedEvent";
   public static readonly RESOURCE_CHANGED_EVENT = "resourceChangedEvent";
 
-  protected readonly appResourcesDirectoryPath: string;
+  protected appResourcesDirectoryPath: string;
+
   protected readonly appResourcesDestinationDirectoryPath: string;
   protected readonly i18nDirectoryPath: string;
 

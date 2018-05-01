@@ -6,6 +6,7 @@ import { ConverterAndroid } from "./converter.android";
 import { ConverterIOS } from "./converter.ios";
 
 export = function(
+  androidResourcesMigrationService: IAndroidResourcesMigrationService,
   logger: ILogger,
   platformsData: IPlatformsData,
   projectData: IProjectData,
@@ -17,7 +18,7 @@ export = function(
   let converter: ConverterCommon;
 
   if (platformName === "android") {
-    converter = new ConverterAndroid(logger, platformData, projectData);
+    converter = new ConverterAndroid(androidResourcesMigrationService, logger, platformData, projectData);
   } else if (platformName === "ios") {
     converter = new ConverterIOS(logger, platformData, projectData);
   } else {

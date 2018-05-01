@@ -1,3 +1,9 @@
+interface IAndroidResourcesMigrationService {
+  canMigrate(platformString: string): boolean;
+  hasMigrated(appResourcesDir: string): boolean;
+  migrate(appResourcesDir: string): Promise<void>;
+}
+
 interface ILogger {
   setLevel(level: string): void;
   getLevel(): string;
