@@ -20,7 +20,7 @@ export class ConverterAndroid extends ConverterCommon {
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, languages: Languages): this {
     fs.readdirSync(resourcesDirectory).filter(fileName => {
       const match = /^values-(.+)$/.exec(fileName);
-      return match && !languages.has(match[1]);
+      return match && !languages.has(match[1].replace(/^(.+?)-r(.+?)$/, "$1-$2"));
     }).map(fileName => {
       return path.join(resourcesDirectory, fileName);
     }).filter(filePath => {
@@ -42,7 +42,7 @@ export class ConverterAndroid extends ConverterCommon {
   ): this {
     const languageResourcesDir = path.join(
       this.appResourcesDirectoryPath,
-      `values${isDefaultLanguage ? "" : `-${language}`}`
+      `values${isDefaultLanguage ? "" : `-${language.replace(/^(.+?)-(.+?)$/, "$1-r$2")}`}`
     );
     this.createDirectoryIfNeeded(languageResourcesDir);
     let strings = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n";
