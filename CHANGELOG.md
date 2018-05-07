@@ -1,5 +1,12 @@
 # Change Log
 
+## [v3.0.3](https://github.com/lfabreges/nativescript-localize/tree/v3.0.3) (2018-05-07)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.2...v3.0.3)
+
+**Closed issues:**
+
+- Languages variations, pt-BR, es-AR, fr-CA [\#34](https://github.com/lfabreges/nativescript-localize/issues/34)
+
 ## [v3.0.2](https://github.com/lfabreges/nativescript-localize/tree/v3.0.2) (2018-05-02)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.1...v3.0.2)
 
