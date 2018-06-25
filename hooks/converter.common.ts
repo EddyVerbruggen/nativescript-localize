@@ -75,7 +75,10 @@ export abstract class ConverterCommon extends EventEmitter {
     fs.readdirSync(this.i18nDirectoryPath).map(fileName => {
       return path.join(this.i18nDirectoryPath, fileName);
     }).filter(filePath => {
-      return fs.statSync(filePath).isFile();
+      const validExtensions = [".js", ".json"];
+      const isValidExtension = validExtensions.indexOf(path.extname(filePath)) > -1;
+      const isFile = fs.statSync(filePath).isFile();
+      return isFile && isValidExtension;
     }).forEach(filePath => {
       let language = path.basename(filePath, path.extname(filePath));
       if (path.extname(language) === ".default") {
