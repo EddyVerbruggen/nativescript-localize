@@ -1,5 +1,17 @@
 # Change Log
 
+## [v3.0.4](https://github.com/lfabreges/nativescript-localize/tree/v3.0.4) (2018-06-25)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.3...v3.0.4)
+
+**Closed issues:**
+
+- Build fails if .DS\_Store present in i18n folder [\#37](https://github.com/lfabreges/nativescript-localize/issues/37)
+- Template parse errors: The pipe 'L' could not be found \(" [\#35](https://github.com/lfabreges/nativescript-localize/issues/35)
+
+**Merged pull requests:**
+
+- Fixed invalid files in i18n folder braking builds [\#38](https://github.com/lfabreges/nativescript-localize/pull/38) ([surdu](https://github.com/surdu))
+
 ## [v3.0.3](https://github.com/lfabreges/nativescript-localize/tree/v3.0.3) (2018-05-07)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.2...v3.0.3)
 
