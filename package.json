@@ -1,7 +1,7 @@
 {
   "name": "nativescript-localize",
   "description": "Native internationalization plugin for NativeScript using native capabilities of each platform",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "keywords": [
     "nativescript",
     "internationalization",
@@ -24,6 +24,10 @@
     {
       "name": "Eddy Verbruggen",
       "email": "eddyverbruggen@gmail.com"
+    },
+    {
+      "name": "Brendan Ingham",
+      "email": "brendan.ingham13@gmail.com"
     }
   ],
   "main": "index.js",
