@@ -1,5 +1,17 @@
 # Change Log
 
+## [v3.0.5](https://github.com/lfabreges/nativescript-localize/tree/v3.0.5) (2018-07-16)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.4...v3.0.5)
+
+**Closed issues:**
+
+- Doesnt Follow NSConfig Rules.  [\#41](https://github.com/lfabreges/nativescript-localize/issues/41)
+- The pipe 'L' could not be found [\#39](https://github.com/lfabreges/nativescript-localize/issues/39)
+
+**Merged pull requests:**
+
+- Support NSConfig's appPath  [\#42](https://github.com/lfabreges/nativescript-localize/pull/42) ([breningham](https://github.com/breningham))
+
 ## [v3.0.4](https://github.com/lfabreges/nativescript-localize/tree/v3.0.4) (2018-06-25)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.3...v3.0.4)
 
