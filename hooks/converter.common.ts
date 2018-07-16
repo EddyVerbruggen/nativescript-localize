@@ -26,7 +26,8 @@ export abstract class ConverterCommon extends EventEmitter {
       .platformProjectService
       .getAppResourcesDestinationDirectoryPath(projectData)
     ;
-    this.i18nDirectoryPath = path.join(projectData.projectDir, "app", "i18n");
+
+    this.i18nDirectoryPath = path.join(projectData.appDirectoryPath, "i18n");
   }
 
   protected abstract cleanObsoleteResourcesFiles(
