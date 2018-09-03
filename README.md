@@ -11,6 +11,7 @@ of each platform. It is inspired from [nativescript-i18n](https://github.com/rbo
 * [Usage](#usage)
   * [Angular](#angular)
   * [Javascript](#javascript)
+  * [Vue](#vue)
 * [File format](#file-format)
 * [Frequently asked questions](#frequently-asked-questions)
   * [How to set the default language?](#how-to-set-the-default-language)
@@ -70,27 +71,6 @@ import { localize } from "nativescript-localize";
 console.log(localize("Hello world !"));
 ```
 
-### Vue
-#### main.js
-
-You have to manually install the global filter
-
-```js
-import { localize } from "nativescript-localize";
-
-Vue.filter('L', localize)
-```
-
-#### Template
-```xml
-<Label :text="'Hello world !'|L"></Label>
-<Label :text="'I am %s'|L('user name')"></Label>
-```
-
-#### Developing
-
-Beware that, if you are using *vue-cli-template*, the localization files placed under *dist/app/i18n* must be manually cleaned since they don't are correctly updated each time you modify them.
-
 ### Javascript
 #### app.js
 ```js
@@ -111,6 +91,23 @@ const localize = require("nativescript-localize");
 
 console.log(localize("Hello world !"));
 ```
+
+### Vue
+#### main.js
+```js
+import { localize } from "nativescript-localize";
+
+Vue.filter("L", localize);
+```
+
+#### Template
+```xml
+<Label :text="'Hello world !'|L"></Label>
+<Label :text="'I am %s'|L('user name')"></Label>
+```
+
+#### vue-cli-template
+The localization files placed under `dist/app/i18n/*` must be cleaned since they're not correctly updated when modified. To do so, you can run the command `rm dist/app/i18n/*`.
 
 ## File format
 Each file is imported using `require`, use the file format of your choice:
