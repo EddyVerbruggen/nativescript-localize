@@ -70,6 +70,27 @@ import { localize } from "nativescript-localize";
 console.log(localize("Hello world !"));
 ```
 
+### Vue
+#### main.js
+
+You have to manually install the global filter
+
+```js
+import { localize } from "nativescript-localize";
+
+Vue.filter('L', localize)
+```
+
+#### Template
+```xml
+<Label :text="'Hello world !'|L"></Label>
+<Label :text="'I am %s'|L('user name')"></Label>
+```
+
+#### Developing
+
+Beware that, if you are using *vue-cli-template*, the localization files placed under *dist/app/i18n* must be manually cleaned since they don't are correctly updated each time you modify them.
+
 ### Javascript
 #### app.js
 ```js
