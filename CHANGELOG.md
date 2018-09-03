@@ -1,5 +1,22 @@
 # Change Log
 
+## [v3.0.6](https://github.com/lfabreges/nativescript-localize/tree/v3.0.6) (2018-09-03)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.5...v3.0.6)
+
+**Closed issues:**
+
+- Find a better solution for modal context [\#47](https://github.com/lfabreges/nativescript-localize/issues/47)
+- Cannot find module './src/localize' when using localize, or LocalizePipe in e2e testing [\#45](https://github.com/lfabreges/nativescript-localize/issues/45)
+- Running demo-angular fails [\#44](https://github.com/lfabreges/nativescript-localize/issues/44)
+- Combination of HTML and parametrized strings [\#43](https://github.com/lfabreges/nativescript-localize/issues/43)
+- gradle produces errors for release builds [\#40](https://github.com/lfabreges/nativescript-localize/issues/40)
+- Doc needs info about how to translate using a TypeScript files and i18n files [\#36](https://github.com/lfabreges/nativescript-localize/issues/36)
+
+**Merged pull requests:**
+
+- Added readme for Vue [\#48](https://github.com/lfabreges/nativescript-localize/pull/48) ([vratojr](https://github.com/vratojr))
+- Add a workaround for modals to the readme [\#46](https://github.com/lfabreges/nativescript-localize/pull/46) ([hettiger](https://github.com/hettiger))
+
 ## [v3.0.5](https://github.com/lfabreges/nativescript-localize/tree/v3.0.5) (2018-07-16)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.4...v3.0.5)
 
