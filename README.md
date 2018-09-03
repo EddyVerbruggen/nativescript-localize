@@ -18,6 +18,8 @@ of each platform. It is inspired from [nativescript-i18n](https://github.com/rbo
   * [How to localize the application name?](#how-to-localize-the-application-name)
   * [How to localize iOS properties?](#how-to-localize-ios-properties)
   * [How to change the language dynamically at runtime?](#how-to-change-the-language-dynamically-at-runtime)
+* [Troubleshooting](#troubleshooting)
+  * [The angular localization pipe does not work when in a modal context](#the-angular-localization-pipe-does-not-work-when-in-a-modal-context)
 
 ## Installation
 ```shell
@@ -168,17 +170,14 @@ Keys starting with `ios.info.plist.` are used to localize iOS properties:
 This plugin uses the native capabilities of each platform, language selection is therefore made by the OS.
 There is no plan to implement this feature in the near future.
 
-### The Localization Pipe does not work when in Modal Context. What should I do?
-
-There's a simple workaround. All you need to do is trigger a Change Detection from within your Component Constructor:
-
+## Troubleshooting
+### The angular localization pipe does not work when in a modal context
+As a workaround, tou can trigger a change detection from within your component constructor:
 ```ts
 constructor(
-    private readonly params: ModalDialogParams,
-    private readonly changeDetectorRef: ChangeDetectorRef
+  private readonly params: ModalDialogParams,
+  private readonly changeDetectorRef: ChangeDetectorRef,
 ) {
-    setTimeout(() => {
-        this.changeDetectorRef.detectChanges();
-    }, 0);
+    setTimeout(() => this.changeDetectorRef.detectChanges(), 0);
 }
 ```
