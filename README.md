@@ -172,7 +172,7 @@ There is no plan to implement this feature in the near future.
 
 ## Troubleshooting
 ### The angular localization pipe does not work when in a modal context
-As a workaround, tou can trigger a change detection from within your component constructor:
+As a workaround, you can trigger a change detection from within your component constructor:
 ```ts
 constructor(
   private readonly params: ModalDialogParams,
