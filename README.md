@@ -170,3 +170,18 @@ Keys starting with `ios.info.plist.` are used to localize iOS properties:
 ### How to change the language dynamically at runtime?
 This plugin uses the native capabilities of each platform, language selection is therefore made by the OS.
 There is no plan to implement this feature in the near future.
+
+### The Localization Pipe does not work when in Modal Context. What should I do?
+
+There's a simple workaround. All you need to do is trigger a Change Detection from within your Component Constructor:
+
+```ts
+constructor(
+    private readonly params: ModalDialogParams,
+    private readonly changeDetectorRef: ChangeDetectorRef
+) {
+    setTimeout(() => {
+        this.changeDetectorRef.detectChanges();
+    }, 0);
+}
+```
