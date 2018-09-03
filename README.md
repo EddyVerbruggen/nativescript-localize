@@ -178,6 +178,6 @@ constructor(
   private readonly params: ModalDialogParams,
   private readonly changeDetectorRef: ChangeDetectorRef,
 ) {
-    setTimeout(() => this.changeDetectorRef.detectChanges(), 0);
+  setTimeout(() => this.changeDetectorRef.detectChanges(), 0);
 }
 ```
