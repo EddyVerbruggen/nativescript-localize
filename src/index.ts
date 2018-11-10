@@ -1,4 +1,4 @@
-import { localize } from "./src/localize";
+import { localize } from "./localize";
 
 module.exports = localize;
 module.exports.default = localize;

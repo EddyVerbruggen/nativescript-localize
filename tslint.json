@@ -2,9 +2,7 @@
   "cliOptions": {
     "exclude": [
       "**/node_modules/**",
-      "aot/**",
-      "demo/platforms/**",
-      "demo-angular/platforms/**"
+      "**/platforms/**"
     ]
   },
   "rules": {

@@ -1,6 +1,3 @@
-import * as fs from "fs";
-import * as path from "path";
-
 import { ConverterCommon } from "./converter.common";
 import { ConverterAndroid } from "./converter.android";
 import { ConverterIOS } from "./converter.ios";

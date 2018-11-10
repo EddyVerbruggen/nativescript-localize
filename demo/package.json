@@ -5,8 +5,11 @@
   "private": true,
   "license": "MIT",
   "readme": "NativeScript Application",
+  "scripts": {
+    "tslint": "tslint **/*.ts --config ../tslint.json"
+  },
   "dependencies": {
-    "nativescript-localize": "file:..",
+    "nativescript-localize": "file:../src",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-unit-test-runner": "^0.3.4",
     "tns-core-modules": "^5.0.2"
@@ -16,7 +19,8 @@
     "karma": "^3.1.1",
     "karma-jasmine": "^1.1.1",
     "karma-nativescript-launcher": "^0.4.0",
-    "nativescript-dev-webpack": "^0.17.0"
+    "nativescript-dev-webpack": "^0.17.0",
+    "tslint": "^5.8.0"
   },
   "nativescript": {
     "id": "org.nativescript.demo.javascript",

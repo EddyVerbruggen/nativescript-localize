@@ -43,7 +43,7 @@
     "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Update CHANGELOG.md\"",
     "preuninstall": "node preuninstall.js",
     "postinstall": "node postinstall.js",
-    "tslint": "tslint **/*.ts"
+    "tslint": "tslint **/*.ts --config ../tslint.json"
   },
   "dependencies": {
     "mkdirp": "^0.5.1",

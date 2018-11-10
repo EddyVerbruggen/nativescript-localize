@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 import { ConverterCommon, I18nEntries, Languages } from "./converter.common";
-import { encodeKey, encodeValue } from "../src/resource.android";
+import { encodeKey, encodeValue } from "../resource.android";
 
 export class ConverterAndroid extends ConverterCommon {
   public constructor(

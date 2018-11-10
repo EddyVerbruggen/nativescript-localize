@@ -15,8 +15,13 @@ install:
     - echo no | npm install -g nativescript
     - tns usage-reporting disable
     - tns error-reporting disable
+    - cd src
     - npm i
     - npm run compile
+    - cd ../demo
+    - npm i
+    - cd ../demo-angular
+    - npm i
 
 matrix:
   include:
@@ -25,6 +30,11 @@ matrix:
       os: linux
       node_js: "8"
       script:
+        - cd src
+        - npm run tslint
+        - cd ../demo
+        - npm run tslint
+        - cd ../demo-angular
         - npm run tslint
     - stage: "Build, webpack and test"
       language: android
@@ -36,10 +46,8 @@ matrix:
         - nvm install 8
       script:
         - cd demo
-        - npm i
         - tns build android
         - cd ../demo-angular
-        - npm i
         - tns build android
     - language: android
       os: linux
@@ -50,10 +58,8 @@ matrix:
         - nvm install 8
       script:
         - cd demo
-        - npm i
         - tns build android --bundle --env.uglify --env.snapshot
         - cd ../demo-angular
-        - npm i
         - tns build android --bundle --env.uglify --env.snapshot
     - language: android
       os: linux
@@ -71,7 +77,6 @@ matrix:
         - adb shell input keyevent 82 &
       script:
         - cd demo
-        - npm i
         - tns build android
         - tns test android --emulator --justlaunch
     - os: osx
@@ -84,10 +89,8 @@ matrix:
         - Xcode="10.0"
       script:
         - cd demo
-        - npm i
         - tns build ios
         - cd ../demo-angular
-        - npm i
         - tns build ios
     - os: osx
       osx_image: xcode10.0
@@ -98,10 +101,8 @@ matrix:
         - WebPack="iOS"
       script:
         - cd demo
-        - npm i
         - tns build ios --bundle --env.uglify
         - cd ../demo-angular
-        - npm i
         - tns build ios --bundle --env.uglify
     - os: osx
       osx_image: xcode10.0
@@ -113,6 +114,5 @@ matrix:
         - Xcode="10.0"
       script:
         - cd demo
-        - npm i
         - tns build ios
         - tns test ios --emulator --justlaunch

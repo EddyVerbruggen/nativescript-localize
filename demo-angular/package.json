@@ -5,6 +5,9 @@
   "private": true,
   "license": "MIT",
   "readme": "NativeScript Application",
+  "scripts": {
+    "tslint": "tslint **/*.ts --config ../tslint.json"
+  },
   "dependencies": {
     "@angular/animations": "~6.1.0",
     "@angular/common": "~6.1.0",
@@ -16,7 +19,7 @@
     "@angular/platform-browser-dynamic": "~6.1.0",
     "@angular/router": "~6.1.0",
     "nativescript-angular": "^6.2.0",
-    "nativescript-localize": "file:..",
+    "nativescript-localize": "file:../src",
     "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
@@ -29,6 +32,7 @@
     "@ngtools/webpack": "~6.2.0",
     "nativescript-dev-typescript": "^0.7.4",
     "nativescript-dev-webpack": "^0.17.0",
+    "tslint": "^5.8.0",
     "typescript": "~2.7.2"
   },
   "nativescript": {

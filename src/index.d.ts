@@ -1,4 +1,4 @@
-import { localize } from "./src/localize";
+import { localize } from "./localize";
 
 export { localize };
 export default localize;

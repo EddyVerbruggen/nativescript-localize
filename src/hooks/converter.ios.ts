@@ -3,7 +3,7 @@ import * as path from "path";
 import * as plist from "simple-plist";
 
 import { ConverterCommon, I18nEntries, Languages } from "./converter.common";
-import { encodeKey, encodeValue } from "../src/resource.ios";
+import { encodeKey, encodeValue } from "../resource.ios";
 
 export class ConverterIOS extends ConverterCommon {
   protected cleanObsoleteResourcesFiles(resourcesDirectory: string, languages: Languages): this {

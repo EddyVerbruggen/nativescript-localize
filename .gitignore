@@ -3,8 +3,8 @@
 /**/*.metadata.json
 /.vscode/
 /.idea/
-/hooks/**/*.js
-/node_modules/
 /src/**/*.js
-/angular.js
-/index.js
+/src/node_modules/
+!/src/postinstall.js
+!/src/preuninstall.js
+/backlog.md
