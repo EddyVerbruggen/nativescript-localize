@@ -6,41 +6,25 @@
   "license": "MIT",
   "readme": "NativeScript Application",
   "dependencies": {
-    "nativescript-localize": "file:..",
+    "nativescript-localize": "^3.0.0",
     "nativescript-theme-core": "^1.0.4",
     "nativescript-unit-test-runner": "^0.3.4",
-    "tns-core-modules": "^4.0.0"
+    "tns-core-modules": "^5.0.2"
   },
   "devDependencies": {
-    "babel-traverse": "6.26.0",
-    "babel-types": "6.26.0",
-    "babylon": "6.18.0",
-    "copy-webpack-plugin": "~4.0.1",
-    "css-loader": "~0.28.7",
-    "extract-text-webpack-plugin": "~3.0.0",
-    "jasmine-core": "^2.8.0",
-    "karma": "^2.0.0",
+    "jasmine-core": "^3.3.0",
+    "karma": "^3.1.1",
     "karma-jasmine": "^1.1.1",
     "karma-nativescript-launcher": "^0.4.0",
-    "lazy": "1.0.11",
-    "nativescript-css-loader": "~0.26.1",
-    "nativescript-dev-webpack": "~0.10.0",
-    "nativescript-worker-loader": "~0.8.1",
-    "raw-loader": "~0.5.1",
-    "resolve-url-loader": "~2.1.0",
-    "webpack": "~3.8.1",
-    "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-sources": "~1.0.1",
-    "uglifyjs-webpack-plugin": "~1.1.6",
-    "clean-webpack-plugin": "~0.1.19"
+    "nativescript-dev-webpack": "^0.17.0"
   },
   "nativescript": {
     "id": "org.nativescript.demo.javascript",
-    "tns-android": {
-      "version": "4.0.0"
-    },
     "tns-ios": {
-      "version": "4.0.1"
+      "version": "5.0.0"
+    },
+    "tns-android": {
+      "version": "5.0.0"
     }
   },
   "scripts": {
