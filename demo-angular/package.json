@@ -16,7 +16,7 @@
     "@angular/platform-browser-dynamic": "~6.1.0",
     "@angular/router": "~6.1.0",
     "nativescript-angular": "^6.2.0",
-    "nativescript-localize": "^3.0.0",
+    "nativescript-localize": "file:..",
     "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
@@ -39,14 +39,5 @@
     "tns-android": {
       "version": "5.0.0"
     }
-  },
-  "scripts": {
-    "ns-bundle": "ns-bundle",
-    "publish-ios-bundle": "npm run ns-bundle --ios --publish-app",
-    "generate-android-snapshot": "generate-android-snapshot --targetArchs arm,arm64,ia32 --install",
-    "start-android-bundle": "npm run ns-bundle --android --run-app",
-    "start-ios-bundle": "npm run ns-bundle --ios --run-app",
-    "build-android-bundle": "npm run ns-bundle --android --build-app",
-    "build-ios-bundle": "npm run ns-bundle --ios --build-app"
   }
 }

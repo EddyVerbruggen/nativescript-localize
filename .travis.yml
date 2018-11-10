@@ -6,24 +6,10 @@ android:
   components:
     - tools
     - platform-tools
-    - tools
-    - build-tools-26.0.3
-    - android-26
-    - android-23
+    - build-tools-28.0.2
+    - android-28
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-21
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
-cache:
-  directories:
-    - $HOME/.android/build-cache
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.npm
-    - $HOME/.nvm
 
 install:
     - echo no | npm install -g nativescript
@@ -37,7 +23,7 @@ matrix:
     - stage: "Lint"
       language: node_js
       os: linux
-      node_js: "6"
+      node_js: "8"
       script:
         - npm run tslint
     - stage: "Build, webpack and test"
@@ -45,9 +31,9 @@ matrix:
       os: linux
       jdk: oraclejdk8
       env:
-        - Android="Build"
+        - BuildAndroid="28"
       before_install:
-        - nvm install 6
+        - nvm install 8
       script:
         - cd demo
         - npm i
@@ -59,9 +45,9 @@ matrix:
       os: linux
       jdk: oraclejdk8
       env:
-        - Android="Webpack"
+        - WebPack="Android"
       before_install:
-        - nvm install 6
+        - nvm install 8
       script:
         - cd demo
         - npm i
@@ -72,11 +58,12 @@ matrix:
     - language: android
       os: linux
       dist: precise
+      sudo: required
       jdk: oraclejdk8
       env:
-        - Android="Test"
+        - TestAndroid="28"
       before_install:
-        - nvm install 6
+        - nvm install 8
       before_script:
         - echo no | android create avd --force -n test -t android-21 -b armeabi-v7a
         - emulator -avd test -no-audio -no-window &
@@ -88,12 +75,13 @@ matrix:
         - tns build android
         - tns test android --emulator --justlaunch
     - os: osx
-      osx_image: xcode9.1
+      osx_image: xcode10.0
       language: node_js
-      node_js: "6"
+      node_js: "8"
       jdk: oraclejdk8
       env:
-        - iOS="Build"
+        - BuildiOS="12"
+        - Xcode="10.0"
       script:
         - cd demo
         - npm i
@@ -102,12 +90,12 @@ matrix:
         - npm i
         - tns build ios
     - os: osx
-      osx_image: xcode9.1
+      osx_image: xcode10.0
       language: node_js
-      node_js: "6"
+      node_js: "8"
       jdk: oraclejdk8
       env:
-        - iOS="Webpack"
+        - WebPack="iOS"
       script:
         - cd demo
         - npm i
@@ -116,12 +104,13 @@ matrix:
         - npm i
         - tns build ios --bundle --env.uglify
     - os: osx
-      osx_image: xcode8.3
+      osx_image: xcode10.0
       language: node_js
-      node_js: "6"
+      node_js: "8"
       jdk: oraclejdk8
       env:
-        - iOS="Test"
+        - TestiOS="12"
+        - Xcode="10.0"
       script:
         - cd demo
         - npm i
