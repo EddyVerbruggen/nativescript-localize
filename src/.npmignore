@@ -1,6 +1,7 @@
 /**/.DS_Store
 /**/*.js.map
 /**/*.ts
+!/**/*.d.ts
 /node_modules/
 /typings/
 /tsconfig.aot.json

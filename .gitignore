@@ -3,8 +3,11 @@
 /**/*.metadata.json
 /.vscode/
 /.idea/
+/publish/node_modules/
+/publish/package/
+/publish/src/
 /src/**/*.js
 /src/node_modules/
 !/src/postinstall.js
 !/src/preuninstall.js
-/backlog.md
+/BACKLOG.md
