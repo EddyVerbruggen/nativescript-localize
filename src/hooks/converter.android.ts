@@ -27,10 +27,8 @@ export class ConverterAndroid extends ConverterCommon {
       return fs.statSync(filePath).isDirectory();
     }).forEach(lngResourcesDir => {
       const resourceFilePath = path.join(lngResourcesDir, "strings.xml");
-      const resourceChanged = this.removeFileIfExists(resourceFilePath);
-      if (this.removeDirectoryIfEmpty(lngResourcesDir) || resourceChanged) {
-        this.emit(ConverterCommon.RESOURCE_CHANGED_EVENT);
-      }
+      this.removeFileIfExists(resourceFilePath);
+      this.removeDirectoryIfEmpty(lngResourcesDir);
     });
     return this;
   }
@@ -57,9 +55,7 @@ export class ConverterAndroid extends ConverterCommon {
     });
     strings += "</resources>\n";
     const resourceFilePath = path.join(languageResourcesDir, "strings.xml");
-    if (this.writeFileSyncIfNeeded(resourceFilePath, strings)) {
-      this.emit(ConverterCommon.RESOURCE_CHANGED_EVENT);
-    }
+    this.writeFileSyncIfNeeded(resourceFilePath, strings);
     return this;
   }
 }

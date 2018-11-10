@@ -1,12 +1,8 @@
-import { EventEmitter } from "events";
 import * as fs from "fs";
 import * as mkdirp from "mkdirp";
 import * as path from "path";
 
-export abstract class ConverterCommon extends EventEmitter {
-  public static readonly CONFIGURATION_CHANGED_EVENT = "configurationChangedEvent";
-  public static readonly RESOURCE_CHANGED_EVENT = "resourceChangedEvent";
-
+export abstract class ConverterCommon {
   protected appResourcesDirectoryPath: string;
 
   protected readonly appResourcesDestinationDirectoryPath: string;
@@ -17,7 +13,6 @@ export abstract class ConverterCommon extends EventEmitter {
     protected platformData: IPlatformData,
     protected projectData: IProjectData
   ) {
-    super();
     this.appResourcesDirectoryPath = path.join(
       projectData.appResourcesDirectoryPath,
       platformData.normalizedPlatformName
@@ -139,23 +134,26 @@ export abstract class ConverterCommon extends EventEmitter {
     return this;
   }
 
-  protected removeDirectoryIfEmpty(directoryPath: string): boolean {
+  protected removeDirectoryIfEmpty(directoryPath: string): this {
     try { fs.rmdirSync(directoryPath); }
-    catch (error) { return false; }
-    return true;
-  }
-
-  protected removeFileIfExists(filePath: string): boolean {
-    try { fs.unlinkSync(filePath); }
-    catch (error) { return false; }
-    return true;
-  }
-
-  protected writeFileSyncIfNeeded(filePath: string, content: string): boolean {
-    try { if (content === fs.readFileSync(filePath, "utf8")) { return false; } }
     catch (error) {}
-    fs.writeFileSync(filePath, content, { encoding: "utf8" });
-    return true;
+    return this;
+  }
+
+  protected removeFileIfExists(filePath: string): this {
+    try { fs.unlinkSync(filePath); }
+    catch (error) {}
+    return this;
+  }
+
+  protected writeFileSyncIfNeeded(filePath: string, content: string): this {
+    try {
+      if (content !== fs.readFileSync(filePath, "utf8")) {
+        fs.writeFileSync(filePath, content, { encoding: "utf8" });
+      }
+    }
+    catch (error) {}
+    return this;
   }
 }
 

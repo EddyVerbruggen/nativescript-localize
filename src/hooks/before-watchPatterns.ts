@@ -5,7 +5,6 @@ export = function (hookArgs: any) {
         const projectData: IProjectData = hookArgs.projectData;
         const appResourcesRelativeDirectoryPath = projectData.getAppResourcesRelativeDirectoryPath();
 
-        // HACK : https://github.com/NativeScript/nativescript-cli/issues/3404
         originalPatterns.push(`!${appResourcesRelativeDirectoryPath}/Android/values/strings.xml`);
         originalPatterns.push(`!${appResourcesRelativeDirectoryPath}/Android/values-*/strings.xml`);
         originalPatterns.push(`!${appResourcesRelativeDirectoryPath}/Android/src/main/res/values/strings.xml`);

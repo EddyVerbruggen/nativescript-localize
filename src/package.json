@@ -76,8 +76,8 @@
     },
     "hooks": [
       {
-        "type": "before-prepare",
-        "script": "hooks/before-prepare.js",
+        "type": "before-checkForChanges",
+        "script": "hooks/before-checkForChanges.js",
         "inject": true
       },
       {

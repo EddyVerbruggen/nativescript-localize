@@ -15,14 +15,11 @@ export class ConverterIOS extends ConverterCommon {
     }).filter(filePath => {
       return fs.statSync(filePath).isDirectory();
     }).forEach(lngResourcesDir => {
-      let resourceChanged = false;
       ["InfoPlist.strings", "Localizable.strings"].forEach(fileName => {
         const resourceFilePath = path.join(lngResourcesDir, fileName);
-        resourceChanged = this.removeFileIfExists(resourceFilePath) || resourceChanged;
+        this.removeFileIfExists(resourceFilePath);
       });
-      if (this.removeDirectoryIfEmpty(lngResourcesDir) || resourceChanged) {
-        this.emit(ConverterCommon.RESOURCE_CHANGED_EVENT);
-      }
+      this.removeDirectoryIfEmpty(lngResourcesDir);
     });
     return this;
   }
@@ -65,9 +62,7 @@ export class ConverterIOS extends ConverterCommon {
       content += `"${encodeKeys ? encodeKey(key) : key}" = "${encodeValue(value)}";\n`;
     });
     const resourceFilePath = path.join(languageResourcesDir, resourceFileName);
-    if (this.writeFileSyncIfNeeded(resourceFilePath, content)) {
-      this.emit(ConverterCommon.RESOURCE_CHANGED_EVENT);
-    }
+    this.writeFileSyncIfNeeded(resourceFilePath, content);
     return this;
   }
 
@@ -87,7 +82,6 @@ export class ConverterIOS extends ConverterCommon {
     });
     if (resourceChanged) {
       plist.writeFileSync(resourceFilePath, data);
-      this.emit(ConverterCommon.CONFIGURATION_CHANGED_EVENT);
     }
   }
 }

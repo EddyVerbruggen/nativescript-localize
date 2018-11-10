@@ -9,7 +9,7 @@ export = function(
   projectData: IProjectData,
   hookArgs: any
 ) {
-  const platformName = hookArgs.platform.toLowerCase();
+  const platformName = hookArgs.checkForChangesOpts.platform.toLowerCase();
   const platformData = platformsData.getPlatformData(platformName, projectData);
 
   let converter: ConverterCommon;
@@ -23,9 +23,5 @@ export = function(
     return;
   }
 
-  converter
-    .on(ConverterCommon.RESOURCE_CHANGED_EVENT, () => hookArgs.changesInfo.appResourcesChanged = true)
-    .on(ConverterCommon.CONFIGURATION_CHANGED_EVENT, () => hookArgs.changesInfo.configChanged = true)
-    .run()
-  ;
+  converter.run();
 };
