@@ -76,7 +76,7 @@ export abstract class ConverterCommon extends EventEmitter {
     fs.readdirSync(this.i18nDirectoryPath).map(fileName => {
       return path.join(this.i18nDirectoryPath, fileName);
     }).filter(filePath => {
-      const validExtensions = [".js", ".json"];
+      const validExtensions = [".js", ".ts", ".json"];
       const isValidExtension = validExtensions.indexOf(path.extname(filePath)) > -1;
       const isFile = fs.statSync(filePath).isFile();
       return isFile && isValidExtension;
