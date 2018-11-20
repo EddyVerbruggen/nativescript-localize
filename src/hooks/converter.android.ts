@@ -1,17 +1,19 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { ConverterCommon, I18nEntries, Languages } from "./converter.common";
+import { ConverterCommon } from "./converter.common";
+import { DataProvider, I18nEntries, Languages } from "./data.provider";
 import { encodeKey, encodeValue } from "../resource.android";
 
 export class ConverterAndroid extends ConverterCommon {
   public constructor(
-    protected androidResourcesMigrationService: IAndroidResourcesMigrationService,
-    protected logger: ILogger,
-    protected platformData: IPlatformData,
-    protected projectData: IProjectData
+    dataProvider: DataProvider,
+    androidResourcesMigrationService: IAndroidResourcesMigrationService,
+    logger: ILogger,
+    platformData: IPlatformData,
+    projectData: IProjectData
   ) {
-    super(logger, platformData, projectData);
+    super(dataProvider, logger, platformData, projectData);
     if (androidResourcesMigrationService.hasMigrated(projectData.appResourcesDirectoryPath)) {
       this.appResourcesDirectoryPath = path.join(this.appResourcesDirectoryPath, "src", "main", "res");
     }

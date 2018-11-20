@@ -5,9 +5,6 @@
   "private": true,
   "license": "MIT",
   "readme": "NativeScript Application",
-  "scripts": {
-    "tslint": "tslint **/*.ts --config ../tslint.json"
-  },
   "dependencies": {
     "nativescript-localize": "file:../src",
     "nativescript-theme-core": "^1.0.4",

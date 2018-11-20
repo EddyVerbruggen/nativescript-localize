@@ -1,4 +1,5 @@
 /app/**/*.js
+!/app/i18n/*.js
 /app/resources/Android/**/strings.xml
 /app/resources/iOS/**/InfoPlist.strings
 /app/resources/iOS/**/Localizable.strings

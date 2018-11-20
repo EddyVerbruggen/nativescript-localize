@@ -2,6 +2,8 @@ import * as fs from "fs";
 import * as mkdirp from "mkdirp";
 import * as path from "path";
 
+import { DataProvider, I18nEntries, Languages } from "./data.provider";
+
 export abstract class ConverterCommon {
   protected appResourcesDirectoryPath: string;
 
@@ -9,6 +11,7 @@ export abstract class ConverterCommon {
   protected readonly i18nDirectoryPath: string;
 
   public constructor(
+    protected dataProvider: DataProvider,
     protected logger: ILogger,
     protected platformData: IPlatformData,
     protected projectData: IProjectData
@@ -36,96 +39,15 @@ export abstract class ConverterCommon {
     i18nEntries: I18nEntries
   ): this;
 
-  public loadLangage(filePath: string): I18nEntries {
-    delete (<any>require).cache[(<any>require).resolve(filePath)];
-
-    const fileContent = require(filePath);
-    const i18nEntries: I18nEntries = new Map();
-    const stack = [{ prefix: "", element: fileContent }];
-
-    while (stack.length > 0) {
-      const { prefix, element } = stack.pop();
-      if (Array.isArray(element)) {
-        i18nEntries.set(prefix, element.join(""));
-      } else if (typeof element === "object") {
-        for (const key of Object.keys(element)) {
-          stack.push({ prefix: prefix === "" ? key : `${prefix}.${key}`, element: element[key] });
-        }
-      } else {
-        i18nEntries.set(prefix, new String(element).valueOf());
-      }
-    }
-
-    return i18nEntries;
-  }
-
   public run(): this {
-    if (!fs.existsSync(this.i18nDirectoryPath)) {
-      this.logger.warn(`'${this.i18nDirectoryPath}' doesn't exists: nothing to localize`);
-      return this;
+    this.dataProvider.getLanguages().forEach((languageI18nEntries, language) => {
+      this.createLanguageResourcesFiles(
+        language, language === this.dataProvider.getDefaultLanguage(), languageI18nEntries
+      );
+    });
+    if (fs.existsSync(this.appResourcesDirectoryPath) && fs.statSync(this.appResourcesDirectoryPath).isDirectory()) {
+      this.cleanObsoleteResourcesFiles(this.appResourcesDirectoryPath, this.dataProvider.getLanguages());
     }
-
-    let defaultLanguage = undefined;
-    const languages: Languages = new Map();
-
-    fs.readdirSync(this.i18nDirectoryPath).map(fileName => {
-      return path.join(this.i18nDirectoryPath, fileName);
-    }).filter(filePath => {
-      const validExtensions = [".js", ".json"];
-      const isValidExtension = validExtensions.indexOf(path.extname(filePath)) > -1;
-      const isFile = fs.statSync(filePath).isFile();
-      return isFile && isValidExtension;
-    }).forEach(filePath => {
-      let language = path.basename(filePath, path.extname(filePath));
-      if (path.extname(language) === ".default") {
-        language = path.basename(language, ".default");
-        defaultLanguage = language;
-      }
-      languages.set(language, this.loadLangage(filePath));
-    });
-
-    if (languages.size === 0) {
-      this.logger.warn(`'${this.i18nDirectoryPath}' is empty: nothing to localize`);
-      return this;
-    }
-
-    if (!defaultLanguage) {
-      defaultLanguage = languages.keys().next().value;
-      this.logger.warn(`No file found with the .default extension: default langage set to '${defaultLanguage}'`);
-    }
-
-    const defaultLanguageI18nEntries = languages.get(defaultLanguage);
-
-    languages.forEach((languageI18nEntries, language) => {
-      if (language !== defaultLanguage) {
-        languageI18nEntries.forEach((_, key) => {
-          if (!defaultLanguageI18nEntries.has(key)) {
-            defaultLanguageI18nEntries.set(key, key);
-          }
-        });
-      }
-    });
-
-    languages.forEach((languageI18nEntries, language) => {
-      if (language !== defaultLanguage) {
-        defaultLanguageI18nEntries.forEach((value, key) => {
-          if (!languageI18nEntries.has(key)) {
-            languageI18nEntries.set(key, value);
-          }
-        });
-      }
-    });
-
-    languages.forEach((languageI18nEntries, language) => {
-      this.createLanguageResourcesFiles(language, language === defaultLanguage, languageI18nEntries);
-    });
-
-    [this.appResourcesDirectoryPath, this.appResourcesDestinationDirectoryPath].forEach(resourcesDirectoryPath => {
-      if (fs.existsSync(resourcesDirectoryPath) && fs.statSync(resourcesDirectoryPath).isDirectory()) {
-        this.cleanObsoleteResourcesFiles(resourcesDirectoryPath, languages);
-      }
-    });
-
     return this;
   }
 
@@ -156,6 +78,3 @@ export abstract class ConverterCommon {
     return this;
   }
 }
-
-export type I18nEntries = Map<string, string>;
-export type Languages = Map<string, I18nEntries>;

@@ -2,7 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 import * as plist from "simple-plist";
 
-import { ConverterCommon, I18nEntries, Languages } from "./converter.common";
+import { ConverterCommon } from "./converter.common";
+import { DataProvider, I18nEntries, Languages } from "./data.provider";
 import { encodeKey, encodeValue } from "../resource.ios";
 
 export class ConverterIOS extends ConverterCommon {

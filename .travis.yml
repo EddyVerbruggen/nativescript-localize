@@ -32,8 +32,6 @@ matrix:
       script:
         - cd src
         - npm run tslint
-        - cd ../demo
-        - npm run tslint
         - cd ../demo-angular
         - npm run tslint
     - stage: "Build, webpack and test"
