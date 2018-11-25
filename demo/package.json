@@ -14,9 +14,9 @@
   "devDependencies": {
     "jasmine-core": "^3.3.0",
     "karma": "^3.1.1",
-    "karma-jasmine": "^1.1.1",
+    "karma-jasmine": "^2.0.1",
     "karma-nativescript-launcher": "^0.4.0",
-    "nativescript-dev-webpack": "^0.17.0",
+    "nativescript-dev-webpack": "^0.18.0",
     "tslint": "^5.8.0"
   },
   "nativescript": {
