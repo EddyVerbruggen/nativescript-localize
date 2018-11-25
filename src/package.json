@@ -53,7 +53,7 @@
     "sprintf-js": "^1.1.1"
   },
   "peerDependencies": {
-    "tns-core-modules": "^5.0.0"
+    "tns-core-modules": ">=4.2.0"
   },
   "devDependencies": {
     "@angular/compiler": "~6.1.0",
@@ -63,16 +63,16 @@
     "@types/node": "^8.0.0",
     "@types/sprintf-js": "^1.1.0",
     "rxjs": "^6.0.0",
-    "tns-core-modules": "^5.0.0",
-    "tns-platform-declarations": "^5.0.0",
+    "tns-core-modules": "^4.2.0",
+    "tns-platform-declarations": "^4.2.0",
     "tslint": "^5.8.0",
     "typescript": "~2.7.2",
     "zone.js": "^0.8.26"
   },
   "nativescript": {
     "platforms": {
-      "android": "5.0.0",
-      "ios": "5.0.0"
+      "android": "4.2.0",
+      "ios": "4.2.0"
     },
     "hooks": [
       {
