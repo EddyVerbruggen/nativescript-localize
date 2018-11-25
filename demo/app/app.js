@@ -1,5 +1,3 @@
-require("./bundle-config");
-
 var application = require("application");
 var localize = require("nativescript-localize");
 
