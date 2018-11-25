@@ -2,10 +2,14 @@ android:
   components:
     - tools
     - platform-tools
-    - build-tools-28.0.2
+    - build-tools-28.0.3
     - android-28
     - extra-android-m2repository
     - sys-img-armeabi-v7a-android-21
+
+before_install:
+    - sudo pip install --upgrade pip
+    - sudo pip install six
 
 install:
     - echo no | npm install -g nativescript
