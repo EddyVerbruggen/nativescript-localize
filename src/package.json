@@ -38,9 +38,6 @@
   },
   "scripts": {
     "compile": "tsc -p hooks && tsc && ngc -p tsconfig.aot.json",
-    "preversion": "npm run compile",
-    "postversion": "git push origin && git push origin --tags && npm run changelog && git push origin",
-    "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Update CHANGELOG.md\"",
     "preuninstall": "node preuninstall.js",
     "postinstall": "node postinstall.js",
     "tslint": "tslint **/*.ts --config ../tslint.json"
