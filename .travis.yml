@@ -18,6 +18,7 @@ install:
     - npm i
     - cd ../demo-angular
     - npm i
+    - cd ..
 
 matrix:
   include:
