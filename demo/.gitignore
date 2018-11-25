@@ -3,4 +3,5 @@
 /app/resources/iOS/**/Localizable.strings
 /hooks/
 /node_modules/
+/package-lock.json
 /platforms/
