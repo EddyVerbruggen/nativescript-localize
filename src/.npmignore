@@ -2,6 +2,7 @@
 /**/*.js.map
 /**/*.ts
 !/**/*.d.ts
+/hooks/tsconfig.json
 /node_modules/
 /typings/
 /tsconfig.aot.json

@@ -3,5 +3,11 @@
   "compilerOptions": {
     "module": "es2015",
     "moduleResolution": "node"
-  }
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "files": [
+    "../src/angular.ts"
+  ]
 }

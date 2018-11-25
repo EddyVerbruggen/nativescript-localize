@@ -32,6 +32,7 @@
     "@ngtools/webpack": "~6.2.0",
     "nativescript-dev-typescript": "^0.7.4",
     "nativescript-dev-webpack": "^0.17.0",
+    "tns-platform-declarations": "file:../src/node_modules/tns-platform-declarations",
     "tslint": "^5.8.0",
     "typescript": "~2.7.2"
   },
