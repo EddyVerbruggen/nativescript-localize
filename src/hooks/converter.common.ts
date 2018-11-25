@@ -69,12 +69,9 @@ export abstract class ConverterCommon {
   }
 
   protected writeFileSyncIfNeeded(filePath: string, content: string): this {
-    try {
-      if (content !== fs.readFileSync(filePath, "utf8")) {
-        fs.writeFileSync(filePath, content, { encoding: "utf8" });
-      }
-    }
+    try { if (content === fs.readFileSync(filePath, "utf8")) { return this; } }
     catch (error) {}
+    fs.writeFileSync(filePath, content, { encoding: "utf8" });
     return this;
   }
 }
