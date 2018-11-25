@@ -1,5 +1,15 @@
 # Change Log
 
+## [v4.0.0](https://github.com/lfabreges/nativescript-localize/tree/v4.0.0) (2018-11-25)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.6...v4.0.0)
+
+**Closed issues:**
+
+- Support for Nativescript 5.0 [\#55](https://github.com/lfabreges/nativescript-localize/issues/55)
+- How to get the current locale name in the angular component? [\#54](https://github.com/lfabreges/nativescript-localize/issues/54)
+- .ts files not recognized [\#52](https://github.com/lfabreges/nativescript-localize/issues/52)
+- Is there a way to import the i18n files to App Module [\#51](https://github.com/lfabreges/nativescript-localize/issues/51)
+
 ## [v3.0.6](https://github.com/lfabreges/nativescript-localize/tree/v3.0.6) (2018-09-03)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.5...v3.0.6)
 
