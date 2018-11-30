@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT_DIR=`dirname $0`
+CURRENT_DIR=$(dirname "$(realpath $0)")
 SOURCE_DIR="$CURRENT_DIR"/../src
 TO_SOURCE_DIR="$CURRENT_DIR"/src
 PACK_DIR="$CURRENT_DIR"/package

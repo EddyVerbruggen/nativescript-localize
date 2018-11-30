@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT_DIR=`dirname $0`
+CURRENT_DIR=$(dirname "$(realpath $0)")
 
 cd "$CURRENT_DIR/.."
 
@@ -16,7 +16,7 @@ fi
 
 echo 'Bumping version...'
 cd "$CURRENT_DIR/../src"
-VERSION=`npm --no-git-tag-version version "$1"`
+VERSION=$(npm --no-git-tag-version version "$1")
 #git add "package.json"
 #git commit -m "Bump version to $VERSION",
 

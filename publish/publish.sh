@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT_DIR=`dirname $0`
+CURRENT_DIR=$(dirname "$(realpath $0)")
 PACK_DIR="$CURRENT_DIR"/package
 
 "$CURRENT_DIR"/pack.sh
