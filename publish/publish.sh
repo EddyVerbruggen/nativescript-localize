@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT_DIR=$(dirname "$(realpath $0)")
+CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PACK_DIR="$CURRENT_DIR"/package
 
 "$CURRENT_DIR"/pack.sh
