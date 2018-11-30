@@ -1,11 +1,10 @@
 #!/bin/bash
 
-PACK_DIR=package;
+CURRENT_DIR=`dirname $0`
+PACK_DIR="$CURRENT_DIR"/package
 
-publish() {
-  cd $PACK_DIR
-  echo 'Publishing to npm...'
-  npm publish *.tgz
-}
+"$CURRENT_DIR"/pack.sh
 
-./pack.sh && publish
+echo 'Publishing to npm...'
+cd $PACK_DIR
+npm publish *.tgz
