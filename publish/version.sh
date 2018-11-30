@@ -17,18 +17,17 @@ fi
 echo 'Bumping version...'
 cd "$CURRENT_DIR/../src"
 VERSION=$(npm --no-git-tag-version version "$1")
-#git add "package.json"
-#git commit -m "Bump version to $VERSION",
+git add "package.json"
+git commit -m "Bump version to $VERSION"
+git push origin
 
 echo 'Updating CHANGELOG...'
 cd "$CURRENT_DIR/.."
 github_changelog_generator --future-release "$VERSION"
-#git add CHANGELOG.md
-#git commit -m "Update CHANGELOG.md"
-
-echo 'Pushing changes to remote'
-#git push origin
+git add CHANGELOG.md
+git commit -m "Update CHANGELOG.md"
+git push origin
 
 echo 'Tagging...'
-#git tag "$VERSION"
-#git push origin --tags
+git tag "$VERSION"
+git push origin --tags
