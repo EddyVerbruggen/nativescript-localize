@@ -57,9 +57,9 @@ matrix:
         - nvm install 8
       script:
         - cd demo
-        - tns build android --env.uglify --env.snapshot
+        - tns build android --bundle --env.uglify --env.snapshot
         - cd ../demo-angular
-        - tns build android --env.uglify --env.snapshot --env.aot
+        - tns build android --bundle --env.uglify --env.snapshot --env.aot
     - language: android
       os: linux
       dist: precise
@@ -99,9 +99,9 @@ matrix:
         - WebpackiOS="12"
       script:
         - cd demo
-        - tns build ios --env.uglify
+        - tns build ios --bundle --env.uglify
         - cd ../demo-angular
-        - tns build ios --env.uglify --env.aot
+        - tns build ios --bundle --env.uglify --env.aot
     - os: osx
       osx_image: xcode10.0
       language: node_js
