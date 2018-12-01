@@ -42,8 +42,8 @@ export class ConverterIOS extends ConverterCommon {
     const languageResourcesDir = path.join(this.appResourcesDirectoryPath, `${language}.lproj`);
     this
       .createDirectoryIfNeeded(languageResourcesDir)
-      .writeStrings(languageResourcesDir, "Localizable.strings", i18nEntries, true)
-      .writeStrings(languageResourcesDir, "InfoPlist.strings", infoPlistStrings, false)
+      .writeStrings(languageResourcesDir, "Localizable.strings", i18nEntries)
+      .writeStrings(languageResourcesDir, "InfoPlist.strings", infoPlistStrings)
     ;
     if (isDefaultLanguage) {
       infoPlistStrings.set("CFBundleDevelopmentRegion", language);
@@ -52,15 +52,24 @@ export class ConverterIOS extends ConverterCommon {
     return this;
   }
 
+  private encodeI18nEntries(i18nEntries: I18nEntries): I18nEntries {
+    const encodedI18nEntries: I18nEntries = new Map();
+    i18nEntries.forEach((value, key) => {
+      const encodedKey = encodeKey(key);
+      const encodedValue = encodeValue(value);
+      encodedI18nEntries.set(encodedKey, encodedValue);
+    });
+    return encodedI18nEntries;
+  }
+
   private writeStrings(
     languageResourcesDir: string,
     resourceFileName: string,
-    strings: I18nEntries,
-    encodeKeys: boolean
+    i18nEntries: I18nEntries,
   ): this {
     let content = "";
-    strings.forEach((value, key) => {
-      content += `"${encodeKeys ? encodeKey(key) : key}" = "${encodeValue(value)}";\n`;
+    this.encodeI18nEntries(i18nEntries).forEach((encodedValue, encodedKey) => {
+      content += `"${encodedKey}" = "${encodedValue}";\n`;
     });
     const resourceFilePath = path.join(languageResourcesDir, resourceFileName);
     this.writeFileSyncIfNeeded(resourceFilePath, content);

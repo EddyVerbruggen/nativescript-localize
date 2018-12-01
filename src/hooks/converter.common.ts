@@ -24,7 +24,6 @@ export abstract class ConverterCommon {
       .platformProjectService
       .getAppResourcesDestinationDirectoryPath(projectData)
     ;
-
     this.i18nDirectoryPath = path.join(projectData.appDirectoryPath, "i18n");
   }
 
@@ -42,7 +41,9 @@ export abstract class ConverterCommon {
   public run(): this {
     this.dataProvider.getLanguages().forEach((languageI18nEntries, language) => {
       this.createLanguageResourcesFiles(
-        language, language === this.dataProvider.getDefaultLanguage(), languageI18nEntries
+        language,
+        language === this.dataProvider.getDefaultLanguage(),
+        languageI18nEntries
       );
     });
     if (fs.existsSync(this.appResourcesDirectoryPath) && fs.statSync(this.appResourcesDirectoryPath).isDirectory()) {

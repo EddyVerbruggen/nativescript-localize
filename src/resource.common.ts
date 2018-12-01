@@ -1,7 +1,7 @@
 import * as shorthash from "shorthash";
 
 export function encodeKey(key: string): string {
-  return `_${key.replace(/[^\w]/g, "_")}_${shorthash.unique(key)}`;
+  return key.match(/^[_a-zA-Z]\w*$/) ? key : `_${key.replace(/[^\w]/g, "_")}_${shorthash.unique(key)}`;
 }
 
 export function replace(find: string[], replace: string[], subject: string): string {

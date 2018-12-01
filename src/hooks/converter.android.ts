@@ -46,18 +46,26 @@ export class ConverterAndroid extends ConverterCommon {
     );
     this.createDirectoryIfNeeded(languageResourcesDir);
     let strings = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n";
-    i18nEntries.forEach((value, key) => {
-      const encodedKey = encodeKey(key);
-      const encodedValue = encodeValue(value);
+    this.encodeI18nEntries(i18nEntries).forEach((encodedValue, encodedKey) => {
       strings += `  <string name="${encodedKey}">${encodedValue}</string>\n`;
-      if (key === "app.name") {
-        strings += `  <string name="app_name">${encodedValue}</string>\n`;
-        strings += `  <string name="title_activity_kimera">${encodedValue}</string>\n`;
-      }
     });
     strings += "</resources>\n";
     const resourceFilePath = path.join(languageResourcesDir, "strings.xml");
     this.writeFileSyncIfNeeded(resourceFilePath, strings);
     return this;
+  }
+
+  private encodeI18nEntries(i18nEntries: I18nEntries): I18nEntries {
+    const encodedI18nEntries: I18nEntries = new Map();
+    i18nEntries.forEach((value, key) => {
+      const encodedKey = encodeKey(key);
+      const encodedValue = encodeValue(value);
+      encodedI18nEntries.set(encodedKey, encodedValue);
+      if (key === "app.name") {
+        encodedI18nEntries.set("app_name", encodedValue);
+        encodedI18nEntries.set("title_activity_kimera", encodedValue);
+      }
+    });
+    return encodedI18nEntries;
   }
 }
