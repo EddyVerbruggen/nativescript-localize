@@ -18,6 +18,7 @@ echo 'Bumping version...'
 cd "$CURRENT_DIR/../src"
 VERSION=$(npm --no-git-tag-version version "$1")
 git add "package.json"
+git add "package-lock.json"
 git commit -m "Bump version to $VERSION"
 git push origin
 
