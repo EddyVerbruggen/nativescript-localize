@@ -1,5 +1,13 @@
 # Change Log
 
+## [v4.1.0](https://github.com/lfabreges/nativescript-localize/tree/v4.1.0) (2018-12-01)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v4.0.0...v4.1.0)
+
+**Closed issues:**
+
+- Building for IOS failed [\#50](https://github.com/lfabreges/nativescript-localize/issues/50)
+- add translations for plugins [\#49](https://github.com/lfabreges/nativescript-localize/issues/49)
+
 ## [v4.0.0](https://github.com/lfabreges/nativescript-localize/tree/v4.0.0) (2018-11-25)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v3.0.6...v4.0.0)
 
