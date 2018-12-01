@@ -1,6 +1,7 @@
 {
   "android": {
-    "v8Flags": "--expose_gc"
+    "v8Flags": "--expose_gc",
+    "requireModules": ["nativescript-localize"]
   },
   "main": "main.js",
   "name": "nativescript-localize-demo-angular",

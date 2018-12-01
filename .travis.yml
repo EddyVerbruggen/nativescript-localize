@@ -52,14 +52,14 @@ matrix:
       os: linux
       jdk: oraclejdk8
       env:
-        - WebPack="Android"
+        - WebpackAndroid="28"
       before_install:
         - nvm install 8
       script:
         - cd demo
-        - tns build android --bundle --env.uglify --env.snapshot
+        - tns build android --env.uglify --env.snapshot
         - cd ../demo-angular
-        - tns build android --bundle --env.uglify --env.snapshot
+        - tns build android --env.uglify --env.snapshot --env.aot
     - language: android
       os: linux
       dist: precise
@@ -96,12 +96,12 @@ matrix:
       node_js: "8"
       jdk: oraclejdk8
       env:
-        - WebPack="iOS"
+        - WebpackiOS="12"
       script:
         - cd demo
-        - tns build ios --bundle --env.uglify
+        - tns build ios --env.uglify
         - cd ../demo-angular
-        - tns build ios --bundle --env.uglify
+        - tns build ios --env.uglify --env.aot
     - os: osx
       osx_image: xcode10.0
       language: node_js
