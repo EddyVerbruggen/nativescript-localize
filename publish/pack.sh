@@ -23,13 +23,12 @@ node_modules/.bin/ncp "$ROOT_DIR"/README.md "$TO_SOURCE_DIR"/README.md
 echo 'Building /src...'
 cd "$TO_SOURCE_DIR"
 npm run compile
-cd ..
 
 echo 'Creating package...'
+cd "$CURRENT_DIR"
 mkdir "$PACK_DIR"
 cd "$PACK_DIR"
 npm pack ../"$TO_SOURCE_DIR"
 
 echo 'Cleaning...'
-cd ..
 node_modules/.bin/rimraf "$TO_SOURCE_DIR"
