@@ -28,7 +28,8 @@ echo 'Creating package...'
 cd "$CURRENT_DIR"
 mkdir "$PACK_DIR"
 cd "$PACK_DIR"
-npm pack ../"$TO_SOURCE_DIR"
+npm pack "$TO_SOURCE_DIR"
 
 echo 'Cleaning...'
+cd "$CURRENT_DIR"
 node_modules/.bin/rimraf "$TO_SOURCE_DIR"
