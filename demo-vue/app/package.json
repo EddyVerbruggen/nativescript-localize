@@ -1,0 +1,9 @@
+{
+  "android": {
+    "v8Flags": "--expose_gc",
+    "requireModules": ["nativescript-localize"]
+  },
+  "main": "main",
+  "name": "nativescript-localize-demo-vue",
+  "version": "1.0.0"
+}

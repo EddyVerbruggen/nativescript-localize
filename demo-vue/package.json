@@ -1,0 +1,38 @@
+{
+  "name": "nativescript-localize-demo-vue",
+  "description": "nativescript-localize vue demo",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "readme": "NativeScript Application",
+  "dependencies": {
+    "nativescript-localize": "file:../src",
+    "nativescript-vue": "^2.0.0",
+    "tns-core-modules": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "babel-traverse": "6.26.0",
+    "babel-types": "6.26.0",
+    "babylon": "6.18.0",
+    "lazy": "1.0.11",
+    "nativescript-dev-webpack": "^0.20.2",
+    "nativescript-vue-template-compiler": "^2.0.0",
+    "node-sass": "^4.9.2",
+    "terser-webpack-plugin": "^1.1.0",
+    "tns-platform-declarations": "^5.0.2",
+    "vue": "^2.5.22",
+    "vue-loader": "^15.2.6"
+  },
+  "nativescript": {
+    "id": "org.nativescript.demo.vue",
+    "tns-ios": {
+      "version": "5.2.0"
+    },
+    "tns-android": {
+      "version": "5.2.0"
+    }
+  }
+}

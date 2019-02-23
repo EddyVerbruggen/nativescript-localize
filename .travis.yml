@@ -8,21 +8,23 @@ android:
     - sys-img-armeabi-v7a-android-21
 
 before_install:
-    - sudo pip install --upgrade pip
-    - sudo pip install six
+  - sudo pip install --upgrade pip
+  - sudo pip install six
 
 install:
-    - echo no | npm install -g nativescript
-    - tns usage-reporting disable
-    - tns error-reporting disable
-    - cd src
-    - npm i
-    - npm run compile
-    - cd ../demo
-    - npm i
-    - cd ../demo-angular
-    - npm i
-    - cd ..
+  - echo no | npm install -g nativescript
+  - tns usage-reporting disable
+  - tns error-reporting disable
+  - cd src
+  - npm i
+  - npm run compile
+  - cd ../demo
+  - npm i
+  - cd ../demo-angular
+  - npm i
+  - cd ../demo-vue
+  - npm i
+  - cd ..
 
 matrix:
   include:
@@ -60,6 +62,8 @@ matrix:
         - tns build android --bundle --env.uglify --env.snapshot
         - cd ../demo-angular
         - tns build android --bundle --env.uglify --env.snapshot --env.aot
+        - cd ../demo-vue
+        - tns build android --bundle --env.uglify --env.snapshot
     - language: android
       os: linux
       dist: precise
@@ -102,6 +106,8 @@ matrix:
         - tns build ios --bundle --env.uglify
         - cd ../demo-angular
         - tns build ios --bundle --env.uglify --env.aot
+        - cd ../demo-vue
+        - tns build ios --bundle --env.uglify
     - os: osx
       osx_image: xcode10.0
       language: node_js
