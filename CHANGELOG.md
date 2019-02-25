@@ -1,5 +1,19 @@
 # Change Log
 
+## [v4.1.1](https://github.com/lfabreges/nativescript-localize/tree/v4.1.1) (2019-02-25)
+[Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v4.1.0...v4.1.1)
+
+**Closed issues:**
+
+- Path must be a string. Received undefined [\#64](https://github.com/lfabreges/nativescript-localize/issues/64)
+- Is there a way to get notified when the OS language changes? [\#63](https://github.com/lfabreges/nativescript-localize/issues/63)
+- Issues with es-419 \(latin america\) culture on Android. [\#62](https://github.com/lfabreges/nativescript-localize/issues/62)
+- Does not localize [\#61](https://github.com/lfabreges/nativescript-localize/issues/61)
+- Avoid changing Info.plist [\#60](https://github.com/lfabreges/nativescript-localize/issues/60)
+- NativeScript and Angular - Exception on preview [\#58](https://github.com/lfabreges/nativescript-localize/issues/58)
+- Localize with Vue Js - Doesn't find key with special character [\#57](https://github.com/lfabreges/nativescript-localize/issues/57)
+- Nativescript and Angular - problem with a modla [\#56](https://github.com/lfabreges/nativescript-localize/issues/56)
+
 ## [v4.1.0](https://github.com/lfabreges/nativescript-localize/tree/v4.1.0) (2018-12-01)
 [Full Changelog](https://github.com/lfabreges/nativescript-localize/compare/v4.0.0...v4.1.0)
 
