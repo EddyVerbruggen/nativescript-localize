@@ -95,7 +95,7 @@ console.log(localize("Hello world !"));
 ```
 
 ### Vue
-#### main.js
+#### app.js
 ```js
 import { localize } from "nativescript-localize";
 
@@ -107,9 +107,6 @@ Vue.filter("L", localize);
 <Label :text="'Hello world !'|L"></Label>
 <Label :text="'I am %s'|L('user name')"></Label>
 ```
-
-#### vue-cli-template
-The localization files placed under `dist/app/i18n/*` must be cleaned since they're not correctly updated when modified. To do so, you can run the command `rm dist/app/i18n/*`.
 
 ## File format
 Each file is imported using `require`, use the file format of your choice:
