@@ -11,6 +11,11 @@ export = function(
   hookArgs: any
 ) {
   const platformName = hookArgs.checkForChangesOpts.platform.toLowerCase();
+
+  if (hookArgs.checkForChangesOpts.projectData) {
+    projectData = hookArgs.checkForChangesOpts.projectData;
+  }
+
   const platformData = platformsData.getPlatformData(platformName, projectData);
 
   let converter: ConverterCommon;
