@@ -1,10 +1,13 @@
 # nativescript-localize
-[![Travis](https://img.shields.io/travis/lfabreges/nativescript-localize.svg)](https://travis-ci.org/lfabreges/nativescript-localize)
 [![npm](https://img.shields.io/npm/v/nativescript-localize.svg)](https://www.npmjs.com/package/nativescript-localize)
 [![npm](https://img.shields.io/npm/dm/nativescript-localize.svg)](https://www.npmjs.com/package/nativescript-localize)
 
 This is a plugin for NativeScript that implements internationalization (i18n) using the native capabilities
 of each platform. It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i18n)
+
+## This plugin is deprecated
+I don't have time to maintain this package anymore. Just so you know, Github reported to me that there is
+potential security vulnerabilities in the dependencies.
 
 ## Table of contents
 * [Installation](#installation)
