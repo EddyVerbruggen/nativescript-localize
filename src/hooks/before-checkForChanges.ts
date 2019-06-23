@@ -6,18 +6,19 @@ import { DataProvider } from "./data.provider";
 export = function(
   androidResourcesMigrationService: IAndroidResourcesMigrationService,
   logger: ILogger,
-  platformsData: IPlatformsData,
   projectData: IProjectData,
+  injector: IInjector,
   hookArgs: any
 ) {
-  const platformName = hookArgs.checkForChangesOpts.platform.toLowerCase();
 
-  if (hookArgs.checkForChangesOpts.projectData) {
-    projectData = hookArgs.checkForChangesOpts.projectData;
-  }
+  const platformName = (hookArgs &&
+    (hookArgs.platformData && hookArgs.platformData.normalizedPlatformName) ||
+    (hookArgs.checkForChangesOpts && hookArgs.checkForChangesOpts.platform) ||
+    '').toLowerCase();
 
-  const platformData = platformsData.getPlatformData(platformName, projectData);
+  projectData = hookArgs && (hookArgs.projectData || (hookArgs.checkForChangesOpts && hookArgs.checkForChangesOpts.projectData));
 
+  const platformData = getPlatformData(hookArgs && hookArgs.platformData, projectData, platformName, injector);
   let converter: ConverterCommon;
   const dataProvider = new DataProvider(logger, projectData);
 
@@ -32,3 +33,13 @@ export = function(
 
   converter.run();
 };
+
+function getPlatformData(platformData: IPlatformData, projectData: IProjectData, platform: string, injector: IInjector): IPlatformData {
+  if (!platformData) {
+    // Used in CLI 5.4.x and below:
+    const platformsData = injector.resolve<IPlatformsData>("platformsData");
+    platformData = platformsData.getPlatformData(platform, projectData);
+  }
+
+  return platformData;
+}
