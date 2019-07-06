@@ -5,9 +5,8 @@
 This is a plugin for NativeScript that implements internationalization (i18n) using the native capabilities
 of each platform. It is inspired from [nativescript-i18n](https://github.com/rborn/nativescript-i18n)
 
-## This plugin is deprecated
-I don't have time to maintain this package anymore. Just so you know, Github reported to me that there is
-potential security vulnerabilities in the dependencies.
+## Credits
+A lot of thanks goes out to [Ludovic Fabrèges (@lfabreges)](https://github.com/lfabreges) for developing and maintaining this plugin in the past. When he had to abandon it due to shifted priorities, he was kind enough to [move the repo to me](https://github.com/EddyVerbruggen/nativescript-localize/issues/73).
 
 ## Table of contents
 * [Installation](#installation)
