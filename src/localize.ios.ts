@@ -8,7 +8,7 @@ const getBundle = (function () {
   let bundle = null;
   return function () {
     if (bundle === null) {
-      bundle = utils.ios.getter(NSBundle, NSBundle.mainBundle);
+      bundle = NSBundle.mainBundle;
     }
     return bundle;
   };
