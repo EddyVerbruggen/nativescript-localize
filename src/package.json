@@ -1,7 +1,7 @@
 {
   "name": "nativescript-localize",
   "description": "Native internationalization plugin for NativeScript using native capabilities of each platform",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "keywords": [
     "nativescript",
     "internationalization",
@@ -44,13 +44,10 @@
   },
   "dependencies": {
     "mkdirp": "^0.5.1",
-    "nativescript-hook": "^0.2.4",
+    "nativescript-hook": "~0.2.5",
     "shorthash": "0.0.2",
     "simple-plist": "^0.3.0",
     "sprintf-js": "^1.1.1"
-  },
-  "peerDependencies": {
-    "tns-core-modules": "^5.0.0"
   },
   "devDependencies": {
     "@angular/compiler": "~7.0.0",
@@ -60,10 +57,10 @@
     "@types/node": "^8.0.0",
     "@types/sprintf-js": "^1.1.0",
     "rxjs": "^6.3.3",
-    "tns-core-modules": "^5.0.2",
-    "tns-platform-declarations": "^5.0.2",
+    "tns-core-modules": "~5.4.3",
+    "tns-platform-declarations": "~5.4.3",
     "tslint": "^5.8.0",
-    "typescript": "~3.1.1",
+    "typescript": "~3.4.1",
     "zone.js": "^0.8.26"
   },
   "nativescript": {

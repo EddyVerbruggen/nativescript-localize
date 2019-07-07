@@ -23,3 +23,8 @@ export function localize(key: string, ...args: string[]): string {
   }
   return vsprintf(localizedString, args);
 }
+
+export function overrideLocale(locale: string): boolean {
+  console.log("overrideLocale is not (yet) implemented on Android");
+  return false;
+}

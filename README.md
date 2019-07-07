@@ -64,8 +64,8 @@ export class AppModule { }
 
 #### Template
 ```xml
-<Label text="{{ 'Hello world !' | L }}"></Label>
-<Label text="{{ 'I am %s' | L:'user name' }}"></Label>
+<Label text="{{ 'Hello world !' | L }}"/>
+<Label text="{{ 'I am %s' | L:'user name' }}"/>
 ```
 
 #### Script
@@ -85,8 +85,8 @@ application.setResources({ L: localize });
 
 #### Template
 ```xml
-<Label text="{{ L('Hello world !') }}"></Label>
-<Label text="{{ L('I am %s', 'user name') }}"></Label>
+<Label text="{{ L('Hello world !') }}"/>
+<Label text="{{ L('I am %s', 'user name') }}"/>
 ```
 
 #### Script
@@ -105,7 +105,7 @@ Vue.filter("L", localize);
 ```
 
 #### Template
-```xml
+```html
 <Label :text="'Hello world !'|L"></Label>
 <Label :text="'I am %s'|L('user name')"></Label>
 ```
@@ -167,7 +167,13 @@ Keys starting with `ios.info.plist.` are used to localize iOS properties:
 
 ### How to change the language dynamically at runtime?
 This plugin uses the native capabilities of each platform, language selection is therefore made by the OS.
-There is no plan to implement this feature in the near future.
+
+On iOS you can programmatically override this language since plugin version 4.2.0 by doing this:
+
+```typescript
+import { overrideLocale } from "nativescript-localize/localize";
+const localeOverriddenSuccessfully = overrideLocale("en-GB"); // or "nl-NL", etc
+```
 
 ## Troubleshooting
 ### The angular localization pipe does not work when in a modal context
