@@ -7,26 +7,26 @@
   "readme": "NativeScript Application",
   "dependencies": {
     "nativescript-localize": "4.2.0",
-    "nativescript-theme-core": "^1.0.4",
+    "@nativescript/theme": "~2.2.1",
     "nativescript-unit-test-runner": "0.7.0",
-    "tns-core-modules": "6.0.1"
+    "tns-core-modules": "~6.3.2"
   },
   "devDependencies": {
     "jasmine-core": "^3.3.0",
     "karma": "^4.0.0",
     "karma-jasmine": "^2.0.1",
     "karma-nativescript-launcher": "^0.4.0",
-    "nativescript-dev-webpack": "1.0.1",
+    "nativescript-dev-webpack": "~1.4.0",
     "tslint": "^5.8.0",
     "karma-webpack": "3.0.5"
   },
   "nativescript": {
     "id": "org.nativescript.demo.javascript",
     "tns-ios": {
-      "version": "6.0.1"
+      "version": "6.3.0"
     },
     "tns-android": {
-      "version": "6.0.0"
+      "version": "6.3.1"
     }
   }
 }
