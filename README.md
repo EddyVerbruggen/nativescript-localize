@@ -75,7 +75,8 @@ import { localize } from "nativescript-localize";
 console.log(localize("Hello world !"));
 ```
 
-### Javascript
+### Javascript / XML
+
 #### app.js
 ```js
 const application = require("application");
@@ -95,6 +96,15 @@ const localize = require("nativescript-localize");
 
 console.log(localize("Hello world !"));
 ```
+
+#### Quirks
+⚠️ If you notice translations work on your main XML page, but don't work on a page you
+navigate to, then add this little hack to the 'page loaded' function of that new page:
+
+```js
+  const page = args.object;
+  page.bindingContext = new Observable();
+````
 
 ### Vue
 #### app.js
