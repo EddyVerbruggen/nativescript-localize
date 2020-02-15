@@ -61,10 +61,16 @@ export class ConverterAndroid extends ConverterCommon {
       const encodedKey = encodeKey(key);
       const encodedValue = encodeValue(value);
       encodedI18nEntries.set(encodedKey, encodedValue);
-      if (key === "app.name") {
-        encodedI18nEntries.set("app_name", encodedValue);
-        encodedI18nEntries.set("title_activity_kimera", encodedValue);
+      if (key.indexOf("protected.") !== -1) {
+          var pkey = key.replace("protected.", "");
+          encodedI18nEntries.set(pkey, encodedValue);
       }
+      else if (key === "app.name") {
+          encodedI18nEntries.set("app_name", encodedValue);
+          encodedI18nEntries.set("title_activity_kimera", encodedValue);
+      }
+      else
+          encodedI18nEntries.set(encodedKey, encodedValue);
     });
     return encodedI18nEntries;
   }
