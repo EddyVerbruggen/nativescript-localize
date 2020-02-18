@@ -178,11 +178,88 @@ Keys starting with `ios.info.plist.` are used to localize iOS properties:
 ### How to change the language dynamically at runtime?
 This plugin uses the native capabilities of each platform, language selection is therefore made by the OS.
 
-On iOS you can programmatically override this language since plugin version 4.2.0 by doing this:
+## On iOS you can programmatically override this language since plugin version 4.2.0 by doing this:
 
 ```typescript
 import { overrideLocale } from "nativescript-localize/localize";
-const localeOverriddenSuccessfully = overrideLocale("en-GB"); // or "nl-NL", etc
+const localeOverriddenSuccessfully = overrideLocale("en-GB"); // or "nl-NL", etc (or even just the part before the hyphen)
+```
+
+## On Android you can programatically override this language since plugin version 4.2.1 by doing this:
+
+In your app.ts / main.ts / app.js
+
+```ts
+import { on, launchEvent } from '@nativescript/core/application';
+import { androidLaunchEventLocalizationHandler } from 'nativescript-localize/localize';
+
+on(launchEvent, (args) => {
+  if (args.android) {
+    androidLaunchEventLocalizationHandler();
+  }
+});
+```
+
+And in your settings page where user chooses the language:
+
+```ts
+import { overrideLocale } from "nativescript-localize/localize";
+const localeOverriddenSuccessfully = overrideLocale("en-GB"); // or "nl-NL", etc (or even just the part before the hyphen)
+```
+
+> **Important:** In both cases, after calling override Locale, you must ask the user to restart the app
+
+For Example:
+
+```ts
+import { android as _android } from '@nativescript/core/application';
+import { overrideLocale } from 'nativescript-localize/localize';
+
+alert({
+  title: 'Switch Language',
+  message: 'The application needs to be restarted to change language',
+  okButtonText: 'Quit!'
+}).then(() => {
+  L.localize.overrideLocale(selectedLang);
+  if (isAndroid) {
+    _android.foregroundActivity.finish();
+  } else {
+    exit(0);
+  }
+});
+```
+
+> **Important:** In case you are using [Android app bundle](https://docs.nativescript.org/tooling/publishing/android-app-bundle) to release your android app, add this to
+> App_Resources/Android/app.gradle to make sure all lanugages are bundled in the split apks
+
+```groovy
+android {
+
+  // there maybe other code here //
+
+  bundle {
+    language {
+      enableSplit = false
+    }
+  }
+}
+```
+
+> **Tip:** you can get the default language on user's phone by using this
+
+```ts
+import { device } from '@nativescript/core/platform';
+
+console.log("user's language is", device.language.split('-')[0]);
+```
+
+> **Tip:** overrideLocale method stores the language in a special key in app-settings,
+> you can access it like this,
+
+```ts
+import { getString } from '@nativescript/core/application-settings'; 
+
+console.log(getString('__app__language__')); // only available after the first time you use overrideLocale(langName);
 ```
 
 ## Troubleshooting

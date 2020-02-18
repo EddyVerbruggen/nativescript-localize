@@ -2,6 +2,7 @@ import { vsprintf } from "sprintf-js";
 
 import { convertAtSignToStringSign } from "./placeholder";
 import { encodeKey } from "./resource";
+import { setString } from "tns-core-modules/application-settings";
 
 let bundle;
 
@@ -19,6 +20,10 @@ export function localize(key: string, ...args: string[]): string {
   return vsprintf(convertAtSignToStringSign(localizedString), args);
 }
 
+export function androidLaunchEventLocalizationHandler() {
+  // dummy
+}
+
 export function overrideLocale(locale: string): boolean {
   const path = NSBundle.mainBundle.pathForResourceOfType(locale.substring(0, 2), "lproj");
 
@@ -29,5 +34,7 @@ export function overrideLocale(locale: string): boolean {
   bundle = NSBundle.bundleWithPath(path);
   NSUserDefaults.standardUserDefaults.setObjectForKey([locale], "AppleLanguages");
   NSUserDefaults.standardUserDefaults.synchronize();
+  setString('__app__language__', locale.substring(0, 2));
+
   return true;
 }

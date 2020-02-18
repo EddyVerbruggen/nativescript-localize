@@ -1,7 +1,12 @@
 import { vsprintf } from "sprintf-js";
-import * as utils from "utils/utils";
+import * as utils from "tns-core-modules/utils/utils";
+import { getString, setString } from 'tns-core-modules/application-settings';
+import { isAndroid } from 'tns-core-modules/platform';
+import { android as _android } from 'tns-core-modules/application';
 
 import { encodeKey } from "./resource";
+
+declare var java: any;
 
 const getResources = (function () {
   let resources = null;
@@ -24,7 +29,22 @@ export function localize(key: string, ...args: string[]): string {
   return vsprintf(localizedString, args);
 }
 
+export function androidLaunchEventLocalizationHandler() {
+  const lang = getString('__app__language__', 'none');
+  if (lang !== 'none' && isAndroid) {
+    const locale = new java.util.Locale(lang);
+    java.util.Locale.setDefault(locale);
+
+    const resources = _android.context.getResources();
+    const configuration = resources.getConfiguration();
+    configuration.locale = locale;
+
+    resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+  }
+}
+
 export function overrideLocale(locale: string): boolean {
-  console.log("overrideLocale is not (yet) implemented on Android");
-  return false;
+  setString('__app__language__', locale.substring(0, 2));
+
+  return true;
 }
