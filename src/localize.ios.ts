@@ -1,8 +1,8 @@
 import { vsprintf } from "sprintf-js";
+import { setString } from "tns-core-modules/application-settings";
 
 import { convertAtSignToStringSign } from "./placeholder";
 import { encodeKey } from "./resource";
-import { setString } from "tns-core-modules/application-settings";
 
 let bundle;
 
@@ -34,7 +34,7 @@ export function overrideLocale(locale: string): boolean {
   bundle = NSBundle.bundleWithPath(path);
   NSUserDefaults.standardUserDefaults.setObjectForKey([locale], "AppleLanguages");
   NSUserDefaults.standardUserDefaults.synchronize();
-  setString('__app__language__', locale.substring(0, 2));
+  setString("__app__language__", locale.substring(0, 2));
 
   return true;
 }

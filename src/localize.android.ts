@@ -1,8 +1,8 @@
 import { vsprintf } from "sprintf-js";
+import { android as _android } from "tns-core-modules/application";
+import { getString, setString } from "tns-core-modules/application-settings";
+import { isAndroid } from "tns-core-modules/platform";
 import * as utils from "tns-core-modules/utils/utils";
-import { getString, setString } from 'tns-core-modules/application-settings';
-import { isAndroid } from 'tns-core-modules/platform';
-import { android as _android } from 'tns-core-modules/application';
 
 import { encodeKey } from "./resource";
 
@@ -30,7 +30,7 @@ export function localize(key: string, ...args: string[]): string {
 }
 
 export function androidLaunchEventLocalizationHandler() {
-  const lang = getString('__app__language__', 'none');
+  const lang = getString("__app__language__", 'none');
   if (lang !== 'none' && isAndroid) {
     const locale = new java.util.Locale(lang);
     java.util.Locale.setDefault(locale);
@@ -44,7 +44,6 @@ export function androidLaunchEventLocalizationHandler() {
 }
 
 export function overrideLocale(locale: string): boolean {
-  setString('__app__language__', locale.substring(0, 2));
-
+  setString("__app__language__", locale.substring(0, 2));
   return true;
 }
