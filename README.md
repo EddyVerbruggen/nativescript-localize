@@ -273,3 +273,19 @@ constructor(
   setTimeout(() => this.changeDetectorRef.detectChanges(), 0);
 }
 ```
+### Starting from Android N, there is a weird side effect while using a WebView.
+For unknown reasons, the very first creation of it resets the application locale to the device default. Therefore, you have to set the desired locale back.
+This is native bug and the workaround is
+```xml
+ <WebView url="https://someurl.com" @loaded="webViewLoaded"/>
+```
+```javascript
+import {overrideLocale, androidLaunchEventLocalizationHandler} from "nativescript-localize/localize";
+import {getString} from '@nativescript/core/application-settings';
+const locale = getString('__app__language__')
+
+function webViewLoaded(){
+    overrideLocale(locale)
+    androidLaunchEventLocalizationHandler()
+}
+```
