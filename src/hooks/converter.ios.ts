@@ -34,7 +34,6 @@ export class ConverterIOS extends ConverterCommon {
     i18nEntries.forEach((value, key) => {
       if (key === "app.name") {
         infoPlistStrings.set("CFBundleDisplayName", value);
-        infoPlistStrings.set("CFBundleName", value);
       } else if (key.startsWith("ios.info.plist.")) {
         infoPlistStrings.set(key.substr(15), value);
       }
