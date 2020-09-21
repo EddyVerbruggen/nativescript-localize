@@ -32,7 +32,9 @@ export class ConverterIOS extends ConverterCommon {
   ): this {
     const infoPlistStrings: I18nEntries = new Map();
     i18nEntries.forEach((value, key) => {
-      if (key.startsWith("ios.info.plist.")) {
+      if (key === "app.name") {
+        infoPlistStrings.set("CFBundleDisplayName", value);
+      } else if (key.startsWith("ios.info.plist.")) {
         infoPlistStrings.set(key.substr(15), value);
       }
     });
