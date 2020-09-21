@@ -1,7 +1,7 @@
 {
   "name": "nativescript-localize",
   "description": "Native internationalization plugin for NativeScript using native capabilities of each platform",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "keywords": [
     "nativescript",
     "internationalization",
@@ -32,6 +32,9 @@
     {
       "name": "MultiShiv19",
       "email": "sp@shiv19.com"
+    },
+    {
+      "name": "Nathan Walker"
     }
   ],
   "main": "index.js",
