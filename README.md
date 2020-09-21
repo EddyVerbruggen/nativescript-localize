@@ -1,3 +1,10 @@
+## NativeScript 7
+
+* Use `@nativescript/localize`: `~5.0.0`
+* [Source managed here](https://github.com/NativeScript/plugins)
+
+## If using 6 and below, see the following:
+
 # nativescript-localize
 [![npm](https://img.shields.io/npm/v/nativescript-localize.svg)](https://www.npmjs.com/package/nativescript-localize)
 [![npm](https://img.shields.io/npm/dm/nativescript-localize.svg)](https://www.npmjs.com/package/nativescript-localize)
