@@ -59,7 +59,7 @@
   "devDependencies": {
     "@angular/compiler": "~7.0.0",
     "@angular/compiler-cli": "~7.0.0",
-    "@angular/core": "~7.0.0",
+    "@angular/core": "~11.0.5",
     "@types/mkdirp": "^0.5.1",
     "@types/node": "^8.0.0",
     "@types/sprintf-js": "^1.1.0",
